@@ -120,6 +120,7 @@ GameObject:
   - 33: {fileID: 377095446}
   - 135: {fileID: 377095445}
   - 23: {fileID: 377095444}
+  - 114: {fileID: 377095447}
   m_Layer: 0
   m_Name: Venus
   m_TagString: Untagged
@@ -178,6 +179,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 377095442}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &377095447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 377095442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &389720895
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +204,7 @@ GameObject:
   - 33: {fileID: 389720899}
   - 135: {fileID: 389720898}
   - 23: {fileID: 389720897}
+  - 114: {fileID: 389720900}
   m_Layer: 0
   m_Name: Uranus
   m_TagString: Untagged
@@ -203,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389720895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 880.250183}
+  m_LocalPosition: {x: 0, y: 0, z: 2880.25024}
   m_LocalScale: {x: 4.01000023, y: 4.01000023, z: 4.01000023}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -247,6 +263,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389720895}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &389720900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 389720895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &652867359
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +288,7 @@ GameObject:
   - 33: {fileID: 652867363}
   - 135: {fileID: 652867362}
   - 23: {fileID: 652867361}
+  - 114: {fileID: 652867364}
   m_Layer: 0
   m_Name: Neptune
   m_TagString: Untagged
@@ -316,6 +347,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 652867359}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &652867364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 652867359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &833735259
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +372,7 @@ GameObject:
   - 33: {fileID: 833735263}
   - 135: {fileID: 833735262}
   - 23: {fileID: 833735261}
+  - 114: {fileID: 833735264}
   m_Layer: 0
   m_Name: Mars
   m_TagString: Untagged
@@ -385,6 +431,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 833735259}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &833735264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 833735259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &867223007
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,11 +520,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 867223007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0, y: -.999369144, z: 0, w: .0355160683}
+  m_LocalPosition: {x: 0, y: 0, z: 4.72000122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1707713156}
 --- !u!1 &966363978
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +536,7 @@ GameObject:
   - 33: {fileID: 966363981}
   - 135: {fileID: 966363980}
   - 23: {fileID: 966363979}
+  - 114: {fileID: 966363983}
   m_Layer: 0
   m_Name: Mercury
   m_TagString: Untagged
@@ -534,6 +595,20 @@ Transform:
   m_LocalScale: {x: .379999995, y: .379999995, z: .379999995}
   m_Children: []
   m_Father: {fileID: 162466083}
+--- !u!114 &966363983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 966363978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &1155829909
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +620,7 @@ GameObject:
   - 33: {fileID: 1155829913}
   - 135: {fileID: 1155829912}
   - 23: {fileID: 1155829911}
+  - 114: {fileID: 1155829914}
   m_Layer: 0
   m_Name: Jupiter
   m_TagString: Untagged
@@ -603,6 +679,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155829909}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1155829914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155829909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &1707713152
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +704,7 @@ GameObject:
   - 33: {fileID: 1707713155}
   - 135: {fileID: 1707713154}
   - 23: {fileID: 1707713153}
+  - 114: {fileID: 1707713157}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -668,10 +759,25 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1707713152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 150.979523}
+  m_LocalPosition: {x: 0, y: 0, z: 147.874207}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 867223012}
   m_Father: {fileID: 162466083}
+--- !u!114 &1707713157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1707713152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &1875707876
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +789,7 @@ GameObject:
   - 33: {fileID: 1875707880}
   - 135: {fileID: 1875707879}
   - 23: {fileID: 1875707878}
+  - 114: {fileID: 1875707881}
   m_Layer: 0
   m_Name: Saturn
   m_TagString: Untagged
@@ -741,6 +848,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1875707876}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1875707881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1875707876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  Planet: {fileID: 0}
+  PlanetName: Sun
 --- !u!1 &2118296557
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,10 @@
+Scales and distances
+Sun - 109 S 0 D
+Mercury - 0.38 S 57 D
+Venus - 0,94 S 108 D
+Earth - 1 S 150 D
+Mars - 0,53 S 228 D
+Jupiter - 11,19 S 779 D
+Saturn - 9,4 S 1430 D
+Uranus - 4,01 S 2880 D
+Neptune - 3,8 S 4500 D
