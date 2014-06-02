@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 42
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &389720895
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 13.5
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &478469435
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 12
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &833735259
@@ -516,7 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 21
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &867223007
@@ -695,7 +695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 99
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &1155829909
@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 16.5
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &1707713152
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!122 &1707713158
@@ -960,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 15
   Planet: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &2118296557
