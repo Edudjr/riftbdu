@@ -135,8 +135,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 377095442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 108.299828}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 111.223953}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &377095444
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 42
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &389720895
 GameObject:
@@ -219,8 +219,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389720895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1397.55334}
-  m_LocalScale: {x: 4.01000023, y: 4.01000023, z: 4.01000023}
+  m_LocalPosition: {x: 0, y: 0, z: 437.314972}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &389720897
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 13.5
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &478469435
 GameObject:
@@ -377,8 +377,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 652867359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .126735687, y: -.0540809631, z: 951.371643}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: .126735687, y: -.0540809631, z: 485.935028}
+  m_LocalScale: {x: 14, y: 14, z: 14}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &652867361
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &833735259
 GameObject:
@@ -462,7 +462,7 @@ Transform:
   m_GameObject: {fileID: 833735259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 209.340332}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &833735261
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 21
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &867223007
 GameObject:
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -20
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Earth
 --- !u!1 &966363978
 GameObject:
@@ -680,8 +680,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 966363978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 64.8742218}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 74.365036}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!114 &966363983
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 99
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &1155829909
 GameObject:
@@ -724,8 +724,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155829909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 303.729919}
-  m_LocalScale: {x: 11.1899996, y: 11.1899996, z: 11.1899996}
+  m_LocalPosition: {x: 0, y: 0, z: 289.002502}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &1155829911
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 16.5
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &1707713152
 GameObject:
@@ -849,7 +849,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1707713152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 147.874207}
+  m_LocalPosition: {x: 0, y: 0, z: 156.666992}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 867223012}
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!122 &1707713158
 Halo:
@@ -905,8 +905,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1875707876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1158.82056}
-  m_LocalScale: {x: 9.39999962, y: 9.39999962, z: 9.39999962}
+  m_LocalPosition: {x: 0, y: 0, z: 381.026428}
+  m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &1875707878
@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  Planet: {fileID: 0}
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &2118296557
 GameObject:
