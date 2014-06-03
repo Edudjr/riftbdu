@@ -301,7 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 42
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &389720895
 GameObject:
@@ -329,8 +330,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389720895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1397.55334}
-  m_LocalScale: {x: 4.01000023, y: 4.01000023, z: 4.01000023}
+  m_LocalPosition: {x: 0, y: 0, z: 437.314972}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &389720897
@@ -384,7 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 13.5
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &394454261
 GameObject:
@@ -549,8 +551,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 652867359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .126735687, y: -.0540809631, z: 951.371643}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: .126735687, y: -.0540809631, z: 485.935028}
+  m_LocalScale: {x: 14, y: 14, z: 14}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &652867361
@@ -604,7 +606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 12
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &833735259
 GameObject:
@@ -633,7 +636,7 @@ Transform:
   m_GameObject: {fileID: 833735259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 209.340332}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &833735261
@@ -687,8 +690,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 21
+  Pointing: {fileID: 0}
   PlanetName: Sun
+--- !u!1 &867223007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 867223012}
+  - 20: {fileID: 867223011}
+  - 92: {fileID: 867223010}
+  - 124: {fileID: 867223009}
+  - 81: {fileID: 867223008}
+  - 114: {fileID: 867223013}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &867223008
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867223007}
+  m_Enabled: 1
+--- !u!124 &867223009
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867223007}
+  m_Enabled: 1
+--- !u!92 &867223010
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867223007}
+  m_Enabled: 1
+--- !u!20 &867223011
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867223007}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: .0310337301, g: .0589977242, b: .102941155, a: .0196078438}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_HDR: 0
+  m_OcclusionCulling: 1
+--- !u!4 &867223012
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867223007}
+  m_LocalRotation: {x: 0, y: -.999369144, z: 0, w: .0355160683}
+  m_LocalPosition: {x: 0, y: 0, z: 1.95079041}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1707713156}
+--- !u!114 &867223013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 867223007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -20
+  Pointing: {fileID: 0}
+  PlanetName: Earth
 --- !u!1 &966363978
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,8 +854,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 966363978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 64.8742218}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 74.365036}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!114 &966363983
@@ -770,7 +869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 99
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &1155829909
 GameObject:
@@ -798,8 +898,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155829909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 303.729919}
-  m_LocalScale: {x: 11.1899996, y: 11.1899996, z: 11.1899996}
+  m_LocalPosition: {x: 0, y: 0, z: 289.002502}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &1155829911
@@ -853,7 +953,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 16.5
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1 &1233791179
 GameObject:
@@ -1023,7 +1124,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1707713152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 147.874207}
+  m_LocalPosition: {x: 0, y: 0, z: 156.666992}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 1911672124}
@@ -1039,7 +1140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 30
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!122 &1707713158
 Halo:
@@ -1078,8 +1180,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1875707876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1158.82056}
-  m_LocalScale: {x: 9.39999962, y: 9.39999962, z: 9.39999962}
+  m_LocalPosition: {x: 0, y: 0, z: 381.026428}
+  m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 162466083}
 --- !u!23 &1875707878
@@ -1133,7 +1235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
+  speed: 15
+  Pointing: {fileID: 0}
   PlanetName: Sun
 --- !u!1001 &1877028496
 Prefab:
