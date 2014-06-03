@@ -1,6 +1,6 @@
 ﻿#pragma strict
 var speed : float = 50;
-var Planet : Transform;
+private var Planet : Transform;
 var PlanetName : String;
 Planet = GameObject.Find(PlanetName).transform;
 function Start () {
