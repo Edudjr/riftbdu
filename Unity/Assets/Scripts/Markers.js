@@ -10,9 +10,9 @@ function Awake ()
 	Globe = GameObject.Find("Sphere");
 }
 function Update(){
-print("PosX: "+transform.position.x);
-print("PosY: "+transform.position.y);
-print("PosZ: "+transform.position.z);
+//print("PosX: "+transform.position.x);
+//print("PosY: "+transform.position.y);
+//print("PosZ: "+transform.position.z);
 
 if(transform.position.z < 0){	
 	if((transform.position.y < 0.4)&&(transform.position.y > -0.4)){
