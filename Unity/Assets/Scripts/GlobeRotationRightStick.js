@@ -1,7 +1,7 @@
 ﻿#pragma strict
 public var speed : float = 1;
 public var referenceObject: String;
-public var rotationLimit = 3;
+public var rotationLimit = 1;
 
 private var reference : GameObject;
 

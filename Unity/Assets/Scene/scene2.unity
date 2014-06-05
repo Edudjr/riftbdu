@@ -650,7 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 60
   referenceObject: Reference
-  rotationLimit: 3
+  rotationLimit: 1
 --- !u!23 &1272046471
 Renderer:
   m_ObjectHideFlags: 0
