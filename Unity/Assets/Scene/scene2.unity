@@ -196,7 +196,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 174111510}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
   m_Name: 
@@ -255,13 +255,14 @@ GameObject:
   - 33: {fileID: 185842167}
   - 135: {fileID: 185842166}
   - 23: {fileID: 185842165}
+  - 114: {fileID: 185842168}
   m_Layer: 2
   m_Name: America
-  m_TagString: Untagged
+  m_TagString: Countries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &185842164
 Transform:
   m_ObjectHideFlags: 0
@@ -303,7 +304,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 185842163}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
@@ -316,6 +317,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 185842163}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &185842168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 185842163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &874372897
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +365,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 874372897}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
   m_Name: 
@@ -438,7 +450,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081632904}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
   m_Name: 
@@ -542,8 +554,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90baf5aec28e31b4fad2842eb4ceb55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
-  RotateAround: Sphere
+  speed: 30
+  RotateAround: Earth
 --- !u!23 &1139805069
 Renderer:
   m_ObjectHideFlags: 0
@@ -556,7 +568,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c43b3b1c89575554fb11709e40517e56, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -635,7 +647,7 @@ GameObject:
   - 82: {fileID: 1272046468}
   - 114: {fileID: 1272046469}
   m_Layer: 2
-  m_Name: Sphere
+  m_Name: Earth
   m_TagString: Earth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,7 +745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 60
   referenceObject: Reference
-  rotationLimit: 2
+  rotationLimit: 3
 --- !u!23 &1272046471
 Renderer:
   m_ObjectHideFlags: 0
@@ -930,7 +942,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1744422018}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
