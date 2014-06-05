@@ -7,7 +7,7 @@ private var matt : Material;
 
 function Awake ()
 {
-	Globe = GameObject.Find("Sphere");
+	Globe = GameObject.Find("Earth");
 }
 function Update(){
 //print("PosX: "+transform.position.x);
