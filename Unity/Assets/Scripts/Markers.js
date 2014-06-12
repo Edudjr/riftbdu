@@ -21,7 +21,8 @@ if(transform.position.z < 0){
 			for(index = 0; index<Globe.renderer.materials.length; index++){
 				matt = Globe.renderer.materials[index];
 				if (matt.name == (transform.name + " (Instance)")){
-					matt.color.a = 255;
+					matt.color.a = 60;
+					
 					pos = index;
 			
 					//GameObject.Find("Timer").SendMessage("GetMarker", transform.name);
@@ -30,9 +31,11 @@ if(transform.position.z < 0){
 			}
 		}
 		else
+		//Globe.renderer.materials[pos].color.r = 255;
 			Globe.renderer.materials[pos].color.a = 0;
 	}
 	else 
+	//Globe.renderer.materials[pos].color.r = 255;
 		Globe.renderer.materials[pos].color.a = 0;
 }
 	
