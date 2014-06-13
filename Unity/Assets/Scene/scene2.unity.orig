@@ -1318,11 +1318,21 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
+<<<<<<< HEAD
+  - 4: {fileID: 1272046467}
+  - 33: {fileID: 1272046473}
+  - 135: {fileID: 1272046472}
+  - 23: {fileID: 1272046471}
+  - 82: {fileID: 1272046468}
+  - 114: {fileID: 1272046469}
+  - 114: {fileID: 1272046470}
+=======
   - 4: {fileID: 637644461}
   - 33: {fileID: 637644465}
   - 135: {fileID: 637644464}
   - 23: {fileID: 637644463}
   - 114: {fileID: 637644462}
+>>>>>>> 239ebf24a8530a76364128bea6918c849d068d5e
   m_Layer: 2
   m_Name: Venezuela
   m_TagString: Countries
@@ -4418,6 +4428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+  speed: 60
+  referenceObject: Reference
+  rotationLimit: 3
+--- !u!114 &1272046470
+=======
 --- !u!23 &1921644280
 Renderer:
   m_ObjectHideFlags: 0
@@ -4576,10 +4592,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1272046467}
 --- !u!114 &2006947801
+>>>>>>> 239ebf24a8530a76364128bea6918c849d068d5e
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 1272046466}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b311d5c1b41f0374799e22e5db290630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &1272046471
+=======
   m_GameObject: {fileID: 2006947799}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -4587,6 +4613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &2006947802
+>>>>>>> 239ebf24a8530a76364128bea6918c849d068d5e
 Renderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 2300008, guid: e26e9c161d2d7104b882cda5154bd277,
