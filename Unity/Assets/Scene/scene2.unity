@@ -2385,7 +2385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1032029774
 Transform:
   m_ObjectHideFlags: 0
@@ -3008,7 +3008,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: e26e9c161d2d7104b882cda5154bd277, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272046466}
-  m_LocalRotation: {x: .129059762, y: .873794556, z: -.192847371, w: .427360117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
@@ -3156,7 +3156,6 @@ Renderer:
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
   - {fileID: 2100000, guid: cb0c34966de0da84faee6619d1dd0dd7, type: 2}
-  - {fileID: 2100000, guid: 324d50e9a25f50042b40a85241689afb, type: 2}
   - {fileID: 2100000, guid: 2869b52b4f3856d4bbb4999d3a6c3924, type: 2}
   - {fileID: 2100000, guid: af0125c653a0f5241ae59a93d236c6c8, type: 2}
   - {fileID: 2100000, guid: 6bf6c2c44b74411438938a27a95984b0, type: 2}
