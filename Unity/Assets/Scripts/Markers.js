@@ -1,45 +1,50 @@
 ﻿#pragma strict
 
-private var Globe : GameObject;
+private static var activated : String = null;
+private var Globe : Transform;
 private var index : int;
-private var pos : int = 0;
+private var pos : int = 1;
 private var matt : Material;
 public var precision : float = 0.4;
+//public var MaterialGroup : String;
 
-function Awake ()
-{
-	Globe = GameObject.Find("Earth");
+function Awake (){
+	//get the parent of the markers
+	Globe = transform.parent;
+}
+function Start(){
+	
+	//Defines the index for each marker at the beggining of the execution
+	//It MUST have only one group of markers enabled (Otherwise, we would get different markers with the same index)
+	for(index = 1; index<Globe.renderer.materials.length; index++){
+		matt = Globe.renderer.materials[index];
+		//If current material name == current marker name
+		if (matt.name == (transform.name + " (Instance)")){
+			pos = index;
+		}
+	}
+	
 }
 function Update(){
-//print("PosX: "+transform.position.x);
-//print("PosY: "+transform.position.y);
-//print("PosZ: "+transform.position.z);
+	
+	//Check if marker is at the right place
+	if((transform.position.z < 0)&&	
+	((transform.position.y < precision)&&(transform.position.y > -precision))&&
+	((transform.position.x < precision)&&(transform.position.x > -precision))){
+		
+		Globe.renderer.materials[pos].color.a = 1;
 
-	if(transform.position.z < 0){	
-		if((transform.position.y < precision)&&(transform.position.y > -precision)){
-			if((transform.position.x < precision)&&(transform.position.x > -precision)){
-				
-				for(index = 0; index<Globe.renderer.materials.length; index++){
-					matt = Globe.renderer.materials[index];
-					if (matt.name == (transform.name + " (Instance)")){
-						//Debug.Log(transform.position);
-						matt.color.a = 90;
-						pos = index;
-						//GameObject.Find("Timer").SendMessage("GetMarker", transform.name);
-						//GameObject.Find("Timer").SendMessage("newGetMarker", transform.name);
-					}
-				}
-			}
-			else
-				Globe.renderer.materials[pos].color.a = 0;
-		}
-		else 
-		Globe.renderer.materials[pos].color.a = 0;
-}
+	}else{
+
+		Globe.renderer.materials[pos].color.a = 0.1;
+	}
 	
 }
 
-function OnDestroy ()
-{
+function getActivated(){
+	return activated;
+}
+
+function OnDestroy (){
 	DestroyImmediate(renderer.material);
 }

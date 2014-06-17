@@ -1,15 +1,19 @@
 ﻿#pragma strict
-private var Globe : GameObject;
+//Group is the object that contains all the materials to render
+private var Group : GameObject;
+//MaterialGroup is the
+//public var MaterialGroup : String; 
+
 function Awake ()
 {
-	Globe = GameObject.Find("Earth");
-	
+	//Group = GameObject.Find(MaterialGroup);	
 	var i : int;
 	
-	for (i = 1; i < Globe.renderer.materials.length; i++){
-		Globe.renderer.materials[i].color.a = 0;
+	for (i = 1; i < transform.renderer.materials.length; i++){
+		transform.renderer.materials[i].color.a = 0;
 	}
 }
+
 function Update(){
 
 }
