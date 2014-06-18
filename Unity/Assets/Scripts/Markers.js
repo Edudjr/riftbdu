@@ -43,9 +43,11 @@ function Update(){
 		//Change the texture of the plane, loading a new texture from the Resources folder
 		Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
 		transform.renderer.material.color = Color.green ;
+		activated = transform.name;
+		Debug.Log(activated);
 
 	}else{
-
+		activated = null;
 		Globe.renderer.materials[pos].color.a = 0.1;
 		transform.renderer.material.color = Color.red ;
 	}
