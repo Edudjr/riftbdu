@@ -259,7 +259,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 377095442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 120.798058}
+  m_LocalPosition: {x: 0, y: 0, z: 511.637512}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -342,7 +342,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 389720895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 437.314972}
+  m_LocalPosition: {x: 0, y: 0, z: 828.154724}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -500,7 +500,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4278620671
-  m_Size: 84.5999985
+  m_Size: 725.5
 --- !u!108 &478469438
 Light:
   m_ObjectHideFlags: 0
@@ -512,7 +512,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: .949695766, b: .544117689, a: 1}
   m_Intensity: 8
-  m_Range: 300
+  m_Range: 877.599976
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -562,7 +562,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 652867359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .126735687, y: -.0540809631, z: 485.935028}
+  m_LocalPosition: {x: .126735687, y: -.0540809631, z: 876.774353}
   m_LocalScale: {x: 14, y: 14, z: 14}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -645,7 +645,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 833735259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 209.340332}
+  m_LocalPosition: {x: 0, y: 0, z: 600.17981}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -768,7 +768,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 966363978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 74.365036}
+  m_LocalPosition: {x: 0, y: 0, z: 465.204468}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -811,7 +811,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155829909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 289.002502}
+  m_LocalPosition: {x: 0, y: 0, z: 679.841919}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -1064,7 +1064,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1707713152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 156.666992}
+  m_LocalPosition: {x: 0, y: 0, z: 547.506409}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 1334256362}
@@ -1146,7 +1146,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1875707876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 381.026428}
+  m_LocalPosition: {x: 0, y: 0, z: 771.865967}
   m_LocalScale: {x: 16, y: 16, z: 16}
   m_Children: []
   m_Father: {fileID: 162466083}
@@ -1220,7 +1220,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9da535ecc7e009544bd58323d6696a4d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 166.833008
+      value: 562.819458
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 9da535ecc7e009544bd58323d6696a4d, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1345,7 +1345,7 @@ Transform:
   m_PrefabInternal: {fileID: 1877028496}
   m_GameObject: {fileID: 1911672123}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 0, y: 0, z: 166.833008}
+  m_LocalPosition: {x: 0, y: 0, z: 562.819458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1233791180}
@@ -1448,7 +1448,7 @@ Transform:
   m_GameObject: {fileID: 2118296557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_LocalScale: {x: 800, y: 800, z: 800}
   m_Children:
   - {fileID: 478469436}
   m_Father: {fileID: 162466083}

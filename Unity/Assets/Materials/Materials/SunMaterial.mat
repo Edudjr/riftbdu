@@ -31,7 +31,7 @@ Material:
         first:
           name: _Illum
         second:
-          m_Texture: {fileID: 2800000, guid: f87632fe9a05ba24d9f970374df144ae, type: 3}
+          m_Texture: {fileID: 2800000, guid: 795d7f40f269f7d4e8a161f08fd3a52e, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -49,11 +49,11 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .100000016
+        second: .236638099
       data:
         first:
           name: _EmissionLM
-        second: 10
+        second: 781.700012
       data:
         first:
           name: _Parallax
