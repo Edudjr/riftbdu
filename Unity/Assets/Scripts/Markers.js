@@ -6,11 +6,18 @@ private var index : int;
 private var pos : int = 1;
 private var matt : Material;
 public var precision : float = 0.4;
+
+private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
+public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
 //public var MaterialGroup : String;
 
 function Awake (){
 	//get the parent of the markers
 	Globe = transform.parent;
+	//Just setting the name again, to make sure.
+	boardObject = "CountryBoard";
+	//When start, look for the plane
+	Board = GameObject.Find(boardObject);
 }
 function Start(){
 	
@@ -33,10 +40,16 @@ function Update(){
 	((transform.position.x < precision)&&(transform.position.x > -precision))){
 		
 		Globe.renderer.materials[pos].color.a = 1;
+		//Change the texture of the plane, loading a new texture from the Resources folder
+		Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
+		transform.renderer.material.color = Color.green ;
+		activated = transform.name;
+		Debug.Log(activated);
 
 	}else{
-
+		activated = null;
 		Globe.renderer.materials[pos].color.a = 0.1;
+		transform.renderer.material.color = Color.red ;
 	}
 	
 }

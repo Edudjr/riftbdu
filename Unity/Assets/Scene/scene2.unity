@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &4377480
 Renderer:
   m_ObjectHideFlags: 0
@@ -201,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &7057548
 Renderer:
   m_ObjectHideFlags: 0
@@ -208,7 +210,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 7057545}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -350,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &38981506
 Renderer:
   m_ObjectHideFlags: 0
@@ -515,6 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &162138603
 Renderer:
   m_ObjectHideFlags: 0
@@ -601,6 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &174111513
 Renderer:
   m_ObjectHideFlags: 0
@@ -681,7 +686,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 185842163}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -729,6 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .800000012
+  boardObject: CountryBoard
 --- !u!1 &201429199
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precision: .400000006
+  precision: .300000012
+  boardObject: CountryBoard
 --- !u!23 &201429202
 Renderer:
   m_ObjectHideFlags: 0
@@ -778,7 +785,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 201429199}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -855,7 +862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precision: .400000006
+  precision: .300000012
+  boardObject: CountryBoard
 --- !u!23 &224502074
 Renderer:
   m_ObjectHideFlags: 0
@@ -863,7 +871,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 224502071}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -941,6 +949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &224640139
 Renderer:
   m_ObjectHideFlags: 0
@@ -948,7 +957,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 224640136}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1026,6 +1035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &285006835
 Renderer:
   m_ObjectHideFlags: 0
@@ -1033,7 +1043,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 285006832}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1111,6 +1121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &416379012
 Renderer:
   m_ObjectHideFlags: 0
@@ -1196,6 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &580826655
 Renderer:
   m_ObjectHideFlags: 0
@@ -1203,7 +1215,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 580826652}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1281,6 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &622519423
 Renderer:
   m_ObjectHideFlags: 0
@@ -1366,6 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &637644463
 Renderer:
   m_ObjectHideFlags: 0
@@ -1373,7 +1387,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 637644460}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1451,6 +1465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &637982030
 Renderer:
   m_ObjectHideFlags: 0
@@ -1536,6 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &649988860
 Renderer:
   m_ObjectHideFlags: 0
@@ -1543,7 +1559,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 649988857}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -1621,6 +1637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &652862794
 Renderer:
   m_ObjectHideFlags: 0
@@ -1706,6 +1723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &665353767
 Renderer:
   m_ObjectHideFlags: 0
@@ -1791,6 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &667906005
 Renderer:
   m_ObjectHideFlags: 0
@@ -1876,6 +1895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &670984541
 Renderer:
   m_ObjectHideFlags: 0
@@ -1961,6 +1981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &743968950
 Renderer:
   m_ObjectHideFlags: 0
@@ -2046,6 +2067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &814595059
 Renderer:
   m_ObjectHideFlags: 0
@@ -2053,7 +2075,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 814595056}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -2132,6 +2154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &874372900
 Renderer:
   m_ObjectHideFlags: 0
@@ -2217,6 +2240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &885603385
 Renderer:
   m_ObjectHideFlags: 0
@@ -2224,7 +2248,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 885603382}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -2260,6 +2284,76 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 885603382}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &919526547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 919526551}
+  - 33: {fileID: 919526550}
+  - 64: {fileID: 919526549}
+  - 23: {fileID: 919526548}
+  m_Layer: 0
+  m_Name: CountryBoard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &919526548
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919526547}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 4fe02c46fb32604459b49515b6a6fa9c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!64 &919526549
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919526547}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &919526550
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919526547}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &919526551
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919526547}
+  m_LocalRotation: {x: -.000269922311, y: -.707106769, z: .707106709, w: .000269820797}
+  m_LocalPosition: {x: 0, y: 6.16685867, z: -.208154604}
+  m_LocalScale: {x: 1, y: .5, z: .200000003}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &935261827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,6 +2508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1081632907
 Renderer:
   m_ObjectHideFlags: 0
@@ -2499,6 +2594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1101527861
 Renderer:
   m_ObjectHideFlags: 0
@@ -2768,6 +2864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1144631293
 Renderer:
   m_ObjectHideFlags: 0
@@ -2879,6 +2976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1259945965
 Renderer:
   m_ObjectHideFlags: 0
@@ -3142,6 +3240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1283366602
 Renderer:
   m_ObjectHideFlags: 0
@@ -3227,6 +3326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1321978498
 Renderer:
   m_ObjectHideFlags: 0
@@ -3312,6 +3412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1349309682
 Renderer:
   m_ObjectHideFlags: 0
@@ -3398,6 +3499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1413836498
 Renderer:
   m_ObjectHideFlags: 0
@@ -3590,6 +3692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1476368639
 Renderer:
   m_ObjectHideFlags: 0
@@ -3768,6 +3871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1480659405
 Renderer:
   m_ObjectHideFlags: 0
@@ -3853,6 +3957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1511787318
 Renderer:
   m_ObjectHideFlags: 0
@@ -3937,7 +4042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50dd6d8b2118aa43b8d77b31fd26122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precision: .400000006
+  precision: .300000012
+  boardObject: CountryBoard
 --- !u!23 &1520099220
 Renderer:
   m_ObjectHideFlags: 0
@@ -3945,7 +4051,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520099217}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -4023,6 +4129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1595074379
 Renderer:
   m_ObjectHideFlags: 0
@@ -4066,6 +4173,45 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1595074376}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1636234714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1636234716}
+  - 114: {fileID: 1636234715}
+  m_Layer: 0
+  m_Name: GameStarter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1636234715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636234714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e7598ec2cb5da47b91920229dca908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceObject: GameStarter
+--- !u!4 &1636234716
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636234714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1648282413
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,6 +4254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1648282416
 Renderer:
   m_ObjectHideFlags: 0
@@ -4193,6 +4340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1673799362
 Renderer:
   m_ObjectHideFlags: 0
@@ -4268,6 +4416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1744422020
 Renderer:
   m_ObjectHideFlags: 0
@@ -4364,6 +4513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1762969850
 Renderer:
   m_ObjectHideFlags: 0
@@ -4585,6 +4735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &1921644280
 Renderer:
   m_ObjectHideFlags: 0
@@ -4670,6 +4821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &2000154188
 Renderer:
   m_ObjectHideFlags: 0
@@ -4755,6 +4907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &2006947802
 Renderer:
   m_ObjectHideFlags: 0
@@ -4840,6 +4993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &2067056381
 Renderer:
   m_ObjectHideFlags: 0
@@ -4847,7 +5001,7 @@ Renderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2067056378}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_LightmapIndex: 255
@@ -4925,6 +5079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &2119260057
 Renderer:
   m_ObjectHideFlags: 0
@@ -5010,6 +5165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precision: .400000006
+  boardObject: CountryBoard
 --- !u!23 &2126692615
 Renderer:
   m_ObjectHideFlags: 0
