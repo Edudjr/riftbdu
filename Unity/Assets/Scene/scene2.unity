@@ -4226,9 +4226,10 @@ MonoBehaviour:
   referenceObject: 
   CountrytoGuess: 
   Score: 0
+  boardObject: CountryBoard
   markers: {fileID: 0}
-  path: SouthAmericaCountries.txt
-  nLines: 0
+  pathofTextFile: SouthAmericaCountries.txt
+  nLinesofTextFileofTextFile: 0
 --- !u!1 &1648282413
 GameObject:
   m_ObjectHideFlags: 0
