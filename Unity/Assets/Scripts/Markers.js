@@ -40,16 +40,22 @@ function Update(){
 	((transform.position.x < precision)&&(transform.position.x > -precision))){
 		
 		Globe.renderer.materials[pos].color.a = 1;
-		//Change the texture of the plane, loading a new texture from the Resources folder
-		Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
-		transform.renderer.material.color = Color.green ;
+		
+		//Get the name of the marker selected and gives to the variable "activated"
 		activated = transform.name;
-		Debug.Log(activated);
+		//Change the texture of the plane, loading a new texture from the Resources folder
+		
+		/* This line was commented to do not let the name on the board change whenever the country is selected
+		
+		Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
+		*/
+		transform.renderer.material.color = Color.green ;
+		//Debug.Log(activated);
 
 	}else{
-		activated = null;
+		//activated = null;
 		Globe.renderer.materials[pos].color.a = 0.1;
-		transform.renderer.material.color = Color.yellow;
+		transform.renderer.material.color = Color.red ;
 	}
 	
 }

@@ -4182,6 +4182,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1636234716}
   - 114: {fileID: 1636234715}
+  - 114: {fileID: 1636234717}
   m_Layer: 0
   m_Name: GameStarter
   m_TagString: Untagged
@@ -4211,6 +4212,23 @@ Transform:
   m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1636234717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1636234714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895821d719e795243b9c8d88ca454b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceObject: 
+  CountrytoGuess: 
+  Score: 0
+  markers: {fileID: 0}
+  path: SouthAmericaCountries.txt
+  nLines: 0
 --- !u!1 &1648282413
 GameObject:
   m_ObjectHideFlags: 0
