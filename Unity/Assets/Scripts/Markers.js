@@ -55,7 +55,7 @@ function Update(){
 	}else{
 		//activated = null;
 		Globe.renderer.materials[pos].color.a = 0.1;
-		transform.renderer.material.color = Color.red ;
+		transform.renderer.material.color = Color.yellow ;
 	}
 	
 }
