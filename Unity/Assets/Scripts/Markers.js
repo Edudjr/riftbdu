@@ -54,7 +54,8 @@ function Update(){
 	
 }
 
-function getActivated(){
+public function getActivated(){
+	
 	return activated;
 }
 

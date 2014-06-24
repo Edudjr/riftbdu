@@ -2295,6 +2295,7 @@ GameObject:
   - 33: {fileID: 919526550}
   - 64: {fileID: 919526549}
   - 23: {fileID: 919526548}
+  - 114: {fileID: 919526552}
   m_Layer: 0
   m_Name: CountryBoard
   m_TagString: Untagged
@@ -2354,6 +2355,21 @@ Transform:
   m_LocalScale: {x: 1, y: .5, z: .200000003}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &919526552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 919526547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e7598ec2cb5da47b91920229dca908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceObject: 
+  CountrytoGuess: 
+  Score: 0
+  markers: {fileID: 0}
 --- !u!1 &935261827
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,6 +4217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referenceObject: GameStarter
+  CountrytoGuess: 
+  Score: 0
+  markers: {fileID: 0}
 --- !u!4 &1636234716
 Transform:
   m_ObjectHideFlags: 0
