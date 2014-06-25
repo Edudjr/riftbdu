@@ -19,25 +19,25 @@ function Update () {
 function getAxis (input : String){
 
 	
-	if( (Input.GetAxisRaw("RightAnalog_Horizontal")> 0.3 )|| (Input.GetKey(KeyCode.RightArrow )) )
+	if( (Input.GetAxisRaw("LeftAnalog_Horizontal")> 0.3 )|| (Input.GetKey(KeyCode.RightArrow )) )
 	{ 
 		transform.Rotate(-Vector3.up * Time.deltaTime * speed, Space.Self);
 	}
 	else {
-		if ( (Input.GetAxisRaw("RightAnalog_Horizontal") < -0.3)||(Input.GetKey(KeyCode.LeftArrow)))
+		if ( (Input.GetAxisRaw("LeftAnalog_Horizontal") < -0.3)||(Input.GetKey(KeyCode.LeftArrow)))
 		{
 			transform.Rotate(Vector3.up * Time.deltaTime * speed, Space.Self);
 		}
 	}
 	
-	if((Input.GetAxisRaw("RightAnalog_Vertical")> 0.3)||(Input.GetKey(KeyCode.UpArrow)))
+	if((Input.GetAxisRaw("LeftAnalog_Vertical")> 0.3)||(Input.GetKey(KeyCode.UpArrow)))
 	{
 		if(reference.transform.position.z > transform.position.z - rotationLimit)
 		//if(reference.transform.position.z > -1.2)
 			transform.Rotate(-Vector3.right * Time.deltaTime * speed, Space.World);
 	}
 	else{
-		if((Input.GetAxisRaw("RightAnalog_Vertical") < -0.3)||(Input.GetKey(KeyCode.DownArrow)))
+		if((Input.GetAxisRaw("LeftAnalog_Vertical") < -0.3)||(Input.GetKey(KeyCode.DownArrow)))
 		{
 			if(reference.transform.position.z < transform.position.z + rotationLimit)
 			//if(reference.transform.position.z < 1.3)
