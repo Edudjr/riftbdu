@@ -2,8 +2,8 @@
 
 private static var activated : String = null;
 private var Globe : Transform;
-private var index : int;
-private var pos : int = 1;
+//each country has its own index, which is the index inside the renderer.materials[]
+private var index : int = 1;
 private var matt : Material;
 public var precision : float = 0.4;
 
@@ -23,46 +23,45 @@ function Start(){
 	
 	//Defines the index for each marker at the beggining of the execution
 	//It MUST have only one group of markers enabled (Otherwise, we would get different markers with the same index)
-	for(index = 1; index<Globe.renderer.materials.length; index++){
-		matt = Globe.renderer.materials[index];
+	for(var i = 1; i<Globe.renderer.materials.length; i++){
+		matt = Globe.renderer.materials[i];
 		//If current material name == current marker name
 		if (matt.name == (transform.name + " (Instance)")){
-			pos = index;
+			index = i;
 		}
 	}
 	
 }
 function Update(){
 	
+	
 	//Check if marker is at the right place
 	if((transform.position.z < 0)&&	
 	((transform.position.y < precision)&&(transform.position.y > -precision))&&
 	((transform.position.x < precision)&&(transform.position.x > -precision))){
 		
-		Globe.renderer.materials[pos].color.a = 1;
-		
-		//Get the name of the marker selected and gives to the variable "activated"
+		//set material's alpha to 100%
+		Globe.renderer.materials[index].color.a = 1;
 		activated = transform.name;
-		//Change the texture of the plane, loading a new texture from the Resources folder
-		
-		/* This line was commented to do not let the name on the board change whenever the country is selected
-		
-		Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
+		/*Changes the texture of the plane when country is selected		
+		//Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
 		*/
-		transform.renderer.material.color = Color.green ;
-		//Debug.Log(activated);
-
+		//transform.renderer.material.color = Color.green;
 	}else{
 		//activated = null;
-		Globe.renderer.materials[pos].color.a = 0.1;
+		Globe.renderer.materials[index].color.a = 0.1;
 		transform.renderer.material.color = Color.yellow ;
 	}
+	
 	
 }
 
 public function getActivated(){
 	
 	return activated;
+}
+public function getIndex(){
+	return index;
 }
 
 function OnDestroy (){
