@@ -61,7 +61,7 @@ function Start () {
 function Update () {
 	
 	if (markers != null ){
-		if( (Input.GetKeyDown(KeyCode.D )) ) {
+		if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
 			Debug.Log( markers.getActivated() );
 			if ( CountrytoGuess == markers.getActivated() ) {
 				Score ++;

@@ -181,7 +181,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Fire1
+    m_Name: Button_A
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -245,7 +245,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: RightAnalog_Horizontal
+    m_Name: LeftAnalog_Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: left
@@ -258,10 +258,10 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 3
+    axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: RightAnalog_Vertical
+    m_Name: LeftAnalog_Vertical
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: down
@@ -274,5 +274,5 @@ InputManager:
     snap: 0
     invert: 0
     type: 2
-    axis: 4
+    axis: 1
     joyNum: 0
