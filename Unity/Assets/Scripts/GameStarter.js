@@ -15,9 +15,13 @@ private var ObjectStarter : GameObject;
 public var CountrytoGuess : String; 
 public var Score : int = 0;
 
+//Display that shows the name of the country to guess
+public var CountryText3D : TextMesh;
+public var ScoreText3D : TextMesh;
 
-private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
-public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
+
+//private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
+//public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
 
 
 /*This variable markers is the type of mark to use the method getActivated. This method will decide whether the player 
@@ -32,19 +36,24 @@ var nLinesofTextFileofTextFile : int;
 var Countries : Array  = [];
 
 
-function Awake (){
+/*function Awake (){
 	//Just setting the name again, to make sure.
-	boardObject = "CountryBoard";
+	//boardObject = "CountryBoard";
 	//When start, look for the plane
-	Board = GameObject.Find(boardObject);
-}
+	//Board = GameObject.Find(boardObject);
+}*/
     
 
 
 
 function Start () {
+
 	//Gets the name of the game object on the Unity
 	ObjectStarter = GameObject.Find(referenceObject);
+	
+	//Clear Country name
+	SetCountryText3D("");
+	SetScoreText3D(0);
 	 
 	//markers = GetComponent(Markers);
 	//Get a random marker script
@@ -72,8 +81,8 @@ function Update () {
 		if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
 			Debug.Log( markers.getActivated() );
 			if ( CountrytoGuess == markers.getActivated() ) {
-				Score ++;
-				Debug.Log(Score);
+				Score++;
+				SetScoreText3D(Score);
 				CountrytoGuess = SortCountry();
 			}
 		}
@@ -82,7 +91,6 @@ function Update () {
 	}
 
 }
-
 
 
 function ReadLine(pathofTextFileofTextFile : String, nLine : int) : String
@@ -99,7 +107,7 @@ function ReadLine(pathofTextFileofTextFile : String, nLine : int) : String
     }
  
  
- function GetNumberOfLines(pathofTextFileofTextFile : String) : int
+function GetNumberOfLines(pathofTextFileofTextFile : String) : int
     {
         var reader = new StreamReader(File.Open(pathofTextFile, FileMode.Open));
         var number = reader.ReadToEnd().Split("\n"[0]).Length;
@@ -108,17 +116,34 @@ function ReadLine(pathofTextFileofTextFile : String, nLine : int) : String
     }
     
     
-    function SortCountry () : String {
+function SortCountry () : String {
     	var rand : int;
 		var Country : String;
 		rand = Random.Range(0, Countries.length);
  		Country = Countries[rand];
  		removeCountryFromArray(rand);
- 		Board.renderer.material.mainTexture = Resources.Load(Country+"-Board");
+ 		SetCountryText3D(Country);
+ 		//Board.renderer.material.mainTexture = Resources.Load(Country+"-Board");
  		return Country;
 
 }
 
+
 function removeCountryFromArray(position : int){
 	Countries.splice(position,1);
 }
+
+
+function SetCountryText3D(name : String){
+	CountryText3D.text = name;
+}
+
+
+function SetScoreText3D(points){
+	ScoreText3D.text = "Score: " +  points.ToString();
+}
+
+
+/*function SetWinGameText3D(points){
+	WinGameText3D.text = "Score: " +  points.ToString();
+}*/
