@@ -28,6 +28,8 @@ var pathofTextFile : String = "SouthAmericaCountries.txt";
 var nLinesofTextFileofTextFile : int;
 //var randomLine ;
 
+//Array that will receive the name from all countries from a txt file.
+var Countries : Array  = [];
 
 
 function Awake (){
@@ -48,6 +50,12 @@ function Start () {
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
 	
+	
+	//Get the number of lines on the txt and defines as limit to the array.
+	nLinesofTextFileofTextFile = GetNumberOfLines(pathofTextFile);
+	for(var counter = 0; counter< nLinesofTextFileofTextFile; counter++){
+		Countries.push( ReadLine(pathofTextFile, counter) );
+	}
 	
 	
 	//Gives a random country name from a list to the variable "CountrytoGuess"
@@ -94,19 +102,23 @@ function ReadLine(pathofTextFileofTextFile : String, nLine : int) : String
  function GetNumberOfLines(pathofTextFileofTextFile : String) : int
     {
         var reader = new StreamReader(File.Open(pathofTextFile, FileMode.Open));
-        var nLinesofTextFileofTextFile = reader.ReadToEnd().Split("\n"[0]).Length;
+        var number = reader.ReadToEnd().Split("\n"[0]).Length;
         reader.Close();
-        return nLinesofTextFileofTextFile;
+        return number;
     }
     
     
     function SortCountry () : String {
-    	var rand;
+    	var rand : int;
 		var Country : String;
-		nLinesofTextFileofTextFile = GetNumberOfLines(pathofTextFile);
-		rand = Random.Range(0, nLinesofTextFileofTextFile);
- 		Country = ReadLine(pathofTextFile, rand);
+		rand = Random.Range(0, Countries.length);
+ 		Country = Countries[rand];
+ 		removeCountryFromArray(rand);
  		Board.renderer.material.mainTexture = Resources.Load(Country+"-Board");
  		return Country;
 
+}
+
+function removeCountryFromArray(position : int){
+	Countries.splice(position,1);
 }
