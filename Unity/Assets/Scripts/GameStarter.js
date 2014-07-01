@@ -34,7 +34,9 @@ private static var FinishGame : int = 3;
 answer correctly or not.*/
 var markers : Markers; 
 
-var pathofTextFile : String = "SouthAmericaCountries.txt";
+
+//Variables which will define the file to get the name of the countries
+var pathofTextFile : String;
 var nLinesofTextFileofTextFile : int;
 //var randomLine ;
 
@@ -60,6 +62,9 @@ function Start () {
 	//Clear Country name
 	SetCountryText3D("");
 	SetScoreText3D(0);
+	
+	//Set the path of the txt file
+	pathofTextFile = "Assets//Resources//Files//SouthAmericaCountries.txt";
 	 
 	//markers = GetComponent(Markers);
 	//Get a random marker script
