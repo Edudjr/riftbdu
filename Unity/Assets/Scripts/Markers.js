@@ -7,17 +7,17 @@ private var index : int = 1;
 private var matt : Material;
 public var precision : float = 0.4;
 
-private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
-public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
+//private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
+//public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
 //public var MaterialGroup : String;
 
 function Awake (){
 	//get the parent of the markers
 	Globe = transform.parent;
 	//Just setting the name again, to make sure.
-	boardObject = "CountryBoard";
+	//boardObject = "CountryBoard";
 	//When start, look for the plane
-	Board = GameObject.Find(boardObject);
+	//Board = GameObject.Find(boardObject);
 }
 function Start(){
 	
@@ -56,7 +56,7 @@ function Update(){
 	
 }
 
-public function getActivated(){
+public function getActivated() : String{
 	
 	return activated;
 }

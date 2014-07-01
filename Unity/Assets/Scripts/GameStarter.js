@@ -24,7 +24,8 @@ private static var RightAnswer : int = 2;
 private static var FinishGame : int = 3;
 
 
-
+public var Flagboard : GameObject;
+//public var boardObject : String;
 
 //private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
 //public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
@@ -89,6 +90,7 @@ function Start () {
 function Update () {
 	
 	if (markers != null ){
+		ChangeFlagtoCurrentSelected( markers.getActivated() );
 		if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
 			Debug.Log( markers.getActivated() );
 			if ( CountrytoGuess == markers.getActivated() ) {
@@ -172,4 +174,11 @@ function SetGameStateText3D(condition : int){
 		GameState3D.text = "You Win!!";
 	
 	}
+}
+
+
+function ChangeFlagtoCurrentSelected(Countryname : String){
+	//Debug.Log(Countryname);
+	Flagboard.renderer.material.mainTexture = Resources.Load("Flags/" + Countryname +"-flag");
+
 }
