@@ -18,6 +18,12 @@ public var Score : int = 0;
 //Display that shows the name of the country to guess
 public var CountryText3D : TextMesh;
 public var ScoreText3D : TextMesh;
+public var GameState3D : TextMesh;
+private static var WrongAnswer : int = 1;
+private static var RightAnswer : int = 2;
+private static var FinishGame : int = 3;
+
+
 
 
 //private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
@@ -85,6 +91,9 @@ function Update () {
 				SetScoreText3D(Score);
 				CountrytoGuess = SortCountry();
 			}
+			else{
+			//Commenting. Uncomment only when necessary. >< SetGameStateText3D(WrongAnswer);
+			}
 		}
 	}
 	else {
@@ -144,6 +153,18 @@ function SetScoreText3D(points){
 }
 
 
-/*function SetWinGameText3D(points){
-	WinGameText3D.text = "Score: " +  points.ToString();
-}*/
+function SetGameStateText3D(condition : int){
+	if (condition == 1){
+	GameState3D.color = Color.red;
+		GameState3D.text = "Incorrect!";
+	}
+	
+	if(condition == 2){
+	
+	}
+	
+	if(condition == 3){
+		GameState3D.text = "You Win!!";
+	
+	}
+}
