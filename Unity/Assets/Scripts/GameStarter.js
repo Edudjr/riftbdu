@@ -12,13 +12,16 @@ public var referenceObject: String;
 private var ObjectStarter : GameObject;
 
 //The name of the country that needs to be guessed.
-public var CountrytoGuess : String; 
-public var Score : int = 0;
+private var CountrytoGuess : String; 
+private var Score : int = 0;
 
 //Display that shows the name of the country to guess
 public var CountryText3D : TextMesh;
 public var ScoreText3D : TextMesh;
 public var GameState3D : TextMesh;
+
+//Answer values
+public var answerSpeed : int = 5;
 private static var WrongAnswer : int = 1;
 private static var RightAnswer : int = 2;
 private static var FinishGame : int = 3;
@@ -37,8 +40,7 @@ var markers : Markers;
 
 
 //Variables which will define the file to get the name of the countries
-var pathofTextFile : String;
-var nLinesofTextFileofTextFile : int;
+var textFilePath : String;
 //var randomLine ;
 
 //Array that will receive the name from all countries from a txt file.
@@ -60,22 +62,24 @@ function Start () {
 	//Gets the name of the game object on the Unity
 	ObjectStarter = GameObject.Find(referenceObject);
 	
+	//Number of lines for text file
+	var nLines : int;
+	
 	//Clear Country name
 	SetCountryText3D("");
 	SetScoreText3D(0);
 	
 	//Set the path of the txt file
-	pathofTextFile = "Assets//Resources//Files//SouthAmericaCountries.txt";
+	textFilePath = "Assets//Resources//Files//SouthAmericaCountries.txt";
 	 
-	//markers = GetComponent(Markers);
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
 	
 	
 	//Get the number of lines on the txt and defines as limit to the array.
-	nLinesofTextFileofTextFile = GetNumberOfLines(pathofTextFile);
-	for(var counter = 0; counter< nLinesofTextFileofTextFile; counter++){
-		Countries.push( ReadLine(pathofTextFile, counter) );
+	nLines = GetNumberOfLines(textFilePath);
+	for(var counter = 0; counter< nLines; counter++){
+		Countries.push( ReadLine(textFilePath, counter) );
 	}
 	
 	
@@ -94,12 +98,14 @@ function Update () {
 		if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
 			Debug.Log( markers.getActivated() );
 			if ( CountrytoGuess == markers.getActivated() ) {
-				Score++;
+				Score+= RightAnswer;
 				SetScoreText3D(Score);
 				CountrytoGuess = SortCountry();
+				AnswerIsRight();
 			}
 			else{
-			//Commenting. Uncomment only when necessary. >< SetGameStateText3D(WrongAnswer);
+				AnswerIsWrong();
+				//Commenting. Uncomment only when necessary. >< SetGameStateText3D(WrongAnswer);
 			}
 		}
 	}
@@ -108,10 +114,32 @@ function Update () {
 
 }
 
+function AnswerIsRight(){
+	var theText = GameObject.Find("AnswerText").transform;
+	theText.GetComponent(TextMesh).text = "Right!";
+	while(theText.transform.position.z > -9){
+		theText.Translate(0, 0, -answerSpeed * Time.deltaTime);
+		yield;
+	}
+	theText.GetComponent(TextMesh).text = "";
+	theText.position = Vector3(0,0,0);
+}
 
-function ReadLine(pathofTextFileofTextFile : String, nLine : int) : String
+function AnswerIsWrong(){
+	var theText = GameObject.Find("AnswerText").transform;
+	theText.GetComponent(TextMesh).text = "Wrong!";
+	while(theText.transform.position.z > -9){
+		theText.Translate(0, 0, -answerSpeed * Time.deltaTime);
+		yield;
+	}
+	theText.GetComponent(TextMesh).text = "";
+	theText.position = Vector3(0,0,0);
+}
+
+
+function ReadLine(filePath : String, nLine : int) : String
     {
-        var reader = new StreamReader(File.Open(pathofTextFileofTextFile, FileMode.Open)) ;
+        var reader = new StreamReader(File.Open(filePath, FileMode.Open)) ;
         var line : String = " ";
         var n : int = 0;
         while (n++ <= nLine)
@@ -123,9 +151,9 @@ function ReadLine(pathofTextFileofTextFile : String, nLine : int) : String
     }
  
  
-function GetNumberOfLines(pathofTextFileofTextFile : String) : int
+function GetNumberOfLines(filePath : String) : int
     {
-        var reader = new StreamReader(File.Open(pathofTextFile, FileMode.Open));
+        var reader = new StreamReader(File.Open(filePath, FileMode.Open));
         var number = reader.ReadToEnd().Split("\n"[0]).Length;
         reader.Close();
         return number;
@@ -133,22 +161,18 @@ function GetNumberOfLines(pathofTextFileofTextFile : String) : int
     
     
 function SortCountry () : String {
+    if(Countries.length > 0){	
     	var rand : int;
 		var Country : String;
 		rand = Random.Range(0, Countries.length);
  		Country = Countries[rand];
- 		removeCountryFromArray(rand);
+ 		//removeCountryFromArray(rand);
+ 		Countries.RemoveAt(rand);
  		SetCountryText3D(Country);
  		//Board.renderer.material.mainTexture = Resources.Load(Country+"-Board");
  		return Country;
-
+ 	}
 }
-
-
-function removeCountryFromArray(position : int){
-	Countries.splice(position,1);
-}
-
 
 function SetCountryText3D(name : String){
 	CountryText3D.text = name;
