@@ -60,7 +60,7 @@ var Countries : Array  = [];
 function Start () {
 
 	//Gets the name of the game object on the Unity
-	ObjectStarter = GameObject.Find(referenceObject);
+	//ObjectStarter = GameObject.Find(referenceObject);
 	
 	//Number of lines for text file
 	var nLines : int;
@@ -101,10 +101,10 @@ function Update () {
 				Score+= RightAnswer;
 				SetScoreText3D(Score);
 				CountrytoGuess = SortCountry();
-				AnswerIsRight();
+				setAnswer("Right!");
 			}
 			else{
-				AnswerIsWrong();
+				setAnswer("Wrong!");
 				//Commenting. Uncomment only when necessary. >< SetGameStateText3D(WrongAnswer);
 			}
 		}
@@ -114,20 +114,9 @@ function Update () {
 
 }
 
-function AnswerIsRight(){
+function setAnswer(str : String){
 	var theText = GameObject.Find("AnswerText").transform;
-	theText.GetComponent(TextMesh).text = "Right!";
-	while(theText.transform.position.z > -9){
-		theText.Translate(0, 0, -answerSpeed * Time.deltaTime);
-		yield;
-	}
-	theText.GetComponent(TextMesh).text = "";
-	theText.position = Vector3(0,0,0);
-}
-
-function AnswerIsWrong(){
-	var theText = GameObject.Find("AnswerText").transform;
-	theText.GetComponent(TextMesh).text = "Wrong!";
+	theText.GetComponent(TextMesh).text = str;
 	while(theText.transform.position.z > -9){
 		theText.Translate(0, 0, -answerSpeed * Time.deltaTime);
 		yield;

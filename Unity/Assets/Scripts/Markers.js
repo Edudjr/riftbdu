@@ -7,6 +7,8 @@ private var index : int = 1;
 private var matt : Material;
 public var precision : float = 0.4;
 
+private var initialPos : Vector3;
+
 //private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
 //public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
 //public var MaterialGroup : String;
@@ -31,6 +33,11 @@ function Start(){
 		}
 	}
 	
+	//Initial position for the flag
+	for (var child : Transform in transform) {
+		initialPos = child.transform.localPosition;
+	}
+	
 }
 function Update(){
 	
@@ -47,13 +54,35 @@ function Update(){
 		//Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
 		*/
 		//transform.renderer.material.color = Color.green;
+		moveFlag();
 	}else{
 		//activated = null;
 		Globe.renderer.materials[index].color.a = 0.1;
 		transform.renderer.material.color = Color.yellow ;
+		resetFlag();
 	}
 	
 	
+}
+
+function moveFlag(){
+	//while((transform.localPosition.x < 10)&&(transform.localPosition.x > 3)&&(transform.localPosition.x > -7)){
+		//transform.position = Vector3( 3, 0, 0);
+	//	yield;
+	//}
+	//Debug.Log("local "+transform.localPosition.x+" "+transform.localPosition.y+" "+transform.localPosition.z);
+	for (var child : Transform in transform) {
+    	// do whatever you want with child transform here
+    	//Debug.Log("local "+child.transform.localPosition.x+" "+child.transform.localPosition.y+" "+child.transform.localPosition.z);
+		//Debug.Log("global "+child.transform.position.x+" "+child.transform.position.y+" "+child.transform.position.z);
+		child.position = Vector3( 0.5, 0, -7);
+	}
+	
+}
+function resetFlag(){
+	for (var child : Transform in transform) {
+		child.localPosition = initialPos;
+	}
 }
 
 public function getActivated() : String{
