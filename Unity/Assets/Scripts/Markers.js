@@ -6,6 +6,8 @@ private var Globe : Transform;
 private var index : int = 1;
 private var matt : Material;
 public var precision : float = 0.4;
+public var Flagboard : GameObject;
+private var str : String = "FlagBoard";
 
 private var initialPos : Vector3;
 
@@ -22,7 +24,7 @@ function Awake (){
 	//Board = GameObject.Find(boardObject);
 }
 function Start(){
-	
+	Flagboard = GameObject.Find("FlagBoard");
 	//Defines the index for each marker at the beggining of the execution
 	//It MUST have only one group of markers enabled (Otherwise, we would get different markers with the same index)
 	for(var i = 1; i<Globe.renderer.materials.length; i++){
@@ -54,35 +56,13 @@ function Update(){
 		//Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
 		*/
 		//transform.renderer.material.color = Color.green;
-		moveFlag();
 	}else{
 		//activated = null;
 		Globe.renderer.materials[index].color.a = 0.1;
 		transform.renderer.material.color = Color.yellow ;
-		resetFlag();
 	}
 	
 	
-}
-
-function moveFlag(){
-	//while((transform.localPosition.x < 10)&&(transform.localPosition.x > 3)&&(transform.localPosition.x > -7)){
-		//transform.position = Vector3( 3, 0, 0);
-	//	yield;
-	//}
-	//Debug.Log("local "+transform.localPosition.x+" "+transform.localPosition.y+" "+transform.localPosition.z);
-	for (var child : Transform in transform) {
-    	// do whatever you want with child transform here
-    	//Debug.Log("local "+child.transform.localPosition.x+" "+child.transform.localPosition.y+" "+child.transform.localPosition.z);
-		//Debug.Log("global "+child.transform.position.x+" "+child.transform.position.y+" "+child.transform.position.z);
-		child.position = Vector3( 0.5, 0, -7);
-	}
-	
-}
-function resetFlag(){
-	for (var child : Transform in transform) {
-		child.localPosition = initialPos;
-	}
 }
 
 public function getActivated() : String{

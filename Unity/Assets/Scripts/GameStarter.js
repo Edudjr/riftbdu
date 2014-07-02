@@ -26,6 +26,8 @@ private static var WrongAnswer : int = 1;
 private static var RightAnswer : int = 2;
 private static var FinishGame : int = 3;
 
+private static var lastSelected : String = null;
+
 
 public var Flagboard : GameObject;
 //public var boardObject : String;
@@ -94,7 +96,12 @@ function Start () {
 function Update () {
 	
 	if (markers != null ){
+		var activated = markers.getActivated();
 		ChangeFlagtoCurrentSelected( markers.getActivated() );
+		if(lastSelected != activated){
+			lastSelected = activated;
+			moveFlag();
+		}
 		if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
 			Debug.Log( markers.getActivated() );
 			if ( CountrytoGuess == markers.getActivated() ) {
@@ -112,6 +119,34 @@ function Update () {
 	else {
 	}
 
+}
+
+function resetFlag(){
+	Flagboard.transform.position = Vector3(0,0,-4);
+	Flagboard.transform.eulerAngles = Vector3(90,-180,0);
+	Flagboard.transform.localScale = Vector3(.02, .02, .02);
+	
+}
+function moveFlag(){
+	
+	resetFlag();
+	//yield WaitForSeconds(1);
+	while(Flagboard.transform.localPosition.z > -7){
+		//Flagboard.transform.localPosition = Vector3(0,0,);
+		Flagboard.transform.Translate(-6 * Time.deltaTime, 5 * Time.deltaTime, 0);
+		Flagboard.transform.localScale.x += 0.3 * Time.deltaTime;
+		Flagboard.transform.localScale.y += 0.2 * Time.deltaTime;
+		Flagboard.transform.localScale.z += 0.2 * Time.deltaTime;
+		
+		Flagboard.transform.eulerAngles.x +=10;
+		Flagboard.transform.eulerAngles.y += 2;
+		//Debug.Log(Flagboard.transform.localPosition.z);
+		yield;
+	}
+	//Flagboard.transform.position = Vector3(12,0,-4);
+	//Flagboard.transform.eulerAngles = Vector3(90,252,0);
+	//Flagboard.transform.localScale = Vector3(0.5, 0.5, 0.5);
+	
 }
 
 function setAnswer(str : String){
@@ -173,25 +208,8 @@ function SetScoreText3D(points){
 }
 
 
-function SetGameStateText3D(condition : int){
-	if (condition == 1){
-	GameState3D.color = Color.red;
-		GameState3D.text = "Incorrect!";
-	}
-	
-	if(condition == 2){
-	
-	}
-	
-	if(condition == 3){
-		GameState3D.text = "You Win!!";
-	
-	}
-}
-
-
 function ChangeFlagtoCurrentSelected(Countryname : String){
 	//Debug.Log(Countryname);
-	Flagboard.renderer.material.mainTexture = Resources.Load("Flags/" + Countryname +"-flag");
+	Flagboard.renderer.material.mainTexture = Resources.Load("Flags/SouthAmerica/" + Countryname +"-flag");
 
 }
