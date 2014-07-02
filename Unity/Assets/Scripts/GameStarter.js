@@ -130,7 +130,7 @@ function resetFlag(){
 function moveFlag(){
 	
 	resetFlag();
-	//yield WaitForSeconds(1);
+	
 	while(Flagboard.transform.localPosition.z > -7){
 		//Flagboard.transform.localPosition = Vector3(0,0,);
 		Flagboard.transform.Translate(-6 * Time.deltaTime, 5 * Time.deltaTime, 0);
@@ -152,8 +152,12 @@ function moveFlag(){
 function setAnswer(str : String){
 	var theText = GameObject.Find("AnswerText").transform;
 	theText.GetComponent(TextMesh).text = str;
-	while(theText.transform.position.z > -9){
+	while(theText.transform.position.z > -5){
 		theText.Translate(0, 0, -answerSpeed * Time.deltaTime);
+		yield;
+	}
+	while(theText.transform.position.z < 0){
+		theText.Translate(0, 0, answerSpeed * Time.deltaTime);
 		yield;
 	}
 	theText.GetComponent(TextMesh).text = "";

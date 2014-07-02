@@ -52,18 +52,26 @@ function Update(){
 		//set material's alpha to 100%
 		Globe.renderer.materials[index].color.a = 1;
 		activated = transform.name;
+		for (var child : Transform in transform) {
+			child.transform.renderer.enabled = false;
+		}
 		/*Changes the texture of the plane when country is selected		
 		//Board.renderer.material.mainTexture = Resources.Load(transform.name+"-Board");
 		*/
 		//transform.renderer.material.color = Color.green;
 	}else{
 		//activated = null;
+		for (var child : Transform in transform) {
+			child.transform.renderer.enabled = true;
+		}
 		Globe.renderer.materials[index].color.a = 0.1;
 		transform.renderer.material.color = Color.yellow ;
 	}
 	
 	
 }
+
+
 
 public function getActivated() : String{
 	
