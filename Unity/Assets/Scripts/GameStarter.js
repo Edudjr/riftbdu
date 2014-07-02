@@ -130,7 +130,7 @@ function resetFlag(){
 function moveFlag(){
 	
 	resetFlag();
-	
+	Flagboard.transform.renderer.material.color.a = 1;
 	while(Flagboard.transform.localPosition.z > -7){
 		//Flagboard.transform.localPosition = Vector3(0,0,);
 		Flagboard.transform.Translate(-6 * Time.deltaTime, 5 * Time.deltaTime, 0);
