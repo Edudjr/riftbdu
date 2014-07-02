@@ -108,10 +108,10 @@ function Update () {
 				Score+= RightAnswer;
 				SetScoreText3D(Score);
 				CountrytoGuess = SortCountry();
-				setAnswer("Right!");
+				setAnswer("Right!", Color.green);
 			}
 			else{
-				setAnswer("Wrong!");
+				setAnswer("Wrong!", Color.red);
 				//Commenting. Uncomment only when necessary. >< SetGameStateText3D(WrongAnswer);
 			}
 		}
@@ -149,9 +149,10 @@ function moveFlag(){
 	
 }
 
-function setAnswer(str : String){
+function setAnswer(str : String, Colour : Vector4){
 	var theText = GameObject.Find("AnswerText").transform;
 	theText.GetComponent(TextMesh).text = str;
+	theText.GetComponent(TextMesh).color = Colour;
 	while(theText.transform.position.z > -5){
 		theText.Translate(0, 0, -answerSpeed * Time.deltaTime);
 		yield;
