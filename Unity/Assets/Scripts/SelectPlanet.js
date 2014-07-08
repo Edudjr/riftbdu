@@ -9,8 +9,5 @@ function Start () {
 
 function Update () {
 
-if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
-Application.LoadLevel("scene2");
-}
 
 }
