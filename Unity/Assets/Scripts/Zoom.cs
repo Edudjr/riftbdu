@@ -3,7 +3,10 @@ using System.Collections;
 
 public class Zoom : MonoBehaviour {
 	
-	public float speed = 5.0f;
+	public float speed = 5;
+	public float forwardDistance = 5;
+	public float backwardDistance = 5;
+
 	void Start () {
 		
 	}
@@ -11,7 +14,7 @@ public class Zoom : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if(transform.position.z >= -8.0f && transform.position.z <= -5.0f){
+		if(transform.position.z >= -backwardDistance && transform.position.z <= -forwardDistance){
 			
 			if(Input.GetKey(KeyCode.S)){
 				transform.position -= new Vector3(0,0,speed * Time.deltaTime);
@@ -22,20 +25,12 @@ public class Zoom : MonoBehaviour {
 			
 		}
 		
-		if (transform.position.z > -5.0f) {
-			
-			//Vector3 temp = transform.position; 
-			//temp.z = -5.0f; 
-			//transform.position = temp; 
-			transform.position = new Vector3(0, 0, -5);
+		if (transform.position.z > -forwardDistance) {
+			transform.position = new Vector3(0, 0, -forwardDistance);
 		}
 		
-		if (transform.position.z < -8.0f) {
-			
-			//Vector3 temp = transform.position; 
-			//temp.z = -8.0f; 
-			//transform.position = temp;
-			transform.position = new Vector3(0, 0, -8);
+		if (transform.position.z < -backwardDistance) {
+			transform.position = new Vector3(0, 0, -backwardDistance);
 		}
 	}
 }
