@@ -14,7 +14,7 @@ public var GameState3D : TextMesh;
 
 //Answer values
 public var answerSpeed : int = 5;
-private static var WrongAnswer : int = 1;
+private static var WrongAnswer : int = -1;
 private static var RightAnswer : int = 2;
 
 private static var lastSelected : String = null;
@@ -22,13 +22,17 @@ private static var lastSelected : String = null;
 
 public var Flagboard : GameObject;
 
+
+var CountriesSorted : int = 0;
+
 //Get the Markers script.
 var markers : Markers; 
 
 
 //Variables which will define the file to get the name of the countries
 var textFilePath : String;
-
+//Number of lines for text file
+var nLines : int;
 //Array that will receive the name from all countries from a txt file.
 var Countries : Array  = [];
     
@@ -39,8 +43,7 @@ var panelScript: PanelScript;
 
 function Start () {
 	
-	//Number of lines for text file
-	var nLines : int;
+
 	
 	//Clear Country name
 	SetCountryText3D("");
@@ -69,32 +72,47 @@ function Start () {
 
 
 function Update () {
-	
-	if (markers != null ){
-		var activated = markers.getActivated();
-		ChangeFlagtoCurrentSelected( markers.getActivated() );
-		//set panel information
-		panelScript.setCountry(CountrytoGuess);
-		if(lastSelected != activated){
-			lastSelected = activated;
-			moveFlag();
-		}
-		if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
-			Debug.Log( markers.getActivated() );
-			if ( CountrytoGuess == markers.getActivated() ) {
-				Score+= RightAnswer;
-				SetScoreText3D(Score);
-				CountrytoGuess = SortCountry();
-				setAnswer("Right!", Color.green);
-				//If answer is correct, we need to restart the tipNumber counter
-				panelScript.resetTipNumber();
-			}
-			else{
-				Score-= WrongAnswer;
-				panelScript.loadTip();
-				setAnswer("Wrong!", Color.red);
-			}
-		}
+		//While there is still countries to be guessed
+		if ( !EndGame() ){
+			//the Var Activated will always receive the marker that is selected at the moment
+			var activated = markers.getActivated();
+			//set panel information
+			panelScript.setCountry(CountrytoGuess);
+			//Change the flag displayed according to the country selected
+			ChangeFlagtoCurrentSelected( markers.getActivated() );
+			//If the country changes, we need to remake the flag animation
+			if(lastSelected != activated){
+				lastSelected = activated;
+				moveFlag();
+				}//End of the checking if the country changed
+			
+			
+			//The button "D" or "A" on the Joystick is pressed
+			if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
+				//If the name of the country asked is equal the name of the country selected at the moment that the player pressed "Fire", he scores!
+				if ( CountrytoGuess == markers.getActivated() ) {
+					Score+= RightAnswer;
+					SetScoreText3D(Score);
+					CountrytoGuess = SortCountry();
+					setAnswer("Right!", Color.green);
+					//If answer is correct, we need to restart the tipNumber counter
+					panelScript.resetTipNumber();
+					}
+				//if not, he gets and Wrong and loses points
+				else{
+					setAnswer("Wrong!", Color.red);
+					Score += WrongAnswer;
+					//The line above is commented to stop requesting data from the cloudant
+					//panelScript.loadTip();
+					SetScoreText3D(Score);
+					}
+				}//End of Button Fire Press
+				
+		}//End of if ( !IsGameOver() )
+	else {
+		//If the game is finished, we do not want the player to click on any country again and show a message of win.
+		setWin("You Win!!", Color.green);
+		resetFlag();
 	}
 
 }
@@ -144,6 +162,16 @@ function setAnswer(str : String, Colour : Vector4){
 	theText.position = Vector3(0,0,0);
 }
 
+function setWin(str : String, Colour : Vector4){
+	var theText = GameObject.Find("AnswerText").transform;
+	theText.GetComponent(TextMesh).text = str;
+	theText.GetComponent(TextMesh).color = Colour;
+	while(theText.transform.position.z > -4){
+		theText.Translate(0, 0, -answerSpeed * Time.deltaTime);
+		yield;
+	}
+}
+
 //Returns one line from the given file in filePath.
 function ReadLine(filePath : String, nLine : int) : String{
 	var reader = new StreamReader(File.Open(filePath, FileMode.Open)) ;
@@ -166,13 +194,14 @@ function GetNumberOfLines(filePath : String) : int{
     
 //Randomly selects a country from the countries list  
 function SortCountry () : String {
+	CountriesSorted ++;
     if(Countries.length > 0){	
     	var rand : int;
 		var Country : String;
 		rand = Random.Range(0, Countries.length);
  		Country = Countries[rand];
- 		Countries.RemoveAt(rand);
  		SetCountryText3D(Country);
+ 		Countries.RemoveAt(rand);
  		return Country;
  	}
 }
@@ -195,4 +224,15 @@ function ChangeFlagtoCurrentSelected(Countryname : String){
 //Returns the country which the player should guess
 function getCountryToGuess(){
 	return CountrytoGuess;
+}
+
+function EndGame() : boolean{
+  	//If the number of countries sorted is greater than the quantity of lines on the txt, the game is over.
+	if( CountriesSorted > nLines){
+	SetCountryText3D("");
+		return true;
+	}
+	else{
+		return false;
+	}
 }
