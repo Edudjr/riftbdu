@@ -2,14 +2,6 @@
 
 //Import necessary to use File Reader.
 import System.IO;
-//End of imports
-
-//Variables description
-
-
-//The Variable "referenceObject" can be altered directly on the Unity and decides the name of the object that should be followed.
-public var referenceObject: String;
-private var ObjectStarter : GameObject;
 
 //The name of the country that needs to be guessed.
 private var CountrytoGuess : String; 
@@ -24,45 +16,28 @@ public var GameState3D : TextMesh;
 public var answerSpeed : int = 5;
 private static var WrongAnswer : int = 1;
 private static var RightAnswer : int = 2;
-private static var FinishGame : int = 3;
 
 private static var lastSelected : String = null;
 
 
 public var Flagboard : GameObject;
-//public var boardObject : String;
 
-//private var Board : GameObject; //This game object will be linked to the plane that shows the selected country
-//public var boardObject : String = "CountryBoard"; //A variable which contains the name of the plane that will display the name of the selected country
-
-
-/*This variable markers is the type of mark to use the method getActivated. This method will decide whether the player 
-answer correctly or not.*/
+//Get the Markers script.
 var markers : Markers; 
 
 
 //Variables which will define the file to get the name of the countries
 var textFilePath : String;
-//var randomLine ;
 
 //Array that will receive the name from all countries from a txt file.
 var Countries : Array  = [];
-
-
-/*function Awake (){
-	//Just setting the name again, to make sure.
-	//boardObject = "CountryBoard";
-	//When start, look for the plane
-	//Board = GameObject.Find(boardObject);
-}*/
     
+//Get PanelScript script
+var panelScript: PanelScript;
 
 
 
 function Start () {
-
-	//Gets the name of the game object on the Unity
-	//ObjectStarter = GameObject.Find(referenceObject);
 	
 	//Number of lines for text file
 	var nLines : int;
@@ -88,7 +63,7 @@ function Start () {
 	//Gives a random country name from a list to the variable "CountrytoGuess"
 	CountrytoGuess = SortCountry();
 	
-	
+	panelScript = GameObject.FindObjectOfType(PanelScript);
 }
 
 
@@ -98,6 +73,8 @@ function Update () {
 	if (markers != null ){
 		var activated = markers.getActivated();
 		ChangeFlagtoCurrentSelected( markers.getActivated() );
+		//set panel information
+		panelScript.setCountry(CountrytoGuess);
 		if(lastSelected != activated){
 			lastSelected = activated;
 			moveFlag();
@@ -109,26 +86,30 @@ function Update () {
 				SetScoreText3D(Score);
 				CountrytoGuess = SortCountry();
 				setAnswer("Right!", Color.green);
+				//If answer is correct, we need to restart the tipNumber counter
+				panelScript.resetTipNumber();
 			}
 			else{
+				Score-= WrongAnswer;
+				panelScript.loadTip();
 				setAnswer("Wrong!", Color.red);
-				//Commenting. Uncomment only when necessary. >< SetGameStateText3D(WrongAnswer);
 			}
 		}
-	}
-	else {
 	}
 
 }
 
+//Puts flag to initial position (center of the screen, small scale)
 function resetFlag(){
 	Flagboard.transform.position = Vector3(0,0,-4);
 	Flagboard.transform.eulerAngles = Vector3(90,-180,0);
 	Flagboard.transform.localScale = Vector3(.02, .02, .02);
 	
 }
+
+//Does the animation for the Flag. The flag begins small, at the center of the screen
+//and then the script moves it and makes it bigger, gradually, until it reaches the final position, which is next to the camera.
 function moveFlag(){
-	
 	resetFlag();
 	Flagboard.transform.renderer.material.color.a = 1;
 	while(Flagboard.transform.localPosition.z > -7){
@@ -140,15 +121,13 @@ function moveFlag(){
 		
 		Flagboard.transform.eulerAngles.x +=10;
 		Flagboard.transform.eulerAngles.y += 2;
-		//Debug.Log(Flagboard.transform.localPosition.z);
 		yield;
 	}
-	//Flagboard.transform.position = Vector3(12,0,-4);
-	//Flagboard.transform.eulerAngles = Vector3(90,252,0);
-	//Flagboard.transform.localScale = Vector3(0.5, 0.5, 0.5);
+
 	
 }
 
+//Set the text of the answer text. It gets a String and a Colour.
 function setAnswer(str : String, Colour : Vector4){
 	var theText = GameObject.Find("AnswerText").transform;
 	theText.GetComponent(TextMesh).text = str;
@@ -165,56 +144,55 @@ function setAnswer(str : String, Colour : Vector4){
 	theText.position = Vector3(0,0,0);
 }
 
-
-function ReadLine(filePath : String, nLine : int) : String
-    {
-        var reader = new StreamReader(File.Open(filePath, FileMode.Open)) ;
-        var line : String = " ";
-        var n : int = 0;
-        while (n++ <= nLine)
-            line = reader.ReadLine();
-        reader.Close();
-        return line;
-        
-
-    }
+//Returns one line from the given file in filePath.
+function ReadLine(filePath : String, nLine : int) : String{
+	var reader = new StreamReader(File.Open(filePath, FileMode.Open)) ;
+	var line : String = " ";
+	var n : int = 0;
+	while (n++ <= nLine)
+	    line = reader.ReadLine();
+	reader.Close();
+	return line;
+}
  
- 
-function GetNumberOfLines(filePath : String) : int
-    {
-        var reader = new StreamReader(File.Open(filePath, FileMode.Open));
-        var number = reader.ReadToEnd().Split("\n"[0]).Length;
-        reader.Close();
-        return number;
-    }
+
+//Returns number of lines
+function GetNumberOfLines(filePath : String) : int{
+	var reader = new StreamReader(File.Open(filePath, FileMode.Open));
+	var number = reader.ReadToEnd().Split("\n"[0]).Length;
+	reader.Close();
+	return number;
+}
     
-    
+//Randomly selects a country from the countries list  
 function SortCountry () : String {
     if(Countries.length > 0){	
     	var rand : int;
 		var Country : String;
 		rand = Random.Range(0, Countries.length);
  		Country = Countries[rand];
- 		//removeCountryFromArray(rand);
  		Countries.RemoveAt(rand);
  		SetCountryText3D(Country);
- 		//Board.renderer.material.mainTexture = Resources.Load(Country+"-Board");
  		return Country;
  	}
 }
 
+//Sets the text for the country
 function SetCountryText3D(name : String){
 	CountryText3D.text = name;
 }
 
-
+//Sets the text for the score
 function SetScoreText3D(points){
 	ScoreText3D.text = "Score: " +  points.ToString();
 }
 
-
+//Changes the flag to current selected country
 function ChangeFlagtoCurrentSelected(Countryname : String){
-	//Debug.Log(Countryname);
 	Flagboard.renderer.material.mainTexture = Resources.Load("Flags/SouthAmerica/" + Countryname +"-flag");
+}
 
+//Returns the country which the player should guess
+function getCountryToGuess(){
+	return CountrytoGuess;
 }
