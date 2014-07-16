@@ -17,7 +17,7 @@ private var initialPos : Vector3;
 
 function Awake (){
 	//get the parent of the markers
-	Globe = transform.parent;
+	Globe = transform.parent.parent;
 	//Just setting the name again, to make sure.
 	//boardObject = "CountryBoard";
 	//When start, look for the plane

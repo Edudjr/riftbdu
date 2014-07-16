@@ -10,4 +10,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/GameMode.unity
   - enabled: 1
-    path: Assets/Scene/DiscoveryMode.unity
+    path: Assets/Scene/South America.unity
