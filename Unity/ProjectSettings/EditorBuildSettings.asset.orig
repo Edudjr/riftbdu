@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scene/Menu2.unity
+  - enabled: 1
+    path: Assets/Scene/Menu.unity
+  - enabled: 1
+<<<<<<< HEAD
+    path: Assets/Scene/DiscoveryMode.unity
+  - enabled: 1
+    path: Assets/Scene/Tutorial.unity
+  - enabled: 1
+    path: Assets/Scene/GameMode.unity
+=======
+    path: Assets/Scene/South America.unity
+>>>>>>> 3d984cfd91f4038ec6f764aad96fa8e47042a5ea

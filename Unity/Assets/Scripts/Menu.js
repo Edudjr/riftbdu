@@ -29,12 +29,13 @@ function Update () {
 			break;
 	}
 	
-	//Change option using K and S keys
-	if(Input.GetKeyDown(KeyCode.W)){
-		option --;
-	}else if(Input.GetKeyDown(KeyCode.S)){
-		option ++;
+	
+	if(Input.GetKeyDown(KeyCode.W) || (Input.GetAxisRaw("LeftAnalog_Vertical") < -0.9) ){
+		WaitController(-1);
+	}else if(Input.GetKeyDown(KeyCode.S) || (Input.GetAxisRaw("LeftAnalog_Vertical") > 0.9) ){
+		WaitController(1);
 	}
+	
 	
 	//Make sure that option is available
 	if(option > 3){
@@ -61,5 +62,15 @@ function Update () {
 }
 	
 	
-	
 }
+
+
+
+function WaitController(num : int) {
+
+	yield new WaitForSeconds(1);
+	option = option + num;
+}
+
+
+	

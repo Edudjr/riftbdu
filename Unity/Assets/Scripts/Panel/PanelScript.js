@@ -1,5 +1,4 @@
-﻿
-#pragma strict
+﻿#pragma strict
 
 import MiniJSON;
 import System.Collections.Generic;
