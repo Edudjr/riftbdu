@@ -1,8 +1,12 @@
 ﻿#pragma strict
 
 private var option : int = 0;
+private var fadeInOut : SceneFadeInOut;
 
 function Start () {
+	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
+	//When start, fade the screen from black to transparent
+	fadeInOut.FadeIn();
 	option = 0;
 }
 
@@ -41,13 +45,13 @@ function Update () {
 	//End of visual moviment menu
 	
 	//What kind of game should be loaded now: 
-	if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
+	if(Input.GetButtonDown("Jump")) {
 		switch(option){
 		case 1: 
-			Application.LoadLevel("GameMode");
+			fadeInOut.FadeOutLoad("GameMode");
 			break;
 		case 2:
-			Application.LoadLevel("DiscoveryMode");
+			fadeInOut.FadeOutLoad("DiscoveryMode");
 			break;
 		case 3:
 			//transform.Find("OptionsText").GetComponent(TextMesh).color = Color.green;

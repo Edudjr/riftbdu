@@ -37,7 +37,8 @@ var nLines : int;
 var Countries : Array  = [];
     
 //Get PanelScript script
-var panelScript: PanelScript;
+var panelScript : PanelScript;
+var fadeInOut : SceneFadeInOut;
 
 
 
@@ -54,7 +55,9 @@ function Start () {
 	 
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
+	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
 	
+	fadeInOut.FadeIn();
 	
 	//Get the number of lines on the txt and defines as limit to the array.
 	nLines = GetNumberOfLines(textFilePath);
@@ -67,6 +70,8 @@ function Start () {
 	CountrytoGuess = SortCountry();
 	
 	panelScript = GameObject.FindObjectOfType(PanelScript);
+	yield;
+	panelScript.loadTip();
 }
 
 
@@ -88,7 +93,7 @@ function Update () {
 			
 			
 			//The button "D" or "A" on the Joystick is pressed
-			if( (Input.GetKeyDown(KeyCode.D )) || (Input.GetButtonDown("Button_A")) ) {
+			if(( Input.GetButtonDown("Button_A")) || (Input.GetButtonDown("Jump")) ) {
 				//If the name of the country asked is equal the name of the country selected at the moment that the player pressed "Fire", he scores!
 				if ( CountrytoGuess == markers.getActivated() ) {
 					Score+= RightAnswer;
@@ -97,13 +102,20 @@ function Update () {
 					setAnswer("Right!", Color.green);
 					//If answer is correct, we need to restart the tipNumber counter
 					panelScript.resetTipNumber();
+					panelScript.setCountry(CountrytoGuess);
+					panelScript.loadTip();
+					SetCountryText3D("");
 					}
 				//if not, he gets and Wrong and loses points
 				else{
+					//BEGIN: THIS SHOULD BE IN PANELSCRIPT
+					if(panelScript.getTipNumber()==3)
+						SetCountryText3D(CountrytoGuess);
+					//END
 					setAnswer("Wrong!", Color.red);
 					Score += WrongAnswer;
 					//The line above is commented to stop requesting data from the cloudant
-					//panelScript.loadTip();
+					panelScript.loadTip();
 					SetScoreText3D(Score);
 					}
 				}//End of Button Fire Press
@@ -112,6 +124,7 @@ function Update () {
 	else {
 		//If the game is finished, we do not want the player to click on any country again and show a message of win.
 		setWin("You Win!!", Color.green);
+		setFlagAlpha(0);
 		resetFlag();
 	}
 
@@ -125,11 +138,16 @@ function resetFlag(){
 	
 }
 
+function setFlagAlpha(alpha : float){
+	Flagboard.transform.renderer.material.color.a = alpha;
+}
+
 //Does the animation for the Flag. The flag begins small, at the center of the screen
 //and then the script moves it and makes it bigger, gradually, until it reaches the final position, which is next to the camera.
 function moveFlag(){
 	resetFlag();
-	Flagboard.transform.renderer.material.color.a = 1;
+	setFlagAlpha(1);
+	//Flagboard.transform.renderer.material.color.a = 1;
 	while(Flagboard.transform.localPosition.z > -7){
 		//Flagboard.transform.localPosition = Vector3(0,0,);
 		Flagboard.transform.Translate(-6 * Time.deltaTime, 5 * Time.deltaTime, 0);
@@ -200,7 +218,7 @@ function SortCountry () : String {
 		var Country : String;
 		rand = Random.Range(0, Countries.length);
  		Country = Countries[rand];
- 		SetCountryText3D(Country);
+ 		//SetCountryText3D(Country);
  		Countries.RemoveAt(rand);
  		return Country;
  	}
@@ -229,7 +247,7 @@ function getCountryToGuess(){
 function EndGame() : boolean{
   	//If the number of countries sorted is greater than the quantity of lines on the txt, the game is over.
 	if( CountriesSorted > nLines){
-	SetCountryText3D("");
+		SetCountryText3D("");
 		return true;
 	}
 	else{

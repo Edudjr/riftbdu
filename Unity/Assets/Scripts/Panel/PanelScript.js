@@ -36,6 +36,10 @@ public function resetTipNumber(){
 	resetPanelText();
 }
 
+public function getTipNumber(){
+	return tipNumber;
+}
+
 //Set all panel texts to empty string
 private function resetPanelText(){
 	for (var child : Transform in transform) {
@@ -57,6 +61,7 @@ public function loadTip(){
 			break;
 		case 2:
 			setCuriosity(Country);
+			break;
 	}
 	
 	//Increase tipNumber (no more than 3) in order to change panels.
@@ -115,7 +120,7 @@ private function setLanguage(country : String){
 	    Debug.Log("WWW Error: "+ www.error);
 	}
 	//Change second 3Dtext
-	transform.GetChild(1).GetComponent(TextMesh).text = str;
+	transform.GetChild(1).GetComponent(TextMesh).text = str + " is their language";
 }
 
 //Gets a country name, search in the database (given a link) and sets the third tip text to the returned string.
