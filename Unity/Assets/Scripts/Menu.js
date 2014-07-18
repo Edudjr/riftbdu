@@ -8,13 +8,16 @@ function Start () {
 	//When start, fade the screen from black to transparent
 	fadeInOut.FadeIn();
 	option = 0;
-}
-
-function Update () {
+	
+	
 	//Set all children's color to white
 	for (var child : Transform in transform) {
     	child.GetComponent(TextMesh).color = Color.white;
 	}
+}
+
+function Update () {
+	
 	
 	//Look for selected option and turn it green
 	switch(option){
