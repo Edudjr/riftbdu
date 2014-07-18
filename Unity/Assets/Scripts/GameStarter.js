@@ -236,7 +236,7 @@ function SetScoreText3D(points){
 
 //Changes the flag to current selected country
 function ChangeFlagtoCurrentSelected(Countryname : String){
-	Flagboard.renderer.material.mainTexture = Resources.Load("Flags/SouthAmerica/" + Countryname +"-flag");
+	Flagboard.renderer.material.mainTexture = Resources.Load("Flags/All Flags/" + Countryname +"-flag");
 }
 
 //Returns the country which the player should guess
