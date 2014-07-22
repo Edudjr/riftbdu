@@ -23,20 +23,33 @@ function Update () {
 	switch(option){
 		case 1: 
 			transform.Find("StartText").GetComponent(TextMesh).color = Color.green;
+			transform.Find("DiscoveryText").GetComponent(TextMesh).color = Color.white;
+			transform.Find("OptionsText").GetComponent(TextMesh).color = Color.white;
 			break;
 		case 2:
 			transform.Find("DiscoveryText").GetComponent(TextMesh).color = Color.green;
+			transform.Find("OptionsText").GetComponent(TextMesh).color = Color.white;
+			transform.Find("StartText").GetComponent(TextMesh).color = Color.white;
 			break;
 		case 3:
 			transform.Find("OptionsText").GetComponent(TextMesh).color = Color.green;
+			transform.Find("StartText").GetComponent(TextMesh).color = Color.white;
+			transform.Find("DiscoveryText").GetComponent(TextMesh).color = Color.white;
 			break;
 	}
 	
 	
-	if(Input.GetKeyDown(KeyCode.W) || (Input.GetAxisRaw("LeftAnalog_Vertical") < -0.9) ){
+	if( (Input.GetAxisRaw("LeftAnalog_Vertical") < -0.9) ){
 		WaitController(-1);
-	}else if(Input.GetKeyDown(KeyCode.S) || (Input.GetAxisRaw("LeftAnalog_Vertical") > 0.9) ){
+	}else if((Input.GetAxisRaw("LeftAnalog_Vertical") > 0.9) ){
 		WaitController(1);
+	}
+	
+	
+	if(Input.GetKeyDown(KeyCode.W) ){
+		option--;
+	}else if(Input.GetKeyDown(KeyCode.S)  ){
+		option++;
 	}
 	
 	

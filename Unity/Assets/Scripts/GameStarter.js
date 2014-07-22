@@ -40,11 +40,12 @@ var Countries : Array  = [];
 var panelScript : PanelScript;
 var fadeInOut : SceneFadeInOut;
 
-
+var FlagMovementSound : AudioClip;
+var CorrectAnswerSound : AudioClip;
+var WrongAnswerSound : AudioClip;
 
 function Start () {
 	
-
 	
 	//Clear Country name
 	SetCountryText3D("");
@@ -107,6 +108,7 @@ function Update () {
 					panelScript.setCountry(CountrytoGuess);
 					panelScript.loadTip();
 					SetCountryText3D("");
+					audio.PlayOneShot(CorrectAnswerSound);
 					}
 				//if not, he gets and Wrong and loses points
 				else{
@@ -122,6 +124,7 @@ function Update () {
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
 					SetScoreText3D(Score);
+					audio.PlayOneShot(WrongAnswerSound);
 					}
 				}//End of Button Fire Press
 				
@@ -150,6 +153,9 @@ function setFlagAlpha(alpha : float){
 //Does the animation for the Flag. The flag begins small, at the center of the screen
 //and then the script moves it and makes it bigger, gradually, until it reaches the final position, which is next to the camera.
 function moveFlag(){
+	//Play the audio of the flag
+	audio.PlayOneShot(FlagMovementSound);
+	//FlagMovementSound.Play();
 	resetFlag();
 	setFlagAlpha(1);
 	//Flagboard.transform.renderer.material.color.a = 1;

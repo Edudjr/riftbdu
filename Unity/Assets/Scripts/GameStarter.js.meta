@@ -2,7 +2,15 @@ fileFormatVersion: 2
 guid: 895821d719e795243b9c8d88ca454b07
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CountryText3D: {instanceID: 0}
+  - ScoreText3D: {instanceID: 0}
+  - GameState3D: {instanceID: 0}
+  - Flagboard: {instanceID: 0}
+  - markers: {instanceID: 0}
+  - panelScript: {instanceID: 0}
+  - fadeInOut: {instanceID: 0}
+  - FlagMovement: {fileID: 8300000, guid: a7423350255d97b4a861585f6ec32c0c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
