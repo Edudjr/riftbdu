@@ -24,7 +24,7 @@ public var Flagboard : GameObject;
 
 
 var CountriesSorted : int = 0;
-
+var CurrentScore: int = 4;
 //Get the Markers script.
 var markers : Markers; 
 
@@ -92,12 +92,14 @@ function Update () {
 				}//End of the checking if the country changed
 			
 			
+			
+		
 			//The button "D" or "A" on the Joystick is pressed
 			if(( Input.GetButtonDown("Button_A")) || (Input.GetButtonDown("Jump")) ) {
 				//If the name of the country asked is equal the name of the country selected at the moment that the player pressed "Fire", he scores!
 				if ( CountrytoGuess == markers.getActivated() ) {
 					setAnswer(CountrytoGuess, Color.green);
-					Score+= RightAnswer;
+					Score+= CurrentScore;
 					SetScoreText3D(Score);
 					CountrytoGuess = SortCountry();
 					//If answer is correct, we need to restart the tipNumber counter
@@ -113,7 +115,10 @@ function Update () {
 						SetCountryText3D(CountrytoGuess);
 					//END
 					setAnswer("Wrong!", Color.red);
-					Score += WrongAnswer;
+					//The quantity of points he will receive decreases if he misses the right country.
+					if(CurrentScore >1){
+					CurrentScore -=1;
+					}
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
 					SetScoreText3D(Score);
@@ -212,6 +217,9 @@ function GetNumberOfLines(filePath : String) : int{
     
 //Randomly selects a country from the countries list  
 function SortCountry () : String {
+	//Whenever a new country is sorted, 
+	CurrentScore = 4;
+	//Increase the number of countries sorted.
 	CountriesSorted ++;
     if(Countries.length > 0){	
     	var rand : int;
