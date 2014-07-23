@@ -6,7 +6,7 @@ private var Globe : Transform;
 private var index : int = 1;
 private var matt : Material;
 public var precision : float = 0.4;
-public var Flagboard : GameObject;
+private var Flagboard : GameObject;
 private var str : String = "FlagBoard";
 
 private var initialPos : Vector3;
