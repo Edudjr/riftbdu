@@ -9,11 +9,16 @@ private var tipNumber : int = 0;
 //Invoke repeatByTime() function every 5 seconds
 InvokeRepeating("repeatByTime", 0, 5.0);
 
+
+function Start(){
+	Debug.Log("START");
+	Login();
+}
+
 //Updates facts text
 private function repeatByTime(){
 	if(tipNumber>0)
 		setFact(Country);
-
 }
 
 //Set country to be searched in the database
@@ -75,7 +80,7 @@ public function loadTip(){
 //Gets a country name, search in the database (given a link) and sets the first tip text to the returned string.
 private function setFact(country : String){
 	//var url = "http://localhost:3000/country?country=Argentina";
-	var url = "https://edudjr.cloudant.com/country/"+country;
+	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
 	var www : WWW = new WWW (url);
 	 
 	// wait for request to complete
@@ -101,7 +106,7 @@ private function setFact(country : String){
 //Gets a country name, search in the database (given a link) and sets the second tip text to the returned string.
 private function setLanguage(country : String){
 	//var url = "http://localhost:3000/country?country=Argentina";
-	var url = "https://edudjr.cloudant.com/country/"+country;
+	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
 	var www : WWW = new WWW (url);
 	 
 	// wait for request to complete
@@ -125,7 +130,7 @@ private function setLanguage(country : String){
 //Gets a country name, search in the database (given a link) and sets the third tip text to the returned string.
 private function setCuriosity(country : String){
 	//var url = "http://localhost:3000/country?country=Argentina";
-	var url = "https://edudjr.cloudant.com/country/"+country;
+	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
 	var www : WWW = new WWW (url);
 	 
 	// wait for request to complete
@@ -146,3 +151,25 @@ private function setCuriosity(country : String){
 	transform.GetChild(2).GetComponent(TextMesh).text = str;
 }
 
+function Login() {
+    var form = new WWWForm(); //here you create a new form connection
+    var username = "edudjr";
+    var password = "edudjr";
+    form.AddField( "username", username ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
+    form.AddField( "password", password );
+    //form.AddField( "myform_pass", formPassword );
+   	
+   	var url = "https://cloudant.com/sign-in/";
+    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
+    yield w; //we wait for the form to check the PHP file, so our game dont just hang
+    if (w.error != null) {
+        Debug.Log(w.error); //if there is an error, tell us
+    } else {
+        Debug.Log("Test ok");
+        Debug.Log(w.data); //here we return the data our PHP told us
+        w.Dispose(); //clear our form in game
+    }
+ 
+    //formNick = ""; //just clean our variables
+    //formPassword = "";
+}
