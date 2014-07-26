@@ -22,11 +22,12 @@ private static var lastSelected : String = null;
 
 public var Flagboard : GameObject;
 
-
-var CountriesSorted : int = 0;
+//Unecessary variable
+//var CountriesSorted : int = 0;
 var CurrentScore: int = 4;
 //Get the Markers script.
 var markers : Markers; 
+var scoreScript : ScoreScript;
 
 
 //Variables which will define the file to get the name of the countries
@@ -57,6 +58,7 @@ function Start () {
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
+	scoreScript = GameObject.FindObjectOfType(ScoreScript);
 	
 	fadeInOut.FadeIn();
 	
@@ -112,6 +114,7 @@ function Update () {
 					panelScript.loadTip();
 					SetCountryText3D("");
 					audio.PlayOneShot(CorrectAnswerSound);
+					scoreScript.sendScore();
 					}
 				//if not, he gets and Wrong and loses points
 				else{
@@ -122,7 +125,7 @@ function Update () {
 					setAnswer("Wrong!", Color.red);
 					//The quantity of points he will receive decreases if he misses the right country.
 					if(CurrentScore >1){
-					CurrentScore -=1;
+						CurrentScore -=1;
 					}
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
@@ -229,7 +232,7 @@ function SortCountry () : String {
 	//Whenever a new country is sorted, 
 	CurrentScore = 4;
 	//Increase the number of countries sorted.
-	CountriesSorted ++;
+	//CountriesSorted ++;
     if(Countries.length > 0){	
     	var rand : int;
 		var Country : String;
@@ -263,7 +266,8 @@ function getCountryToGuess(){
 
 function EndGame() : boolean{
   	//If the number of countries sorted is greater than the quantity of lines on the txt, the game is over.
-	if( CountriesSorted > nLines){
+	//if( CountriesSorted > nLines){
+	if( Countries.length == 0){
 		SetCountryText3D("");
 		return true;
 	}

@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 //Temporary. The score should be handled here and not in the gameStarter
-var gameStarter : GameStarter;
+private var gameStarter : GameStarter;
 
 function Start () {
 	gameStarter = GameObject.FindObjectOfType(GameStarter);
