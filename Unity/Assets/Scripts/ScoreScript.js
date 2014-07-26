@@ -7,14 +7,11 @@ function Start () {
 	gameStarter = GameObject.FindObjectOfType(GameStarter);
 }
 
-function Update () {
-	
-}
-
+//Sends score to webApplication, which will post to cloudant
 function sendScore(){
 	var playerScore = getScore();
 	
-	var postScoreURL = "http://localhost:3000/postscore";
+	var postScoreURL = "http://bluemixrift2.ng.bluemix.net/postscore";
 	var jsonString = "{ \"score\":"+playerScore+", \"nickname\":\"edudjr\" }";
 	 
 	var encoding = new System.Text.UTF8Encoding();
@@ -39,6 +36,7 @@ function sendScore(){
 	}
 }
 
+//Returns score from player
 function getScore(){
 	return gameStarter.getScore();
 }

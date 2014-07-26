@@ -151,6 +151,7 @@ private function setCuriosity(country : String){
 	transform.GetChild(2).GetComponent(TextMesh).text = str;
 }
 
+//TEST FUNCTION
 function Login() {
     var form = new WWWForm(); //here you create a new form connection
     var username = "edudjr";
@@ -194,25 +195,5 @@ function Login() {
 	    Debug.Log("request success");
 	    Debug.Log("returned data " + request.data);
 	}
-	
-	/*
-	//// ***** THIRD ATTEMPT ****** ////
-	var formTwo = new WWWForm(); //here you create a new form connection
-   // var username = "edudjr";
-   // var password = "edudjr";
-    formTwo.AddField( "username", username ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
-    formTwo.AddField( "password", password );
-    //form.AddField( "myform_pass", formPassword );
-   	
-   	var url = "https://cloudant.com/sign-in/";
-    var w = WWW(url, formTwo); //here we create a var called 'w' and we sync with our URL and the form
-    yield w; //we wait for the form to check the PHP file, so our game dont just hang
-    if (w.error != null) {
-        Debug.Log(w.error); //if there is an error, tell us
-    } else {
-        Debug.Log("Test ok");
-        Debug.Log(w.data); //here we return the data our PHP told us
-        w.Dispose(); //clear our form in game
-    } */
 		
 }
