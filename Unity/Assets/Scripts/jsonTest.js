@@ -36,7 +36,7 @@ function Start () {
 	
 	////////////////////////////////////
 	//TEST - Get json from url
-	//var url = "https://edudjr.cloudant.com/users/_all_docs?include_docs=true";
+	//var url = "https://edudjr:edudjr@edudjr.cloudant.com/users/_all_docs?include_docs=true";
 	var url = "http://localhost:3000/country?country=Argentina";
 	var www : WWW = new WWW (url);
 	 

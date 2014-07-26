@@ -268,3 +268,8 @@ function EndGame() : boolean{
 		return false;
 	}
 }
+
+//THIS METHOD SHOULD BE IN SCORESCRIPT
+function getScore(){
+	return Score;
+}

@@ -170,6 +170,49 @@ function Login() {
         w.Dispose(); //clear our form in game
     }
  
-    //formNick = ""; //just clean our variables
-    //formPassword = "";
+ 	///////////// *** TEST POSTING SCORE TO APPLICATION *** /////////////   
+    var postScoreURL = "http://localhost:3000/postscore";
+	var jsonString = "{ \"score\":1000, \"nickname\":\"edudjr\" }";
+	 
+	var encoding = new System.Text.UTF8Encoding();
+	var postHeader = new Hashtable();
+	   
+	postHeader.Add("Content-Type", "application/json");
+	//postHeader.Add("Content-Length", jsonString.Length);
+	 
+	Debug.Log("jsonString: " + jsonString);
+	 
+	var request = WWW(postScoreURL, encoding.GetBytes(jsonString), postHeader);
+	 
+	yield request;
+	   
+	// Print the error to the console
+	if (request.error != null){
+	    Debug.Log("request error: " + request.error);
+	}
+	else{
+	    Debug.Log("request success");
+	    Debug.Log("returned data " + request.data);
+	}
+	
+	/*
+	//// ***** THIRD ATTEMPT ****** ////
+	var formTwo = new WWWForm(); //here you create a new form connection
+   // var username = "edudjr";
+   // var password = "edudjr";
+    formTwo.AddField( "username", username ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
+    formTwo.AddField( "password", password );
+    //form.AddField( "myform_pass", formPassword );
+   	
+   	var url = "https://cloudant.com/sign-in/";
+    var w = WWW(url, formTwo); //here we create a var called 'w' and we sync with our URL and the form
+    yield w; //we wait for the form to check the PHP file, so our game dont just hang
+    if (w.error != null) {
+        Debug.Log(w.error); //if there is an error, tell us
+    } else {
+        Debug.Log("Test ok");
+        Debug.Log(w.data); //here we return the data our PHP told us
+        w.Dispose(); //clear our form in game
+    } */
+		
 }
