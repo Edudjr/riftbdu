@@ -78,6 +78,7 @@ function Start () {
 
 
 function Update () {
+		Resources.UnloadUnusedAssets();
 		//While there is still countries to be guessed
 		if ( !EndGame() ){
 			//the Var Activated will always receive the marker that is selected at the moment

@@ -12,7 +12,7 @@ InvokeRepeating("repeatByTime", 0, 5.0);
 
 function Start(){
 	Debug.Log("START");
-	Login();
+	//Login();
 }
 
 //Updates facts text
