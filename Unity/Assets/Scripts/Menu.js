@@ -39,17 +39,21 @@ function Update () {
 	}
 	
 	
-	if( (Input.GetAxisRaw("LeftAnalog_Vertical") < -0.9) ){
-		WaitController(-1);
-	}else if((Input.GetAxisRaw("LeftAnalog_Vertical") > 0.9) ){
-		WaitController(1);
+	if(  Input.GetAxisRaw("LeftAnalog_Vertical")>0.5 ){
+		option--;
+
+	}else if( Input.GetAxisRaw("LeftAnalog_Vertical")<-0.5){
+		option++;
+		
 	}
 	
 	
 	if(Input.GetKeyDown(KeyCode.W) ){
 		option--;
+		
 	}else if(Input.GetKeyDown(KeyCode.S)  ){
 		option++;
+		
 	}
 	
 	
@@ -82,11 +86,6 @@ function Update () {
 
 
 
-function WaitController(num : int) {
-
-	yield new WaitForSeconds(1);
-	option = option + num;
-}
 
 
 	

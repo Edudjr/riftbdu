@@ -53,7 +53,7 @@ function Start () {
 	SetScoreText3D(0);
 	
 	//Set the path of the txt file
-	textFilePath = "Assets//Resources//Files//SouthAmericaCountries.txt";
+	textFilePath = "Assets//Resources//Files//PresentationCountries.txt";
 	 
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
@@ -124,9 +124,17 @@ function Update () {
 					//END
 					setAnswer("Wrong!", Color.red);
 					//The quantity of points he will receive decreases if he misses the right country.
-					if(CurrentScore >1){
+					if(CurrentScore >= 1){
 						CurrentScore -=1;
-					}
+						}
+					//If the player could even guess the country with its name, we give him/her a new country to guess.
+					if (CurrentScore == 0 ){
+						CountrytoGuess = SortCountry();
+						panelScript.resetTipNumber();
+						panelScript.setCountry(CountrytoGuess);
+						SetCountryText3D("");
+						}
+				
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
 					SetScoreText3D(Score);
