@@ -12,7 +12,7 @@ function sendScore(){
 	var playerScore = getScore();
 	
 	var postScoreURL = "http://bluemixrift2.ng.bluemix.net/postscore";
-	var jsonString = "{ \"score\":"+playerScore+", \"nickname\":\"edudjr\" }";
+	var jsonString = "{ \"score\":"+playerScore+", \"nickname\":\"joselito\" }";
 	 
 	var encoding = new System.Text.UTF8Encoding();
 	var postHeader = new Hashtable();

@@ -19,12 +19,12 @@ function Update () {
 function getAxis (input : String){
 
 	
-	if( (Input.GetAxisRaw("LeftAnalog_Horizontal")> 0.3 )|| (Input.GetKey(KeyCode.RightArrow )) )
+	if( (Input.GetAxisRaw("LeftAnalog_Horizontal")> 0.3 )|| (Input.GetKey(KeyCode.LeftArrow )) )
 	{ 
 		transform.Rotate(-Vector3.up * Time.deltaTime * speed, Space.Self);
 	}
 	else {
-		if ( (Input.GetAxisRaw("LeftAnalog_Horizontal") < -0.3)||(Input.GetKey(KeyCode.LeftArrow)))
+		if ( (Input.GetAxisRaw("LeftAnalog_Horizontal") < -0.3)||(Input.GetKey(KeyCode.RightArrow)))
 		{
 			transform.Rotate(Vector3.up * Time.deltaTime * speed, Space.Self);
 		}
