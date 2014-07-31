@@ -2,6 +2,7 @@
 
 private var option : int = 0;
 private var fadeInOut : SceneFadeInOut;
+private var lockButton : boolean = false;
 
 function Start () {
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
@@ -38,28 +39,7 @@ function Update () {
 			break;
 	}
 	
-	
-	if( (Input.GetAxisRaw("LeftAnalog_Vertical") < -0.9) ){
-		WaitController(-1);
-	}else if((Input.GetAxisRaw("LeftAnalog_Vertical") > 0.9) ){
-		WaitController(1);
-	}
-	
-	
-	if(Input.GetKeyDown(KeyCode.W) ){
-		option--;
-	}else if(Input.GetKeyDown(KeyCode.S)  ){
-		option++;
-	}
-	
-	
-	//Make sure that option is available
-	if(option > 3){
-		option=3;
-	}else if(option < 1){
-		option=1;
-	}
-	//End of visual moviment menu
+	getChange();
 	
 	//What kind of game should be loaded now: 
 	if(Input.GetButtonDown("Jump")) {
@@ -73,20 +53,34 @@ function Update () {
 		case 3:
 			//transform.Find("OptionsText").GetComponent(TextMesh).color = Color.green;
 			break;
+		}
+
 	}
-
-}
 	
 	
 }
 
-
-
-function WaitController(num : int) {
-
-	yield new WaitForSeconds(1);
-	option = option + num;
-}
-
-
+function getChange(){
+	//Debug.Log(lockButton);
+	if(!lockButton){
+		if((  Input.GetAxisRaw("LeftAnalog_Vertical")>0.5 ) || (Input.GetKeyDown(KeyCode.W))){
+			lockButton = true;
+			option--;
+			yield WaitForSeconds(0.3);
+		}else if(( Input.GetAxisRaw("LeftAnalog_Vertical")<-0.5) || (Input.GetKeyDown(KeyCode.S))){	
+			lockButton = true;
+			option++;
+			yield WaitForSeconds(0.3);
+		}
+		//Debug.Log('inside '+lockButton);
+		lockButton = false;
+	}
 	
+	//Make sure that option is available
+	if(option > 3){
+		option=3;
+	}else if(option < 1){
+		option=1;
+	}
+	//End of visual moviment menu
+}
