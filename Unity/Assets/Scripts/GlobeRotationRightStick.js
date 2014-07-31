@@ -19,14 +19,15 @@ function Update () {
 function getAxis (input : String){
 
 	
-	if( (Input.GetAxisRaw("LeftAnalog_Horizontal")> 0.3 )|| (Input.GetKey(KeyCode.LeftArrow )) )
+	if( (Input.GetAxisRaw("LeftAnalog_Horizontal")> 0.1 )|| (Input.GetKey(KeyCode.LeftArrow )) )
 	{ 
-		transform.Rotate(-Vector3.up * Time.deltaTime * speed, Space.Self);
+		transform.Rotate(-Vector3.up * Time.deltaTime * speed* (Input.GetAxisRaw("LeftAnalog_Horizontal")*2.5) , Space.Self);
+		//Debug.Log(-Vector3.up * Time.deltaTime * speed* (Input.GetAxisRaw("LeftAnalog_Horizontal")*3));
 	}
 	else {
 		if ( (Input.GetAxisRaw("LeftAnalog_Horizontal") < -0.3)||(Input.GetKey(KeyCode.RightArrow)))
 		{
-			transform.Rotate(Vector3.up * Time.deltaTime * speed, Space.Self);
+			transform.Rotate(Vector3.up * Time.deltaTime * speed * (Input.GetAxisRaw("LeftAnalog_Horizontal")*-2.5), Space.Self);
 		}
 	}
 	
@@ -34,14 +35,14 @@ function getAxis (input : String){
 	{
 		if(reference.transform.position.z > transform.position.z - rotationLimit)
 		//if(reference.transform.position.z > -1.2)
-			transform.Rotate(-Vector3.right * Time.deltaTime * speed, Space.World);
+			transform.Rotate(-Vector3.right * Time.deltaTime * speed * (Input.GetAxisRaw("LeftAnalog_Vertical")*2.5), Space.World);
 	}
 	else{
 		if((Input.GetAxisRaw("LeftAnalog_Vertical") < -0.3)||(Input.GetKey(KeyCode.DownArrow)))
 		{
 			if(reference.transform.position.z < transform.position.z + rotationLimit)
 			//if(reference.transform.position.z < 1.3)
-				transform.Rotate(Vector3.right * Time.deltaTime * speed, Space.World);
+				transform.Rotate(Vector3.right * Time.deltaTime * speed * (Input.GetAxisRaw("LeftAnalog_Vertical")*-2.5), Space.World);
 		}
 	}
 }
