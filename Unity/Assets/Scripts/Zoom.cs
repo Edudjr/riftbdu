@@ -22,7 +22,18 @@ public class Zoom : MonoBehaviour {
 			if(Input.GetKey(KeyCode.W)){
 				transform.position += new Vector3(0,0,speed * Time.deltaTime);
 			}
-			
+
+			if((Input.GetAxisRaw("RightAnalog_Vertical")< -0.3)  )
+			{
+				transform.position -= new Vector3(0,0,speed * Time.deltaTime);
+			}
+			else{
+				if((Input.GetAxisRaw("RightAnalog_Vertical")  > 0.3)  )
+				{
+					transform.position += new Vector3(0,0,speed * Time.deltaTime);
+				}
+			}
+
 		}
 		
 		if (transform.position.z > -forwardDistance) {

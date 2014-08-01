@@ -80,15 +80,17 @@ function Start () {
 
 
 function Update () {
-		
 		//While there is still countries to be guessed
 		if ( !EndGame() ){
-			//the Var Activated will always receive the marker that is selected at the moment
-			var activated = markers.getActivated();
+			
 			//set panel information
 			panelScript.setCountry(CountrytoGuess);
+			
 			//Change the flag displayed according to the country selected
 			ChangeFlagtoCurrentSelected( markers.getActivated() );
+			
+			//the Var Activated will always receive the marker that is selected at the moment
+			var activated = markers.getActivated();
 			//If the country changes, we need to remake the flag animation
 			if(lastSelected != activated){
 				//Clean last loaded material
@@ -96,8 +98,6 @@ function Update () {
 				lastSelected = activated;
 				moveFlag();
 				}//End of the checking if the country changed
-			
-			
 			
 		
 			//The button "D" or "A" on the Joystick is pressed

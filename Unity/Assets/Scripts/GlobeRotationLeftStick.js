@@ -19,30 +19,59 @@ function Update () {
 function getAxis (input : String){
 
 	
-	if( (Input.GetAxisRaw("LeftAnalog_Horizontal")> 0.1 )|| (Input.GetKey(KeyCode.LeftArrow )) )
+	if( (Input.GetAxisRaw("LeftAnalog_Horizontal")> 0.1 ) )
 	{ 
 		transform.Rotate(-Vector3.up * Time.deltaTime * speed* (Input.GetAxisRaw("LeftAnalog_Horizontal")*2.5) , Space.Self);
 		//Debug.Log(-Vector3.up * Time.deltaTime * speed* (Input.GetAxisRaw("LeftAnalog_Horizontal")*3));
 	}
 	else {
-		if ( (Input.GetAxisRaw("LeftAnalog_Horizontal") < -0.3)||(Input.GetKey(KeyCode.RightArrow)))
+		if ( (Input.GetAxisRaw("LeftAnalog_Horizontal") < -0.1)   )
 		{
 			transform.Rotate(Vector3.up * Time.deltaTime * speed * (Input.GetAxisRaw("LeftAnalog_Horizontal")*-2.5), Space.Self);
 		}
 	}
 	
-	if((Input.GetAxisRaw("LeftAnalog_Vertical")> 0.3)||(Input.GetKey(KeyCode.UpArrow)))
+	if( (Input.GetKey(KeyCode.LeftArrow) ) )
+	{ 
+		transform.Rotate(-Vector3.up * Time.deltaTime * speed, Space.Self);
+		//Debug.Log(-Vector3.up * Time.deltaTime * speed* (Input.GetAxisRaw("LeftAnalog_Horizontal")*3));
+	}
+	else {
+		if ( (Input.GetKey(KeyCode.RightArrow)))
+		{
+			transform.Rotate(Vector3.up * Time.deltaTime * speed , Space.Self);
+		}
+	}
+	
+	if((Input.GetAxisRaw("LeftAnalog_Vertical")> 0.3)  )
 	{
 		if(reference.transform.position.z > transform.position.z - rotationLimit)
 		//if(reference.transform.position.z > -1.2)
 			transform.Rotate(-Vector3.right * Time.deltaTime * speed * (Input.GetAxisRaw("LeftAnalog_Vertical")*2.5), Space.World);
 	}
 	else{
-		if((Input.GetAxisRaw("LeftAnalog_Vertical") < -0.3)||(Input.GetKey(KeyCode.DownArrow)))
+		if((Input.GetAxisRaw("LeftAnalog_Vertical") < -0.3)  )
 		{
 			if(reference.transform.position.z < transform.position.z + rotationLimit)
 			//if(reference.transform.position.z < 1.3)
 				transform.Rotate(Vector3.right * Time.deltaTime * speed * (Input.GetAxisRaw("LeftAnalog_Vertical")*-2.5), Space.World);
+		}
+	}
+	
+	
+	
+	if( (Input.GetKey(KeyCode.UpArrow)) )
+	{
+		if(reference.transform.position.z > transform.position.z - rotationLimit)
+		//if(reference.transform.position.z > -1.2)
+			transform.Rotate(-Vector3.right * Time.deltaTime * speed , Space.World);
+	}
+	else{
+		if( (Input.GetKey(KeyCode.DownArrow)))
+		{
+			if(reference.transform.position.z < transform.position.z + rotationLimit)
+			//if(reference.transform.position.z < 1.3)
+				transform.Rotate(Vector3.right * Time.deltaTime * speed , Space.World);
 		}
 	}
 }
