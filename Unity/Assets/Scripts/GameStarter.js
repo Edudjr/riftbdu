@@ -101,7 +101,7 @@ function Update () {
 			
 		
 			//The button "D" or "A" on the Joystick is pressed
-			if(( Input.GetButtonDown("Button_A")) || (Input.GetButtonDown("Jump")) ) {
+			if( Input.GetButtonDown("Jump") ) {
 				//If the name of the country asked is equal the name of the country selected at the moment that the player pressed "Fire", he scores!
 				if ( CountrytoGuess == markers.getActivated() ) {
 					setAnswer(CountrytoGuess, Color.green);
@@ -148,6 +148,10 @@ function Update () {
 		setWin("You Win!!", Color.green);
 		setFlagAlpha(0);
 		resetFlag();
+	}
+	
+	if ( Input.GetButtonDown("Fire3") ){
+		Application.Quit();
 	}
 
 }

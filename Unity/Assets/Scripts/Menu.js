@@ -1,6 +1,8 @@
 ﻿#pragma strict
 
 private var option : int = 0;
+private var MaxPosition : int = 3;
+private var MinPosition : int = 1;
 private var fadeInOut : SceneFadeInOut;
 private var lockButton : boolean = false;
 
@@ -19,26 +21,33 @@ function Start () {
 
 function Update () {
 	
+		for (var child : Transform in transform) {
+    	child.GetComponent(TextMesh).color = Color.white;
+	}
 	
 	//Look for selected option and turn it green
 	switch(option){
 		case 1: 
 			transform.Find("StartText").GetComponent(TextMesh).color = Color.green;
-			transform.Find("DiscoveryText").GetComponent(TextMesh).color = Color.white;
-			transform.Find("OptionsText").GetComponent(TextMesh).color = Color.white;
 			break;
 		case 2:
 			transform.Find("DiscoveryText").GetComponent(TextMesh).color = Color.green;
-			transform.Find("OptionsText").GetComponent(TextMesh).color = Color.white;
-			transform.Find("StartText").GetComponent(TextMesh).color = Color.white;
 			break;
 		case 3:
 			transform.Find("OptionsText").GetComponent(TextMesh).color = Color.green;
-			transform.Find("StartText").GetComponent(TextMesh).color = Color.white;
-			transform.Find("DiscoveryText").GetComponent(TextMesh).color = Color.white;
+			break;
+		case 4:
+			transform.Find("Sounds").GetComponent(TextMesh).color = Color.green;
+			break;
+		case 5:
+			transform.Find("Music").GetComponent(TextMesh).color = Color.green;
+			break;
+		case 6:
+			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
 	}
 	
+	// -------------CONTROLLERS---------------
 	getChange();
 	
 	//What kind of game should be loaded now: 
@@ -51,11 +60,34 @@ function Update () {
 			fadeInOut.FadeOutLoad("DiscoveryMode");
 			break;
 		case 3:
-			//transform.Find("OptionsText").GetComponent(TextMesh).color = Color.green;
+			MaxPosition = 6;
+			MinPosition = 4;
+			transform.Find("Music").renderer.enabled = true;
+			transform.Find("Sounds").renderer.enabled = true;
+			transform.Find("Back").renderer.enabled = true;
+			transform.Find("SettingsMenu").renderer.enabled = true;
+			
+			break;
+		case 4:
+			MaxPosition = 6;
+			MinPosition = 4;
+			break;
+		case 5:
+			MaxPosition = 6;
+			MinPosition = 4;
+			break;
+		case 6:
+			MaxPosition = 3;
+			MinPosition = 1;
+			transform.Find("Music").renderer.enabled = false;
+			transform.Find("Sounds").renderer.enabled = false;
+			transform.Find("Back").renderer.enabled = false;
+			transform.Find("SettingsMenu").renderer.enabled = false;
 			break;
 		}
 
 	}
+	
 	
 	
 }
@@ -77,10 +109,10 @@ function getChange(){
 	}
 	
 	//Make sure that option is available
-	if(option > 3){
-		option=3;
-	}else if(option < 1){
-		option=1;
+	if(option > MaxPosition){
+		option=MaxPosition;
+	}else if(option < MinPosition){
+		option=MinPosition;
 	}
 	//End of visual moviment menu
 }

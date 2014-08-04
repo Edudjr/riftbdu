@@ -61,10 +61,10 @@ public function loadTip(){
 			setFact(Country);
 			break;
 		case 1:
-			setLanguage(Country);
+			setCuriosity(Country);
 			break;
 		case 2:
-			setCuriosity(Country);
+			setLanguage(Country);
 			break;
 	}
 	
