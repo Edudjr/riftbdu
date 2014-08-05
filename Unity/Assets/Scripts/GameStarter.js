@@ -29,6 +29,9 @@ var CurrentScore: int = 4;
 var markers : Markers; 
 var scoreScript : ScoreScript;
 
+//This Variable will get all the settings that the player chose on the menu
+var Settings : Menu;
+
 
 //Variables which will define the file to get the name of the countries
 var textFilePath : String;
@@ -41,12 +44,16 @@ var Countries : Array  = [];
 var panelScript : PanelScript;
 var fadeInOut : SceneFadeInOut;
 
-var FlagMovementSound : AudioClip;
-var CorrectAnswerSound : AudioClip;
-var WrongAnswerSound : AudioClip;
+var FlagMovementSound : AudioSource;
+var CorrectAnswerSound : AudioSource;
+var WrongAnswerSound : AudioSource;
 
 function Start () {
 	
+	
+	setAudioClips();
+	//ApplySettings();
+	//Debug.Log(Settings.getMusicConfiguration);
 	
 	//Clear Country name
 	SetCountryText3D("");
@@ -113,7 +120,7 @@ function Update () {
 					panelScript.setCountry(CountrytoGuess);
 					panelScript.loadTip();
 					SetCountryText3D("");
-					audio.PlayOneShot(CorrectAnswerSound);
+					CorrectAnswerSound.Play();
 					scoreScript.sendScore();
 					}
 				//if not, he gets Wrong and loses points
@@ -138,7 +145,7 @@ function Update () {
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
 					SetScoreText3D(Score);
-					audio.PlayOneShot(WrongAnswerSound);
+					WrongAnswerSound.Play();
 					}
 				}//End of Button Fire Press
 				
@@ -172,7 +179,7 @@ function setFlagAlpha(alpha : float){
 //and then the script moves it and makes it bigger, gradually, until it reaches the final position, which is next to the camera.
 function moveFlag(){
 	//Play the audio of the flag
-	audio.PlayOneShot(FlagMovementSound);
+	FlagMovementSound.Play();
 	//FlagMovementSound.Play();
 	resetFlag();
 	setFlagAlpha(1);
@@ -291,4 +298,37 @@ function EndGame() : boolean{
 //THIS METHOD SHOULD BE IN SCORESCRIPT
 function getScore(){
 	return Score;
+}
+
+
+function setAudioClips(){
+	FlagMovementSound = gameObject.AddComponent("AudioSource");
+	//This is the way we pass the value to the variable
+	var FlagMovementAudioclip : AudioClip = Resources.Load("Sounds/Flag Movement/FlagMovement");
+	FlagMovementSound.clip = FlagMovementAudioclip;
+
+	CorrectAnswerSound = gameObject.AddComponent("AudioSource");
+	var CorrectAnswerAudioclip : AudioClip = Resources.Load("Sounds/Correct Answer/Correct");
+	CorrectAnswerSound.clip = CorrectAnswerAudioclip;
+	
+	WrongAnswerSound = gameObject.AddComponent("AudioSource");
+	var WrongAnswerAudioclip : AudioClip = Resources.Load("Sounds/Wrong Answer/Wrong");
+	WrongAnswerSound.clip = WrongAnswerAudioclip;
+}
+
+
+function ApplySettings(){
+	if(Settings.getSoundConfiguration() == 0){
+		FlagMovementSound.mute = true;
+		CorrectAnswerSound.mute = true;
+		WrongAnswerSound.mute = true;
+		
+	}
+	
+	if(Settings.getMusicConfiguration() == 0){
+	
+	
+	}
+	
+
 }

@@ -5,13 +5,16 @@ private var MaxPosition : int = 2;
 private var MinPosition : int = 1;
 private var fadeInOut : SceneFadeInOut;
 private var lockButton : boolean = false;
-private var sound : int = 1;
-private var music : int = 1;
+private var soundBool : int = 1;
+private var musicBool : int = 1;
 
-public var Music : AudioClip; 
+public var Music : AudioSource; 
+public var MoveSound : AudioSource;
+public var SelectSound : AudioSource;
 
 function Start () {
-	audio.PlayOneShot(Music);
+
+	setAudioClips();
 
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
 	//When start, fade the screen from black to transparent
@@ -55,6 +58,7 @@ function Update () {
 	
 	//What kind of game should be loaded now: 
 	if(Input.GetButtonDown("Jump")) {
+		SelectSound.Play();
 		switch(option){
 		case 1:
 			fadeInOut.FadeOutLoad("DiscoveryMode");
@@ -71,37 +75,35 @@ function Update () {
 			
 			break;
 		case 3:
-			if(sound == 1 ){
+			if(soundBool == 1 ){
 				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).text = "OFF";
 				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).color  = Color.red;
-				sound = 0;
+				soundBool = 0;
+				MoveSound.mute = true;
+				SelectSound.mute = true;
 			}
 			else {
 				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).text = "ON";
 				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).color  = Color.green;
-				sound = 1;
+				soundBool = 1;
+				MoveSound.mute = false;
+				SelectSound.mute = false;
 			}
-			MaxPosition = 5;
-			MinPosition = 3;
 			break;
 		case 4:
-			if(music == 1 ){
+			if(musicBool == 1 ){
 				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).text = "OFF";
 				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).color  = Color.red;
-				audio.mute = true;
+				Music.mute = true;
 				
-				music = 0;
+				musicBool = 0;
 			}
 			else {
 				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).text = "ON";
 				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).color  = Color.green;
-				audio.mute = false;
-				music = 1;
+				Music.mute = false;
+				musicBool = 1;
 			}
-			
-			
-			MaxPosition = 5;
-			MinPosition = 3;
 			break;
 		case 5:
 			MaxPosition = 2;
@@ -123,15 +125,17 @@ function Update () {
 }
 
 function getChange(){
-	//Debug.Log(lockButton);
+	
 	if(!lockButton){
 		if((  Input.GetAxisRaw("LeftAnalog_Vertical")>0.5 ) || (Input.GetKeyDown(KeyCode.W))){
 			lockButton = true;
 			option--;
+			MoveSound.Play();
 			yield WaitForSeconds(0.3);
 		}else if(( Input.GetAxisRaw("LeftAnalog_Vertical")<-0.5) || (Input.GetKeyDown(KeyCode.S))){	
 			lockButton = true;
 			option++;
+			MoveSound.Play();
 			yield WaitForSeconds(0.3);
 		}
 		//Debug.Log('inside '+lockButton);
@@ -145,4 +149,34 @@ function getChange(){
 		option=MinPosition;
 	}
 	//End of visual moviment menu
+	
+}
+
+public function getSoundConfiguration() : int{
+	return soundBool;
+}
+
+public function getMusicConfiguration() : int{
+	return musicBool;
+}
+
+function setAudioClips(){
+//Define the file source of music.
+	Music = gameObject.AddComponent("AudioSource");
+	//This is the way we pass the value to the variable
+	var MusicAudioclip : AudioClip = Resources.Load("Sounds/Menu/Music/MusicMenu");
+	Music.clip = MusicAudioclip;
+	//Play the music
+	Music.Play();
+	
+
+	MoveSound = gameObject.AddComponent("AudioSource");
+	var MoveAudioclip : AudioClip = Resources.Load("Sounds/Menu/SFX/Move");
+	MoveSound.clip = MoveAudioclip;
+	
+	SelectSound = gameObject.AddComponent("AudioSource");
+	var SelectionAudioclip : AudioClip = Resources.Load("Sounds/Menu/SFX/Selecting");
+	SelectSound.clip = SelectionAudioclip;
+	
+	//END OF MUSIC CONFIGURATION ----------------------------------------------------------------------
 }
