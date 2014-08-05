@@ -124,7 +124,7 @@ private function setLanguage(country : String){
 	    Debug.Log("WWW Error: "+ www.error);
 	}
 	//Change second 3Dtext
-	transform.GetChild(1).GetComponent(TextMesh).text = str + " is their language";
+	transform.GetChild(2).GetComponent(TextMesh).text = str + " is their language";
 }
 
 //Gets a country name, search in the database (given a link) and sets the third tip text to the returned string.
@@ -148,7 +148,7 @@ private function setCuriosity(country : String){
 	    Debug.Log("WWW Error: "+ www.error);
 	}
 	//Change third 3Dtext
-	transform.GetChild(2).GetComponent(TextMesh).text = str;
+	transform.GetChild(1).GetComponent(TextMesh).text = str;
 }
 
 //TEST FUNCTION

@@ -47,6 +47,7 @@ var fadeInOut : SceneFadeInOut;
 var FlagMovementSound : AudioSource;
 var CorrectAnswerSound : AudioSource;
 var WrongAnswerSound : AudioSource;
+var TipsSound : AudioSource;
 
 function Start () {
 	
@@ -119,6 +120,7 @@ function Update () {
 					panelScript.resetTipNumber();
 					panelScript.setCountry(CountrytoGuess);
 					panelScript.loadTip();
+					TipsSound.Play();
 					SetCountryText3D("");
 					CorrectAnswerSound.Play();
 					scoreScript.sendScore();
@@ -144,8 +146,9 @@ function Update () {
 				
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
+					TipsSound.Play();
 					SetScoreText3D(Score);
-					WrongAnswerSound.Play();
+					//WrongAnswerSound.Play();
 					}
 				}//End of Button Fire Press
 				
@@ -314,6 +317,10 @@ function setAudioClips(){
 	WrongAnswerSound = gameObject.AddComponent("AudioSource");
 	var WrongAnswerAudioclip : AudioClip = Resources.Load("Sounds/Wrong Answer/Wrong");
 	WrongAnswerSound.clip = WrongAnswerAudioclip;
+	
+	TipsSound = gameObject.AddComponent("AudioSource");
+	var TipsAudioclip : AudioClip = Resources.Load("Sounds/Tips/Tips2");
+	TipsSound.clip = TipsAudioclip;
 }
 
 
