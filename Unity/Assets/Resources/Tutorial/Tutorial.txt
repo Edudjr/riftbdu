@@ -1,0 +1,22 @@
+Welcome to GeoVR \n Game's Tutorial
+Your goal is to get \n the highest score finding \n the countries in the world.
+Look to your left \n to see the controller\n buttons.
+
+This is the first look \n that you will \n have in-game,\nthere are a few important \n things to know:
+
+Look to your right! 
+
+Look to your left! 
+
+You will receive a message \n on the center of the\n screen when you miss a \n country!
+
+You can use the\n zoom function to select \n small countries more easily.
+
+When you miss, \n you will receive\n more tips on the\n left side (up to 3) \n  
+when you miss for the\n fourth time you will\n receive a final tip, \n which is the country`s name! \n That indicate you last \n chance to find the country!!
+
+
+
+Finally, if you find\n the right country \n it`s name will appear on\n the center of the screen!
+
+Thank you, lets play!
