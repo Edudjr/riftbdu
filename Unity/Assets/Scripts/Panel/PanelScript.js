@@ -7,7 +7,7 @@ private var Country : String = null;
 private var tipNumber : int = 0;
 
 //Invoke repeatByTime() function every 5 seconds
-InvokeRepeating("repeatByTime", 0, 5.0);
+//InvokeRepeating("repeatByTime", 0, 5.0);
 
 
 function Start(){
@@ -78,7 +78,7 @@ public function loadTip(){
 //Each of the functions below will change the content of the text Tips
 
 //Gets a country name, search in the database (given a link) and sets the first tip text to the returned string.
-private function setFact(country : String){
+private function setFactOld(country : String){
 	//var url = "http://localhost:3000/country?country=Argentina";
 	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
 	var www : WWW = new WWW (url);
@@ -103,8 +103,29 @@ private function setFact(country : String){
 	transform.GetChild(0).GetComponent(TextMesh).text = str;
 }
 
+private function setFact(country : String){
+    var form = new WWWForm(); //here you create a new form connection
+    country = "Canada";
+    var option = "fact";
+    form.AddField( "country", country );
+    form.AddField( "option", option ); 
+   	
+   	var url = "http://localhost:3000/countryfact_to_game";
+    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
+    yield w; //we wait for the form to check the PHP file, so our game dont just hang
+    if (w.error != null) {
+        Debug.Log(w.error); //if there is an error, tell us
+    } else {
+        Debug.Log("Test ok");
+        Debug.Log(w.data); //here we return the data our PHP told us
+        //Change first 3Dtext
+		transform.GetChild(0).GetComponent(TextMesh).text = w.data;
+		w.Dispose(); //clear our form in game
+    }
+}
+
 //Gets a country name, search in the database (given a link) and sets the second tip text to the returned string.
-private function setLanguage(country : String){
+private function setLanguageOld(country : String){
 	//var url = "http://localhost:3000/country?country=Argentina";
 	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
 	var www : WWW = new WWW (url);
@@ -127,8 +148,29 @@ private function setLanguage(country : String){
 	transform.GetChild(2).GetComponent(TextMesh).text = str + " is their language";
 }
 
+private function setLanguage(country : String){
+    var form = new WWWForm(); //here you create a new form connection
+    country = "Canada";
+    var option = "language";
+    form.AddField( "country", country );
+    form.AddField( "option", option ); 
+   	
+   	var url = "http://localhost:3000/countryfact_to_game";
+    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
+    yield w; //we wait for the form to check the PHP file, so our game dont just hang
+    if (w.error != null) {
+        Debug.Log(w.error); //if there is an error, tell us
+    } else {
+        Debug.Log("Test ok");
+        Debug.Log(w.data); //here we return the data our PHP told us
+        //Change first 3Dtext
+		transform.GetChild(2).GetComponent(TextMesh).text = w.data + " is their language";
+		w.Dispose(); //clear our form in game
+    }
+}
+
 //Gets a country name, search in the database (given a link) and sets the third tip text to the returned string.
-private function setCuriosity(country : String){
+private function setCuriosityOld(country : String){
 	//var url = "http://localhost:3000/country?country=Argentina";
 	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
 	var www : WWW = new WWW (url);
@@ -149,6 +191,27 @@ private function setCuriosity(country : String){
 	}
 	//Change third 3Dtext
 	transform.GetChild(1).GetComponent(TextMesh).text = str;
+}
+
+private function setCuriosity(country : String){
+    var form = new WWWForm(); //here you create a new form connection
+    country = "Canada";
+    var option = "curiosity";
+    form.AddField( "country", country );
+    form.AddField( "option", option ); 
+   	
+   	var url = "http://localhost:3000/countryfact_to_game";
+    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
+    yield w; //we wait for the form to check the PHP file, so our game dont just hang
+    if (w.error != null) {
+        Debug.Log(w.error); //if there is an error, tell us
+    } else {
+        Debug.Log("Test ok");
+        Debug.Log(w.data); //here we return the data our PHP told us
+        //Change first 3Dtext
+		transform.GetChild(1).GetComponent(TextMesh).text = w.data;
+		w.Dispose(); //clear our form in game
+    }
 }
 
 //TEST FUNCTION
