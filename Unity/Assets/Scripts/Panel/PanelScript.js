@@ -54,7 +54,7 @@ private function resetPanelText(){
 
 //Load one tip by time. Every time this function is called, it loads another tip in the panel, until it reaches 3 tips.
 public function loadTip(){
-	//Debug.Log(Country);
+	Debug.Log("LOAD: "+Country);
 	//Select panels 
 	switch(tipNumber){
 		case 0:
@@ -107,20 +107,24 @@ private function setFact(country : String){
     var form = new WWWForm(); //here you create a new form connection
     //country = "Canada";
     var option = "fact";
-    form.AddField( "country", country );
-    form.AddField( "option", option ); 
-   	
-   	var url = "http://localhost:3000/countryfact_to_game";
-    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
-    yield w; //we wait for the form to check the PHP file, so our game dont just hang
-    if (w.error != null) {
-        Debug.Log(w.error); //if there is an error, tell us
-    } else {
-        //Debug.Log("Test ok");
-        Debug.Log(w.data); //here we return the data our PHP told us
-        //Change first 3Dtext
-		transform.GetChild(0).GetComponent(TextMesh).text = w.data;
-		w.Dispose(); //clear our form in game
+	if(country==null)
+		return;
+	else{
+		form.AddField( "country", country );
+	    form.AddField( "option", option ); 
+	   	
+	   	var url = "http://localhost:3000/countryfact_to_game";
+	    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
+	    yield w; //we wait for the form to check the PHP file, so our game dont just hang
+	    if (w.error != null) {
+	        Debug.Log(w.error); //if there is an error, tell us
+	    } else {
+	        //Debug.Log("Test ok");
+	        Debug.Log(w.data); //here we return the data our PHP told us
+	        //Change first 3Dtext
+			transform.GetChild(0).GetComponent(TextMesh).text = w.data;
+			w.Dispose(); //clear our form in game
+	    }
     }
 }
 

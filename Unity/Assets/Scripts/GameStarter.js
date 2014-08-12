@@ -7,6 +7,7 @@ import System.IO;
 private var CountrytoGuess : String; 
 private var Score : int = 0;
 private var EndGame : boolean = false;
+private var gameIsReady : boolean = false;
 
 //Display that shows the name of the country to guess
 public var CountryText3D : TextMesh;
@@ -51,9 +52,6 @@ var CorrectAnswerSound : AudioSource;
 var WrongAnswerSound : AudioSource;
 var TipsSound : AudioSource;
 
-function Awake(){
-	
-}
 
 function Start () {
 	
@@ -69,28 +67,8 @@ function Start () {
 	//Set the path of the txt file
 	textFilePath = "Assets//Resources//Files//PresentationCountries.txt";
 	
-	//GET COUNTRIES FROM DATABASE
-	var form = new WWWForm(); //here you create a new form connection  	
-   	var url = "http://localhost:3000/country_test";
-   	form.AddField( "game", "MyGameName" );//we are not using this line of code, but we need it to work
-    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
-    yield WWW; //we wait for the form to check the PHP file, so our game dont just hang
-    if (w.error != null) {
-        Debug.Log(w.error); //if there is an error, tell us
-    } else {
-        //Debug.Log(w.data); //here we return the data our PHP told us
-		//w.Dispose(); //clear our form in game
-		countriesFromDB = w.data.Split(','[0]);
-	    w.Dispose(); 
-	    //Debug.Log(countriesFromDB);
-	    for(var i=0; i< countriesFromDB.length - 1; i++){
-	    	Debug.Log(i+"="+countriesFromDB[i]);
-	    }
-    }
-    
-    //Debug.Log(countriesFromDB[0]);
-    //Debug.Log(countriesFromDB[1]);
-	//END GET COUNTRIES FROM DATABASE 
+    getCountriesFromDatabase();
+    yield;
 	 
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
@@ -105,20 +83,60 @@ function Start () {
 		Countries.push( ReadLine(textFilePath, counter) );
 	}
 	
-	//Gives a random country name from a list to the variable "CountrytoGuess"
-	CountrytoGuess = SortCountry();
-	
 	panelScript = GameObject.FindObjectOfType(PanelScript);
-	yield;
+	//Get one country from the list
+	CountrytoGuess = SortCountry();
+	//Sets country to be displayed
+	panelScript.setCountry(CountrytoGuess);
+	//Loads first tip
 	panelScript.loadTip();
 }
 
+function getCountriesFromDatabase(){
+    //GET COUNTRIES FROM DATABASE
+	var form = new WWWForm(); //here you create a new form connection  	
+   	var url = "http://localhost:3000/country_test";
+   	form.AddField( "game", "MyGameName" );//we are not using this line of code, but we need it to work
+    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
+    yield w; //we wait for the form to check the PHP file, so our game dont just hang
+    if (w.error != null) {
+        Debug.Log("error: "+w.error); //if there is an error, tell us
+    } else {
+        Debug.Log(w.data); //here we return the data our PHP told us
+		//If it happened any error in the server, it will return "err"
+		if(w.data=="err"){
+			Debug.Log("CHECK YOUR INTERNET CONNECTION");
+		}else{
+			countriesFromDB = w.data.Split(','[0]);
+		    w.Dispose(); 
+		    //Debug.Log(countriesFromDB);
+		    for(var i=0; i< countriesFromDB.length - 1; i++){
+		    	Debug.Log(i+"="+countriesFromDB[i]);
+		    }
+		    gameIsReady = true;	
+		}
+    }
+    
+   	//Gives a random country name from a list to the variable "CountrytoGuess"
+	//CountrytoGuess = SortCountry();
+	Debug.Log("AQUI");
+	//panelScript.loadTip();
+}
 
 function Update () {
-		//While there is still countries to be guessed
+	if(gameIsReady)
+		level();
+	else{
+		//Debug.Log("NOT READY YET");
+	}
+}
+
+function level(){
+	//While there is still countries to be guessed
 		if ( !EndGame ){
-			CheckEndGame();
+			//CheckEndGame();
 			//set panel information
+			//Debug.Log(CountrytoGuess);
 			panelScript.setCountry(CountrytoGuess);
 			
 			//Change the flag displayed according to the country selected
@@ -163,7 +181,7 @@ function Update () {
 					if(CurrentScore >= 1){
 						CurrentScore -=1;
 						}
-					//If the player could even guess the country with its name, we give him/her a new country to guess.
+					//If the player couldn't guess the country even with its name, we give him/her a new country to guess.
 					if (CurrentScore == 0 ){
 						CountrytoGuess = SortCountry();
 						panelScript.resetTipNumber();
@@ -190,7 +208,6 @@ function Update () {
 	if ( Input.GetButtonDown("Fire3") ){
 		Application.Quit();
 	}
-
 }
 
 //Puts flag to initial position (center of the screen, small scale)
