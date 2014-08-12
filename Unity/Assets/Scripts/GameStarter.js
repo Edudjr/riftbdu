@@ -6,6 +6,7 @@ import System.IO;
 //The name of the country that needs to be guessed.
 private var CountrytoGuess : String; 
 private var Score : int = 0;
+private var EndGame : boolean = false;
 
 //Display that shows the name of the country to guess
 public var CountryText3D : TextMesh;
@@ -39,7 +40,8 @@ var textFilePath : String;
 var nLines : int;
 //Array that will receive the name from all countries from a txt file.
 var Countries : Array  = [];
-    
+var countriesFromDB : Array = [];
+
 //Get PanelScript script
 var panelScript : PanelScript;
 var fadeInOut : SceneFadeInOut;
@@ -48,6 +50,10 @@ var FlagMovementSound : AudioSource;
 var CorrectAnswerSound : AudioSource;
 var WrongAnswerSound : AudioSource;
 var TipsSound : AudioSource;
+
+function Awake(){
+	
+}
 
 function Start () {
 	
@@ -62,6 +68,29 @@ function Start () {
 	
 	//Set the path of the txt file
 	textFilePath = "Assets//Resources//Files//PresentationCountries.txt";
+	
+	//GET COUNTRIES FROM DATABASE
+	var form = new WWWForm(); //here you create a new form connection  	
+   	var url = "http://localhost:3000/country_test";
+   	form.AddField( "game", "MyGameName" );//we are not using this line of code, but we need it to work
+    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
+    yield WWW; //we wait for the form to check the PHP file, so our game dont just hang
+    if (w.error != null) {
+        Debug.Log(w.error); //if there is an error, tell us
+    } else {
+        //Debug.Log(w.data); //here we return the data our PHP told us
+		//w.Dispose(); //clear our form in game
+		countriesFromDB = w.data.Split(','[0]);
+	    w.Dispose(); 
+	    //Debug.Log(countriesFromDB);
+	    for(var i=0; i< countriesFromDB.length - 1; i++){
+	    	Debug.Log(i+"="+countriesFromDB[i]);
+	    }
+    }
+    
+    //Debug.Log(countriesFromDB[0]);
+    //Debug.Log(countriesFromDB[1]);
+	//END GET COUNTRIES FROM DATABASE 
 	 
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
@@ -76,7 +105,6 @@ function Start () {
 		Countries.push( ReadLine(textFilePath, counter) );
 	}
 	
-	
 	//Gives a random country name from a list to the variable "CountrytoGuess"
 	CountrytoGuess = SortCountry();
 	
@@ -86,11 +114,10 @@ function Start () {
 }
 
 
-
 function Update () {
 		//While there is still countries to be guessed
-		if ( !EndGame() ){
-			
+		if ( !EndGame ){
+			CheckEndGame();
 			//set panel information
 			panelScript.setCountry(CountrytoGuess);
 			
@@ -123,7 +150,7 @@ function Update () {
 					TipsSound.Play();
 					SetCountryText3D("");
 					CorrectAnswerSound.Play();
-					scoreScript.sendScore();
+					//scoreScript.sendScore();
 					}
 				//if not, he gets Wrong and loses points
 				else{
@@ -155,7 +182,7 @@ function Update () {
 		}//End of if ( !IsGameOver() )
 	else {
 		//If the game is finished, we do not want the player to click on any country again and show a message of win.
-		setWin("You Win!!", Color.green);
+		//setWin("You Win!!", Color.green);
 		setFlagAlpha(0);
 		resetFlag();
 	}
@@ -250,7 +277,7 @@ function GetNumberOfLines(filePath : String) : int{
 }
     
 //Randomly selects a country from the countries list  
-function SortCountry () : String {
+function SortCountryOld() : String {
 	//Whenever a new country is sorted, 
 	CurrentScore = 4;
 	//Increase the number of countries sorted.
@@ -262,6 +289,23 @@ function SortCountry () : String {
  		Country = Countries[rand];
  		//SetCountryText3D(Country);
  		Countries.RemoveAt(rand);
+ 		return Country;
+ 	}
+}
+
+//Randomly selects a country from the countries list  
+function SortCountry() : String {
+	//Whenever a new country is sorted, 
+	CurrentScore = 4;
+	//Increase the number of countries sorted.
+	//CountriesSorted ++;
+    if(countriesFromDB.length > 0){	
+    	var rand : int;
+		var Country : String;
+		rand = Random.Range(0, countriesFromDB.length);
+ 		Country = countriesFromDB[rand];
+ 		//SetCountryText3D(Country);
+ 		countriesFromDB.RemoveAt(rand);
  		return Country;
  	}
 }
@@ -286,11 +330,12 @@ function getCountryToGuess(){
 	return CountrytoGuess;
 }
 
-function EndGame() : boolean{
+function CheckEndGame() : boolean{
   	//If the number of countries sorted is greater than the quantity of lines on the txt, the game is over.
 	//if( CountriesSorted > nLines){
-	if( Countries.length == 0){
-		SetCountryText3D("");
+	if( countriesFromDB.length == 0){
+		EndGame = true;
+		setWin("You Win!!", Color.green);
 		return true;
 	}
 	else{
@@ -328,14 +373,11 @@ function ApplySettings(){
 	if(Settings.getSoundConfiguration() == 0){
 		FlagMovementSound.mute = true;
 		CorrectAnswerSound.mute = true;
-		WrongAnswerSound.mute = true;
-		
+		WrongAnswerSound.mute = true;		
 	}
 	
 	if(Settings.getMusicConfiguration() == 0){
 	
 	
 	}
-	
-
 }

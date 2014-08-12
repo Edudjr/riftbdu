@@ -105,7 +105,7 @@ private function setFactOld(country : String){
 
 private function setFact(country : String){
     var form = new WWWForm(); //here you create a new form connection
-    country = "Canada";
+    //country = "Canada";
     var option = "fact";
     form.AddField( "country", country );
     form.AddField( "option", option ); 
@@ -116,7 +116,7 @@ private function setFact(country : String){
     if (w.error != null) {
         Debug.Log(w.error); //if there is an error, tell us
     } else {
-        Debug.Log("Test ok");
+        //Debug.Log("Test ok");
         Debug.Log(w.data); //here we return the data our PHP told us
         //Change first 3Dtext
 		transform.GetChild(0).GetComponent(TextMesh).text = w.data;
@@ -150,7 +150,7 @@ private function setLanguageOld(country : String){
 
 private function setLanguage(country : String){
     var form = new WWWForm(); //here you create a new form connection
-    country = "Canada";
+    //country = "Canada";
     var option = "language";
     form.AddField( "country", country );
     form.AddField( "option", option ); 
@@ -161,7 +161,7 @@ private function setLanguage(country : String){
     if (w.error != null) {
         Debug.Log(w.error); //if there is an error, tell us
     } else {
-        Debug.Log("Test ok");
+//        Debug.Log("Test ok");
         Debug.Log(w.data); //here we return the data our PHP told us
         //Change first 3Dtext
 		transform.GetChild(2).GetComponent(TextMesh).text = w.data + " is their language";
@@ -195,7 +195,7 @@ private function setCuriosityOld(country : String){
 
 private function setCuriosity(country : String){
     var form = new WWWForm(); //here you create a new form connection
-    country = "Canada";
+    //country = "Canada";
     var option = "curiosity";
     form.AddField( "country", country );
     form.AddField( "option", option ); 
@@ -206,7 +206,7 @@ private function setCuriosity(country : String){
     if (w.error != null) {
         Debug.Log(w.error); //if there is an error, tell us
     } else {
-        Debug.Log("Test ok");
+//        Debug.Log("Test ok");
         Debug.Log(w.data); //here we return the data our PHP told us
         //Change first 3Dtext
 		transform.GetChild(1).GetComponent(TextMesh).text = w.data;
