@@ -11,7 +11,7 @@ private var tipNumber : int = 0;
 
 
 function Start(){
-	Debug.Log("START");
+	//Debug.Log("START");
 	//Login();
 }
 

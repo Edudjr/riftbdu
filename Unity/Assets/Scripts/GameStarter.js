@@ -27,13 +27,13 @@ public var Flagboard : GameObject;
 //Unecessary variable
 //var CountriesSorted : int = 0;
 var CurrentScore: int = 4;
-//Get the Markers script.
-var markers : Markers; 
-var scoreScript : ScoreScript;
+//Get scripts.
+private var markers : Markers; 
+private var scoreScript : ScoreScript;
+private var playerVariables : PlayerVariables;
 
 //This Variable will get all the settings that the player chose on the menu
 var Settings : Menu;
-
 
 //Variables which will define the file to get the name of the countries
 var textFilePath : String;
@@ -63,28 +63,26 @@ function Start () {
 	//Clear Country name
 	SetCountryText3D("");
 	SetScoreText3D(0);
-	
-	//Set the path of the txt file
-	textFilePath = "Assets//Resources//Files//PresentationCountries.txt";
-	
-    getCountriesFromDatabase();
-    yield;
+	//getCountriesFromFile();
+    //getCountriesFromDatabase();
+    //yield;
 	 
 	//Get a random marker script
 	markers = GameObject.FindObjectOfType(Markers);
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
 	scoreScript = GameObject.FindObjectOfType(ScoreScript);
+	panelScript = GameObject.FindObjectOfType(PanelScript);
+	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
 	
+	//getCountriesFromFile();
+    getCountriesFromDatabase();
+    yield;
+	
+	//Fades screen
 	fadeInOut.FadeIn();
 	
-	//Get the number of lines on the txt and defines as limit to the array.
-	nLines = GetNumberOfLines(textFilePath);
-	for(var counter = 0; counter< nLines; counter++){
-		Countries.push( ReadLine(textFilePath, counter) );
-	}
-	
-	panelScript = GameObject.FindObjectOfType(PanelScript);
 	//Get one country from the list
+	//CountrytoGuess = SortCountryOld();
 	CountrytoGuess = SortCountry();
 	//Sets country to be displayed
 	panelScript.setCountry(CountrytoGuess);
@@ -92,46 +90,60 @@ function Start () {
 	panelScript.loadTip();
 }
 
+function getCountriesFromFile(){
+	//Set the path of the txt file
+	textFilePath = "Assets//Resources//Files//PresentationCountries.txt";
+	
+	//Get the number of lines on the txt and defines as limit to the array.
+	nLines = GetNumberOfLines(textFilePath);
+	for(var counter = 0; counter< nLines; counter++){
+		Countries.push( ReadLine(textFilePath, counter) );
+	}
+	yield;
+}
+
 function getCountriesFromDatabase(){
-    //GET COUNTRIES FROM DATABASE
+	var continent = playerVariables.getContinent();
 	var form = new WWWForm(); //here you create a new form connection  	
    	var url = "http://localhost:3000/country_test";
-   	form.AddField( "game", "MyGameName" );//we are not using this line of code, but we need it to work
+   	form.AddField( "continent", continent );//we are not using this line of code, but we need it to work
     var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
     yield w; //we wait for the form to check the PHP file, so our game dont just hang
     if (w.error != null) {
+    	//IF SERVER IS NOT WORKING
         Debug.Log("error: "+w.error); //if there is an error, tell us
     } else {
         Debug.Log(w.data); //here we return the data our PHP told us
 		//If it happened any error in the server, it will return "err"
 		if(w.data=="err"){
-			Debug.Log("SERVER COULDNT CONNECT TO DATABASE");
+			Debug.Log("SERVER IS WORKING, BUT COULDNT CONNECT TO DATABASE");
 		}else{
+			//Separates the string by "," and creates an array; The last position of the array is empty
 			countriesFromDB = w.data.Split(','[0]);
 		    w.Dispose(); 
-		    //Debug.Log(countriesFromDB);
-		    for(var i=0; i< countriesFromDB.length - 1; i++){
-		    	Debug.Log(i+"="+countriesFromDB[i]);
-		    }
+//		    for(var i=0; i< countriesFromDB.length - 1; i++){
+//		    	Debug.Log(i+"="+countriesFromDB[i]);
+//		    }
+			//If content is loaded successfuly, then we know that game is ready to run
 		    gameIsReady = true;	
 		}
     }
 }
 
 function Update () {
+	//If game is ready to run, load the level
 	if(gameIsReady)
 		level();
 	else{
 		//Debug.Log("NOT READY YET");
+		//Debug.Log(playerVariables.getOption());
 	}
 }
 
 function level(){
 	//While there is still countries to be guessed
 		if ( !CheckEndGame() ){
-			//CheckEndGame();
 			//set panel information
-			//Debug.Log(CountrytoGuess);
 			panelScript.setCountry(CountrytoGuess);
 			
 			//Change the flag displayed according to the country selected
@@ -139,13 +151,13 @@ function level(){
 			
 			//the Var Activated will always receive the marker that is selected at the moment
 			var activated = markers.getActivated();
-			//If the country changes, we need to remake the flag animation
+			//If the country changes, run flag animation for new country
 			if(lastSelected != activated){
 				//Clean last loaded material
 				Resources.UnloadUnusedAssets();
 				lastSelected = activated;
 				moveFlag();
-				}//End of the checking if the country changed
+			}//End of the checking if the country changed
 			
 		
 			//The button "D" or "A" on the Joystick is pressed
@@ -155,6 +167,7 @@ function level(){
 					setAnswer(CountrytoGuess, Color.green);
 					Score+= CurrentScore;
 					SetScoreText3D(Score);
+					//CountrytoGuess = SortCountryOld();
 					CountrytoGuess = SortCountry();
 					//If answer is correct, we need to restart the tipNumber counter
 					panelScript.resetTipNumber();
@@ -164,38 +177,39 @@ function level(){
 					SetCountryText3D("");
 					CorrectAnswerSound.Play();
 					//scoreScript.sendScore();
-					}
+				}
 				//if not, he gets Wrong and loses points
 				else{
 					//BEGIN: THIS SHOULD BE IN PANELSCRIPT
-					if(panelScript.getTipNumber()==3)
+					if(panelScript.getTipNumber()==3){
 						SetCountryText3D(CountrytoGuess);
-					//END
+						GameObject.Find("EarthCountry").renderer.material = Resources.Load("CountriesMaterials/"+CountrytoGuess);
+					}//END
 					setAnswer("Wrong!", Color.red);
 					//The quantity of points he will receive decreases if he misses the right country.
 					if(CurrentScore >= 1){
 						CurrentScore -=1;
-						}
+					}
 					//If the player couldn't guess the country even with its name, we give him/her a new country to guess.
 					if (CurrentScore == 0 ){
+						//CountrytoGuess = SortCountryOld();
 						CountrytoGuess = SortCountry();
 						panelScript.resetTipNumber();
 						panelScript.setCountry(CountrytoGuess);
 						SetCountryText3D("");
-						}
+					}
 				
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
 					TipsSound.Play();
 					SetScoreText3D(Score);
 					//WrongAnswerSound.Play();
-					}
-				}//End of Button Fire Press
+				}
+			}//End of Button Fire Press
 				
-		}//End of if ( !IsGameOver() )
+	}//End of if ( !IsGameOver() )
 	else {
-		//If the game is finished, we do not want the player to click on any country again and show a message of win.
-		//setWin("You Win!!", Color.green);
+		//If the game is finished, we do not want the player to click on any country again
 		setFlagAlpha(0);
 		resetFlag();
 	}
@@ -309,17 +323,14 @@ function SortCountryOld() : String {
 function SortCountry() : String {
 	//Whenever a new country is sorted, 
 	CurrentScore = 4;
-	//Increase the number of countries sorted.
-	//CountriesSorted ++;
     if(countriesFromDB.length > 0){	
     	var rand : int;
 		var Country : String;
 		rand = Random.Range(0, countriesFromDB.length-1);
  		Country = countriesFromDB[rand];
- 		//SetCountryText3D(Country);
  		countriesFromDB.RemoveAt(rand);
- 		Debug.Log("rand: "+rand);
- 		Debug.Log("country: "+Country);
+ 		//Debug.Log("rand: "+rand);
+ 		//Debug.Log("country: "+Country);
  		Debug.Log(countriesFromDB);
  		return Country;
  	}
@@ -347,7 +358,6 @@ function getCountryToGuess(){
 
 function CheckEndGame() : boolean{
   	//If the number of countries sorted is greater than the quantity of lines on the txt, the game is over.
-	//if( CountriesSorted > nLines){
 	if( countriesFromDB.length == 0){
 		EndGame = true;
 		setWin("You Win!!", Color.green);

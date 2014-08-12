@@ -7,6 +7,7 @@ private var fadeInOut : SceneFadeInOut;
 private var lockButton : boolean = false;
 private var soundBool : int = 1;
 private var musicBool : int = 1;
+private var playerVariables : PlayerVariables;
 
 public var Music : AudioSource; 
 public var MoveSound : AudioSource;
@@ -17,6 +18,7 @@ function Start () {
 	setAudioClips();
 
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
+	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
 	//When start, fade the screen from black to transparent
 	fadeInOut.FadeIn();
 	option = 0;
@@ -30,7 +32,7 @@ function Start () {
 
 function Update () {
 	
-		for (var child : Transform in transform) {
+	for (var child : Transform in transform) {
     	child.GetComponent(TextMesh).color = Color.white;
 	}
 	
@@ -51,6 +53,15 @@ function Update () {
 		case 5:
 			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
+		case 6:
+			GameObject.Find("OptionNorthAmerica").GetComponent(TextMesh).color = Color.green;
+			break;
+		case 7:
+			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
+			break;
+		case 8:
+			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
+			break;
 	}
 	
 	// -------------CONTROLLERS---------------
@@ -59,63 +70,84 @@ function Update () {
 	//What kind of game should be loaded now: 
 	if(Input.GetButtonDown("Jump")) {
 		SelectSound.Play();
+		playerVariables.setOption(option);
 		switch(option){
-		case 1:
-			fadeInOut.FadeOutLoad("DiscoveryMode");
-			break;
-		case 2:
-			MaxPosition = 5;
-			MinPosition = 3;
-			transform.Find("Sounds").renderer.enabled = true;
-			transform.Find("Sounds").GetChild(0).renderer.enabled = true;
-			transform.Find("Music").renderer.enabled = true;
-			transform.Find("Music").GetChild(0).renderer.enabled = true;
-			transform.Find("Back").renderer.enabled = true;
-			transform.Find("SettingsMenu").renderer.enabled = true;
-			
-			break;
-		case 3:
-			if(soundBool == 1 ){
-				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).text = "OFF";
-				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).color  = Color.red;
-				soundBool = 0;
-				MoveSound.mute = true;
-				SelectSound.mute = true;
-			}
-			else {
-				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).text = "ON";
-				transform.GetChild(6).GetChild(0).GetComponent(TextMesh).color  = Color.green;
-				soundBool = 1;
-				MoveSound.mute = false;
-				SelectSound.mute = false;
-			}
-			break;
-		case 4:
-			if(musicBool == 1 ){
-				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).text = "OFF";
-				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).color  = Color.red;
-				Music.mute = true;
+			case 1:
+				MaxPosition = 8;
+				MinPosition = 6;
 				
-				musicBool = 0;
-			}
-			else {
-				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).text = "ON";
-				transform.GetChild(3).GetChild(0).GetComponent(TextMesh).color  = Color.green;
-				Music.mute = false;
-				musicBool = 1;
-			}
-			break;
-		case 5:
-			MaxPosition = 2;
-			MinPosition = 1;
-			transform.Find("Music").renderer.enabled = false;
-			transform.Find("Music").GetChild(0).renderer.enabled = false;
-			transform.Find("Sounds").renderer.enabled = false;
-			transform.Find("Sounds").GetChild(0).renderer.enabled = false;
-			transform.Find("Back").renderer.enabled = false;
-			transform.Find("SettingsMenu").renderer.enabled = false;
-			
-			break;
+				GameObject.Find("OptionEurope").renderer.enabled = true;
+				GameObject.Find("OptionNorthAmerica").renderer.enabled = true;
+				transform.Find("Back").renderer.enabled = true;
+				//fadeInOut.FadeOutLoad("DiscoveryMode");
+				break;
+			case 2:
+				MaxPosition = 5;
+				MinPosition = 3;
+				transform.Find("Sounds").renderer.enabled = true;
+				transform.Find("Sounds").GetChild(0).renderer.enabled = true;
+				transform.Find("Music").renderer.enabled = true;
+				transform.Find("Music").GetChild(0).renderer.enabled = true;
+				transform.Find("Back").renderer.enabled = true;
+				transform.Find("SettingsMenu").renderer.enabled = true;
+				
+				break;
+			case 3:
+				if(soundBool == 1 ){
+					transform.Find("Sounds").GetChild(0).GetComponent(TextMesh).text = "OFF";
+					transform.Find("Sounds").GetChild(0).GetComponent(TextMesh).color  = Color.red;
+					soundBool = 0;
+					MoveSound.mute = true;
+					SelectSound.mute = true;
+				}
+				else {
+					transform.Find("Sounds").GetChild(0).GetComponent(TextMesh).text = "ON";
+					transform.Find("Sounds").GetChild(0).GetComponent(TextMesh).color  = Color.green;
+					soundBool = 1;
+					MoveSound.mute = false;
+					SelectSound.mute = false;
+				}
+				break;
+			case 4:
+				if(musicBool == 1 ){
+					transform.Find("Music").GetChild(0).GetComponent(TextMesh).text = "OFF";
+					transform.Find("Music").GetChild(0).GetComponent(TextMesh).color  = Color.red;
+					Music.mute = true;
+					
+					musicBool = 0;
+				}
+				else {
+					transform.Find("Music").GetChild(0).GetComponent(TextMesh).text = "ON";
+					transform.Find("Music").GetChild(0).GetComponent(TextMesh).color  = Color.green;
+					Music.mute = false;
+					musicBool = 1;
+				}
+				break;
+			case 5:
+				MaxPosition = 2;
+				MinPosition = 1;
+				transform.Find("Music").renderer.enabled = false;
+				transform.Find("Music").GetChild(0).renderer.enabled = false;
+				transform.Find("Sounds").renderer.enabled = false;
+				transform.Find("Sounds").GetChild(0).renderer.enabled = false;
+				transform.Find("Back").renderer.enabled = false;
+				transform.Find("SettingsMenu").renderer.enabled = false;
+				break;
+			case 6:
+				playerVariables.setContinent("NorthAmerica");
+				fadeInOut.FadeOutLoad("DiscoveryMode");
+				break;
+			case 7:
+				playerVariables.setContinent("Europe");
+				fadeInOut.FadeOutLoad("DiscoveryMode");
+				break;
+			case 8:
+				MaxPosition = 2;
+				MinPosition = 1;
+				GameObject.Find("OptionEurope").renderer.enabled = false;
+				GameObject.Find("OptionNorthAmerica").renderer.enabled = false;
+				transform.Find("Back").renderer.enabled = false;
+				break;
 		}
 
 	}
@@ -148,8 +180,12 @@ function getChange(){
 	}else if(option <= MinPosition){
 		option=MinPosition;
 	}
-	//End of visual moviment menu
+	//End of visual movement menu
 	
+}
+
+public function getOption(){
+	return option;
 }
 
 public function getSoundConfiguration() : int{
