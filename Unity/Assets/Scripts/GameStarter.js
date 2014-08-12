@@ -105,7 +105,7 @@ function getCountriesFromDatabase(){
         Debug.Log(w.data); //here we return the data our PHP told us
 		//If it happened any error in the server, it will return "err"
 		if(w.data=="err"){
-			Debug.Log("CHECK YOUR INTERNET CONNECTION");
+			Debug.Log("SERVER COULDNT CONNECT TO DATABASE");
 		}else{
 			countriesFromDB = w.data.Split(','[0]);
 		    w.Dispose(); 
@@ -116,11 +116,6 @@ function getCountriesFromDatabase(){
 		    gameIsReady = true;	
 		}
     }
-    
-   	//Gives a random country name from a list to the variable "CountrytoGuess"
-	//CountrytoGuess = SortCountry();
-	Debug.Log("AQUI");
-	//panelScript.loadTip();
 }
 
 function Update () {
@@ -133,7 +128,7 @@ function Update () {
 
 function level(){
 	//While there is still countries to be guessed
-		if ( !EndGame ){
+		if ( !CheckEndGame() ){
 			//CheckEndGame();
 			//set panel information
 			//Debug.Log(CountrytoGuess);
@@ -319,10 +314,13 @@ function SortCountry() : String {
     if(countriesFromDB.length > 0){	
     	var rand : int;
 		var Country : String;
-		rand = Random.Range(0, countriesFromDB.length);
+		rand = Random.Range(0, countriesFromDB.length-1);
  		Country = countriesFromDB[rand];
  		//SetCountryText3D(Country);
  		countriesFromDB.RemoveAt(rand);
+ 		Debug.Log("rand: "+rand);
+ 		Debug.Log("country: "+Country);
+ 		Debug.Log(countriesFromDB);
  		return Country;
  	}
 }

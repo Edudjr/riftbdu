@@ -54,7 +54,7 @@ private function resetPanelText(){
 
 //Load one tip by time. Every time this function is called, it loads another tip in the panel, until it reaches 3 tips.
 public function loadTip(){
-	Debug.Log("LOAD: "+Country);
+	//Debug.Log("LOAD: "+Country);
 	//Select panels 
 	switch(tipNumber){
 		case 0:
@@ -120,7 +120,7 @@ private function setFact(country : String){
 	        Debug.Log(w.error); //if there is an error, tell us
 	    } else {
 	        //Debug.Log("Test ok");
-	        Debug.Log(w.data); //here we return the data our PHP told us
+	        //Debug.Log(w.data); //here we return the data our PHP told us
 	        //Change first 3Dtext
 			transform.GetChild(0).GetComponent(TextMesh).text = w.data;
 			w.Dispose(); //clear our form in game
@@ -166,7 +166,7 @@ private function setLanguage(country : String){
         Debug.Log(w.error); //if there is an error, tell us
     } else {
 //        Debug.Log("Test ok");
-        Debug.Log(w.data); //here we return the data our PHP told us
+        //Debug.Log(w.data); //here we return the data our PHP told us
         //Change first 3Dtext
 		transform.GetChild(2).GetComponent(TextMesh).text = w.data + " is their language";
 		w.Dispose(); //clear our form in game
@@ -211,7 +211,7 @@ private function setCuriosity(country : String){
         Debug.Log(w.error); //if there is an error, tell us
     } else {
 //        Debug.Log("Test ok");
-        Debug.Log(w.data); //here we return the data our PHP told us
+        //Debug.Log(w.data); //here we return the data our PHP told us
         //Change first 3Dtext
 		transform.GetChild(1).GetComponent(TextMesh).text = w.data;
 		w.Dispose(); //clear our form in game
