@@ -1,13 +1,13 @@
 Welcome to GeoVR \n Game's Tutorial
-Your goal is to get \n the highest score finding \n the countries in the world.
-Look to your left \n to see the controller\n buttons.
+In this game \nYour goal is to get \n the highest score finding \n the countries in the world.
+If you look to your left \n right now, you will \n see the controllers.
 
-This is the first look \n that you will \n have in-game,\nthere are a few important \n things to know:
+Before we start,\nthere are a few important \n things to know:
 
-Look to your right! 
-
-Look to your left! 
-
+Here we have the Earth 
+You can rotate the Earth \n using the Left Analog Stick.
+The game also have a Panel Tip...
+Now, look to your left! 
 You will receive a message \n on the center of the\n screen when you miss a \n country!
 
 You can use the\n zoom function to select \n small countries more easily.
