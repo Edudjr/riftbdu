@@ -77,32 +77,6 @@ public function loadTip(){
 
 //Each of the functions below will change the content of the text Tips
 
-//Gets a country name, search in the database (given a link) and sets the first tip text to the returned string.
-private function setFactOld(country : String){
-	//var url = "http://localhost:3000/country?country=Argentina";
-	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
-	var www : WWW = new WWW (url);
-	 
-	// wait for request to complete
-	yield www;
-	
-	// and check for errors
-	if (www.error == null){
-	    var dict = Json.Deserialize(www.data) as Dictionary.<String,System.Object>;
-	    //Debug.Log("DATA "+ (dict['fact'] as List.<System.Object>)[0]);
-	    var str = (dict['fact'] as List.<System.Object>)[0];
-	    //Change first 3Dtext
-		//transform.GetChild(0).GetComponent(TextMesh).text = str;
-
-	    // request completed!
-	} else {
-	    // something wrong!
-	    Debug.Log("WWW Error: "+ www.error);
-	}
-	//Change first 3Dtext
-	transform.GetChild(0).GetComponent(TextMesh).text = str;
-}
-
 private function setFact(country : String){
     var form = new WWWForm(); //here you create a new form connection
     //country = "Canada";
@@ -113,7 +87,7 @@ private function setFact(country : String){
 		form.AddField( "country", country );
 	    form.AddField( "option", option ); 
 	   	
-	   	var url = "http://localhost:3000/countryfact_to_game";
+	   	var url = "http://bluemixrift2.mybluemix.net/countryfact_to_game";
 	    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
 	    yield w; //we wait for the form to check the PHP file, so our game dont just hang
 	    if (w.error != null) {
@@ -128,30 +102,6 @@ private function setFact(country : String){
     }
 }
 
-//Gets a country name, search in the database (given a link) and sets the second tip text to the returned string.
-private function setLanguageOld(country : String){
-	//var url = "http://localhost:3000/country?country=Argentina";
-	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
-	var www : WWW = new WWW (url);
-	 
-	// wait for request to complete
-	yield www;
-	
-	// and check for errors
-	if (www.error == null){
-	    var dict = Json.Deserialize(www.data) as Dictionary.<String,System.Object>;
-	    //Debug.Log("DATA "+ (dict['fact'] as List.<System.Object>)[0]);
-	    var str = dict['language'];
-
-	    // request completed!
-	} else {
-	    // something wrong!
-	    Debug.Log("WWW Error: "+ www.error);
-	}
-	//Change second 3Dtext
-	transform.GetChild(2).GetComponent(TextMesh).text = str + " is their language";
-}
-
 private function setLanguage(country : String){
     var form = new WWWForm(); //here you create a new form connection
     //country = "Canada";
@@ -159,7 +109,7 @@ private function setLanguage(country : String){
     form.AddField( "country", country );
     form.AddField( "option", option ); 
    	
-   	var url = "http://localhost:3000/countryfact_to_game";
+   	var url = "http://bluemixrift2.mybluemix.net/countryfact_to_game";
     var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
     yield w; //we wait for the form to check the PHP file, so our game dont just hang
     if (w.error != null) {
@@ -173,30 +123,6 @@ private function setLanguage(country : String){
     }
 }
 
-//Gets a country name, search in the database (given a link) and sets the third tip text to the returned string.
-private function setCuriosityOld(country : String){
-	//var url = "http://localhost:3000/country?country=Argentina";
-	var url = "https://edudjr:edudjr@edudjr.cloudant.com/country/"+country;
-	var www : WWW = new WWW (url);
-	 
-	// wait for request to complete
-	yield www;
-	
-	// and check for errors
-	if (www.error == null){
-	    var dict = Json.Deserialize(www.data) as Dictionary.<String,System.Object>;
-	    //Debug.Log("DATA "+ (dict['fact'] as List.<System.Object>)[0]);
-	    var str = (dict['curiosity'] as List.<System.Object>)[0];
-
-	    // request completed!
-	} else {
-	    // something wrong!
-	    Debug.Log("WWW Error: "+ www.error);
-	}
-	//Change third 3Dtext
-	transform.GetChild(1).GetComponent(TextMesh).text = str;
-}
-
 private function setCuriosity(country : String){
     var form = new WWWForm(); //here you create a new form connection
     //country = "Canada";
@@ -204,7 +130,7 @@ private function setCuriosity(country : String){
     form.AddField( "country", country );
     form.AddField( "option", option ); 
    	
-   	var url = "http://localhost:3000/countryfact_to_game";
+   	var url = "http://bluemixrift2.mybluemix.net/countryfact_to_game";
     var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
     yield w; //we wait for the form to check the PHP file, so our game dont just hang
     if (w.error != null) {

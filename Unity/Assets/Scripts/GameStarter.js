@@ -105,7 +105,9 @@ function getCountriesFromFile(){
 function getCountriesFromDatabase(){
 	var continent = playerVariables.getContinent();
 	var form = new WWWForm(); //here you create a new form connection  	
-   	var url = "http://localhost:3000/country_test";
+   	var url = "http://bluemixrift2.mybluemix.net/country_test";
+   	if(continent==null)
+   		continent="NorthAmerica";
    	form.AddField( "continent", continent );//we are not using this line of code, but we need it to work
     var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
     yield w; //we wait for the form to check the PHP file, so our game dont just hang
@@ -184,6 +186,7 @@ function level(){
 					if(panelScript.getTipNumber()==3){
 						SetCountryText3D(CountrytoGuess);
 						GameObject.Find("EarthCountry").renderer.material = Resources.Load("CountriesMaterials/"+CountrytoGuess);
+						GameObject.Find("EarthCountry").renderer.material.color = Color.yellow;
 					}//END
 					setAnswer("Wrong!", Color.red);
 					//The quantity of points he will receive decreases if he misses the right country.
@@ -191,13 +194,13 @@ function level(){
 						CurrentScore -=1;
 					}
 					//If the player couldn't guess the country even with its name, we give him/her a new country to guess.
-					if (CurrentScore == 0 ){
-						//CountrytoGuess = SortCountryOld();
-						CountrytoGuess = SortCountry();
-						panelScript.resetTipNumber();
-						panelScript.setCountry(CountrytoGuess);
-						SetCountryText3D("");
-					}
+//					if (CurrentScore == 0 ){
+//						//CountrytoGuess = SortCountryOld();
+//						CountrytoGuess = SortCountry();
+//						panelScript.resetTipNumber();
+//						panelScript.setCountry(CountrytoGuess);
+//						SetCountryText3D("");
+//					}
 				
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
@@ -331,7 +334,7 @@ function SortCountry() : String {
  		countriesFromDB.RemoveAt(rand);
  		//Debug.Log("rand: "+rand);
  		//Debug.Log("country: "+Country);
- 		Debug.Log(countriesFromDB);
+ 		//Debug.Log(countriesFromDB);
  		return Country;
  	}
 }
