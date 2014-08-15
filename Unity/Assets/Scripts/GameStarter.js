@@ -105,7 +105,7 @@ function getCountriesFromFile(){
 function getCountriesFromDatabase(){
 	var continent = playerVariables.getContinent();
 	var form = new WWWForm(); //here you create a new form connection  	
-   	var url = "http://bluemixrift2.mybluemix.net/country_test";
+   	var url = "http://localhost:3000/country_test";
    	if(continent==null)
    		continent="NorthAmerica";
    	form.AddField( "continent", continent );//we are not using this line of code, but we need it to work

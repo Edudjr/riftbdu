@@ -1,22 +1,24 @@
 Welcome to GeoVR \n Game's Tutorial
-Your goal is to get \n the highest score finding \n the countries in the world.
-Look to your left \n to see the controller\n buttons.
+In this game \nYour goal is to get \n the highest score finding \n the countries in the world.
+If you look to your left \n right now, you will \n see the controllers.
 
-This is the first look \n that you will \n have in-game,\nthere are a few important \n things to know:
+Before we start,\nthere are a few important \n things to know:
 
-Look to your right! 
+Here we have the Earth 
+You can rotate the Earth \n using the Left Analog Stick.
+Whenever you pass over a country, \nyou will see its flag.
 
-Look to your left! 
+You can zoom IN and zoom OUT \nthe camera using the \nRight Analog Stick.
 
-You will receive a message \n on the center of the\n screen when you miss a \n country!
+When the game begins,\n you will receive a tip.\n You need to use the tips to \nfind a country.
+Whenever you miss the country,\n you receive a new tip, however,\n you will win less points.
+Look to your left now,\n you will see the Panel Tip.
 
-You can use the\n zoom function to select \n small countries more easily.
-
-When you miss, \n you will receive\n more tips on the\n left side (up to 3) \n  
-when you miss for the\n fourth time you will\n receive a final tip, \n which is the country`s name! \n That indicate you last \n chance to find the country!!
-
-
-
+If you miss the country,\n a message will be displayed\n like this
+\n \n \nAnd, again, you will get\n a new tip.
+If you have already receive 3 tips,\n the game will display\n the country's name.\n This will be your final chance
+If you could not find the location,\n the country borders will turn yellow.
 Finally, if you find\n the right country \n it`s name will appear on\n the center of the screen!
 
 Thank you, lets play!
+

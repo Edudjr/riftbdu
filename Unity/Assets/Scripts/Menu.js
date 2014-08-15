@@ -54,7 +54,7 @@ function Update () {
 			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 6:
-			GameObject.Find("OptionNorthAmerica").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionSouthAmerica").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 7:
 			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
@@ -77,7 +77,7 @@ function Update () {
 				MinPosition = 6;
 				
 				GameObject.Find("OptionEurope").renderer.enabled = true;
-				GameObject.Find("OptionNorthAmerica").renderer.enabled = true;
+				GameObject.Find("OptionSouthAmerica").renderer.enabled = true;
 				transform.Find("Back").renderer.enabled = true;
 				//fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
@@ -134,7 +134,7 @@ function Update () {
 				transform.Find("SettingsMenu").renderer.enabled = false;
 				break;
 			case 6:
-				playerVariables.setContinent("NorthAmerica");
+				playerVariables.setContinent("SouthAmerica");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 7:
@@ -145,7 +145,7 @@ function Update () {
 				MaxPosition = 2;
 				MinPosition = 1;
 				GameObject.Find("OptionEurope").renderer.enabled = false;
-				GameObject.Find("OptionNorthAmerica").renderer.enabled = false;
+				GameObject.Find("OptionSouthAmerica").renderer.enabled = false;
 				transform.Find("Back").renderer.enabled = false;
 				break;
 		}
