@@ -6,17 +6,19 @@ Before we start,\nthere are a few important \n things to know:
 
 Here we have the Earth 
 You can rotate the Earth \n using the Left Analog Stick.
-The game also have a Panel Tip...
-Now, look to your left! 
-You will receive a message \n on the center of the\n screen when you miss a \n country!
+Whenever you pass over a country, \nyou will see its flag.
 
-You can use the\n zoom function to select \n small countries more easily.
+You can zoom IN and zoom OUT \nthe camera using the \nRight Analog Stick.
 
-When you miss, \n you will receive\n more tips on the\n left side (up to 3) \n  
-when you miss for the\n fourth time you will\n receive a final tip, \n which is the country`s name! \n That indicate you last \n chance to find the country!!
+When the game begins,\n you will receive a tip.\n You need to use the tips to \nfind a country.
+Whenever you miss the country,\n you receive a new tip, however,\n you will win less points.
+Look to your left now,\n you will see the Panel Tip.
 
-
-
+If you miss the country,\n a message will be displayed\n like this
+\n \n \nAnd, again, you will get\n a new tip.
+If you have already receive 3 tips,\n the game will display\n the country's name.\n This will be your final chance
+If you could not find the location,\n the country borders will turn yellow.
 Finally, if you find\n the right country \n it`s name will appear on\n the center of the screen!
 
 Thank you, lets play!
+

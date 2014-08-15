@@ -41,6 +41,7 @@ function Start () {
 	
 
 	Panel = GameObject.Find("Panel").transform;
+	Panel.active = false;
 	TextDisplayer1 = GameObject.Find("Text Displayer1").transform;
 	TextDisplayer2 = GameObject.Find("Text Displayer2").transform;
 	
@@ -64,12 +65,10 @@ function Start () {
 }
 function Update () {
 
-	
-TextChanger();
-			ImageChanger();
 
-
-	if(TutorialPart <= nLines){
+	if(TutorialPart < nLines-1){
+		TextChanger();
+		ImageChanger();
 		if (Input.GetButtonDown("Jump")) {
 			TutorialPart= TutorialPart + 2;
 				
@@ -87,6 +86,8 @@ TextChanger();
 	else{
 		Application.LoadLevel("DiscoveryMode");
 	}
+	
+
 }
 
 
@@ -122,13 +123,14 @@ function GetNumberOfLines(filePath : String) : int{
 }
 
 function TextChanger(){
-	receiver = ReadLine(textFilePath, TutorialPart);
+		receiver = ReadLine(textFilePath, TutorialPart);
 		Writer = getLineBreaker(receiver);
 		TextDisplayer1.GetComponent(TextMesh).text = Writer;
 		
 		receiver = ReadLine(textFilePath, TutorialPart+1);
 		Writer = getLineBreaker(receiver);
 		TextDisplayer2.GetComponent(TextMesh).text = Writer;
+	
 
 }
 
@@ -169,39 +171,47 @@ function resetFlag(){
 }
 
 function ImageChanger(){
-	if(TutorialPart == 2){
+	var activated;
+	if(TutorialPart == 0){//Welcome to the game
 			
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial 1");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
 		}
-		if(TutorialPart == 4){
+	if(TutorialPart == 2){//Show controlers
+			
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Controllers");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		}
+		if(TutorialPart == 4){//Teaching
 		
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
 			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			
+			//TURN OFF EARTH AND PANEL
+			if (Earth.active == true){
+				Earth.active = false;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
 		}
-		if(TutorialPart == 6){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		if(TutorialPart == 6){//Show the Earth and ask to move analog
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
 			
 			if (Earth.active == false){
 				Earth.active = true;
 			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
 			
-			//Change the flag displayed according to the country selected
-			ChangeFlagtoCurrentSelected( markers.getActivated() );
-			
-			//the Var Activated will always receive the marker that is selected at the moment
-			var activated = markers.getActivated();
-			//If the country changes, we need to remake the flag animation
-			if(lastSelected != activated){
-				//Clean last loaded material
-				Resources.UnloadUnusedAssets();
-				lastSelected = activated;
-				moveFlag();
-				}//End of the checking if the country changed
 				
 			
 			if(Input.GetAxisRaw("LeftAnalog_Vertical") > 0.3 || Input.GetAxisRaw("LeftAnalog_Vertical")< -0.3
@@ -212,42 +222,204 @@ function ImageChanger(){
 
 
 		}
-		if(TutorialPart == 8){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial 3");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			Earth.active = false;
+		if(TutorialPart == 8){//Show flags
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial 3");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			if (Earth.active == false){
+				Earth.active = true;
+			}
+			if (Flagboard.active == false){
+				Flagboard.active = true;
+			}
+			
+			//Change the flag displayed according to the country selected
+			ChangeFlagtoCurrentSelected( markers.getActivated() );
+			
+			//the Var Activated will always receive the marker that is selected at the moment
+			activated = markers.getActivated();
+			//If the country changes, we need to remake the flag animation
+			if(lastSelected != activated){
+				//Clean last loaded material
+				Resources.UnloadUnusedAssets();
+				lastSelected = activated;
+				moveFlag();
+				}//End of the checking if the country changed
 			
 		}
-		if(TutorialPart == 10){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 4");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		if(TutorialPart == 10){//Zoom in and out
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			if (Earth.active == false){
+				Earth.active = true;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
+			//Turn OFF Panel
+			if (Panel.active == true){
+				Flagboard.active = false;
+			}
+			
+			//Change the flag displayed according to the country selected
+			ChangeFlagtoCurrentSelected( markers.getActivated() );
+			
+			//the Var Activated will always receive the marker that is selected at the moment
+			activated = markers.getActivated();
+			//If the country changes, we need to remake the flag animation
+			if(lastSelected != activated){
+				//Clean last loaded material
+				Resources.UnloadUnusedAssets();
+				lastSelected = activated;
+				moveFlag();
+				}//End of the checking if the country changed
+			
+			
+			
+			
 		}
-		if(TutorialPart == 12){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial 5");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial 6");
+		if(TutorialPart == 12){//How game works
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			//TURN OFF EARTH AND PANEL
+			if (Earth.active == true){
+				Earth.active = false;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
+			if (Panel.active == true){
+				Panel.active = false;
+			}
+			
 		}
-		if(TutorialPart == 14){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		if(TutorialPart == 14){//Panel Tip
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			if (Panel.active == false){
+				Panel.active = true;
+			}
+			
+			if (Earth.active == false){
+				Earth.active = true;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
+			
+	
+			setAnswer("", Color.red);
 		}
-		if(TutorialPart == 16){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 7");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		if(TutorialPart == 16){//Wrong
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 7");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		//	ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			if (Panel.active == false){
+				Panel.active = true;
+			}
+			
+			if (Earth.active == false){
+				Earth.active = true;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
+			
+			setAnswer("Wrong!", Color.red);
+			setCountryName("");
+		
 		}
-		if(TutorialPart == 18){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 1");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		if(TutorialPart == 18){//Name and yellow
+			//ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 1");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		//	ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			if (Panel.active == false){
+				Panel.active = true;
+			}
+			
+			if (Earth.active == false){
+				Earth.active = true;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
+			
+			
+			setAnswer("", Color.red);
+			setCountryName("Brazil");
+		
+			
+			
 		}
 		if(TutorialPart == 20){
-			ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 1");
-			ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
-			ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+		//	ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 1");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			if (Panel.active == false){
+				Panel.active = true;
+			}
+			
+			if (Earth.active == false){
+				Earth.active = true;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
+			
+			
+			setAnswer("Canada!", Color.green);
+			setCountryName("");
 		}	
+		if(TutorialPart == 22){
+		//	ImageDisplayer1.transform.renderer.material = Resources.Load("Tutorial/Tutorial 1");
+			//ImageDisplayer2.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			//ImageDisplayer3.transform.renderer.material = Resources.Load("Tutorial/Tutorial Invisible");
+			
+			if (Panel.active == false){
+				Panel.active = true;
+			}
+			
+			if (Earth.active == false){
+				Earth.active = true;
+			}
+			if (Flagboard.active == true){
+				Flagboard.active = false;
+			}
+			
+			
+			setAnswer("Have a good game!", Color.green);
+			setCountryName("");
+		}	
+		
 
+}
+
+
+
+function setAnswer(str : String, Colour : Vector4){
+	var theText = GameObject.Find("AnswerText").transform;
+	theText.GetComponent(TextMesh).text = str;
+	theText.GetComponent(TextMesh).color = Colour;
+	while(theText.transform.position.z > -5){
+		theText.Translate(0, 0, -5 * Time.deltaTime);
+		yield;
+	}
+
+	
+	theText.position = Vector3(0,0,-5);
+}
+
+function setCountryName(str : String){
+	var theText = GameObject.Find("CountryDisplay").transform;
+	theText.GetComponent(TextMesh).text = str;
+	
 }
