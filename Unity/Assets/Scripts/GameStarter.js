@@ -51,12 +51,14 @@ var FlagMovementSound : AudioSource;
 var CorrectAnswerSound : AudioSource;
 var WrongAnswerSound : AudioSource;
 var TipsSound : AudioSource;
+var Music : AudioSource;
 
 
 function Start () {
 	
 	
 	setAudioClips();
+	
 	//ApplySettings();
 	//Debug.Log(Settings.getMusicConfiguration);
 	
@@ -73,7 +75,7 @@ function Start () {
 	scoreScript = GameObject.FindObjectOfType(ScoreScript);
 	panelScript = GameObject.FindObjectOfType(PanelScript);
 	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
-	
+
 	//getCountriesFromFile();
     getCountriesFromDatabase();
     yield;
@@ -81,6 +83,7 @@ function Start () {
 	//Fades screen
 	fadeInOut.FadeIn();
 	
+	setMusicAndSFXOptions();
 	//Get one country from the list
 	//CountrytoGuess = SortCountryOld();
 	CountrytoGuess = SortCountry();
@@ -394,6 +397,40 @@ function setAudioClips(){
 	TipsSound = gameObject.AddComponent("AudioSource");
 	var TipsAudioclip : AudioClip = Resources.Load("Sounds/Tips/Tips2");
 	TipsSound.clip = TipsAudioclip;
+	
+	Music = gameObject.AddComponent("AudioSource");
+	var MusicAudioClip : AudioClip = Resources.Load("Sounds/Discovery Mode/ramblinglibrarian_-_All_Alone_(instrumental)_5");
+	Music.clip = MusicAudioClip;
+	
+	Music.Play();
+	
+}
+
+function setMusicAndSFXOptions(){
+	if(playerVariables.getSFX()){
+		FlagMovementSound.mute = false;
+		CorrectAnswerSound.mute = false;
+		WrongAnswerSound.mute = false;
+		TipsSound.mute = false;
+	}else {
+		FlagMovementSound.mute = true;
+		CorrectAnswerSound.mute = true;
+		WrongAnswerSound.mute = true;
+		TipsSound.mute = true;
+	}
+	
+	
+	
+	if( playerVariables.getMusic()) {
+		Music.mute = false;
+		var lol = playerVariables.getMusic();
+	Debug.Log("ON"+lol);
+	}else {
+		Music.mute = true;
+		var lol2 = playerVariables.getMusic();
+	Debug.Log("OFF"+lol2);
+	}
+
 }
 
 

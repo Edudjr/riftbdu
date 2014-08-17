@@ -19,6 +19,8 @@ function Start () {
 
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
 	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
+	playerVariables.setSFX(1);
+	playerVariables.setMusic(1);
 	//When start, fade the screen from black to transparent
 	fadeInOut.FadeIn();
 	option = 0;
@@ -99,6 +101,7 @@ function Update () {
 					soundBool = 0;
 					MoveSound.mute = true;
 					SelectSound.mute = true;
+					playerVariables.setSFX(0);
 				}
 				else {
 					transform.Find("Sounds").GetChild(0).GetComponent(TextMesh).text = "ON";
@@ -106,6 +109,7 @@ function Update () {
 					soundBool = 1;
 					MoveSound.mute = false;
 					SelectSound.mute = false;
+					playerVariables.setSFX(1);
 				}
 				break;
 			case 4:
@@ -113,13 +117,14 @@ function Update () {
 					transform.Find("Music").GetChild(0).GetComponent(TextMesh).text = "OFF";
 					transform.Find("Music").GetChild(0).GetComponent(TextMesh).color  = Color.red;
 					Music.mute = true;
-					
+					playerVariables.setMusic(0);
 					musicBool = 0;
 				}
 				else {
 					transform.Find("Music").GetChild(0).GetComponent(TextMesh).text = "ON";
 					transform.Find("Music").GetChild(0).GetComponent(TextMesh).color  = Color.green;
 					Music.mute = false;
+					playerVariables.setMusic(1);
 					musicBool = 1;
 				}
 				break;
