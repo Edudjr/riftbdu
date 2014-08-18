@@ -220,9 +220,7 @@ function level(){
 		resetFlag();
 	}
 	
-	if ( Input.GetButtonDown("Fire3") ){
-		Application.Quit();
-	}
+	
 }
 
 //Puts flag to initial position (center of the screen, small scale)
