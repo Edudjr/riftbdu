@@ -108,7 +108,7 @@ function getCountriesFromFile(){
 function getCountriesFromDatabase(){
 	var continent = playerVariables.getContinent();
 	var form = new WWWForm(); //here you create a new form connection  	
-   	var url = "http://localhost:3000/country_test";
+   	var url = "http://bluemixrift2.mybluemix.net/country_test";
    	if(continent==null)
    		continent="NorthAmerica";
    	form.AddField( "continent", continent );//we are not using this line of code, but we need it to work
@@ -207,7 +207,7 @@ function level(){
 				
 					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
-					TipsSound.Play();
+					WrongAnswerSound.Play();
 					SetScoreText3D(Score);
 					//WrongAnswerSound.Play();
 				}
@@ -423,12 +423,11 @@ function setMusicAndSFXOptions(){
 	
 	if( playerVariables.getMusic()) {
 		Music.mute = false;
-		var lol = playerVariables.getMusic();
-	Debug.Log("ON"+lol);
+
+	
 	}else {
 		Music.mute = true;
-		var lol2 = playerVariables.getMusic();
-	Debug.Log("OFF"+lol2);
+
 	}
 
 }
