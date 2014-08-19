@@ -208,7 +208,7 @@ function setAudioClips(){
 	var MusicAudioclip : AudioClip = Resources.Load("Sounds/Menu/Music/MusicMenu");
 	Music.clip = MusicAudioclip;
 	//Play the music
-	Music.Play();
+	//Music.Play();
 	
 
 	MoveSound = gameObject.AddComponent("AudioSource");

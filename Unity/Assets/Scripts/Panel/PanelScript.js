@@ -25,11 +25,12 @@ private function repeatByTime(){
 //Accessed externaly (eg: in the gameStarter script)
 public function setCountry(Country : String){
 	//If there is no country, reset panel text
-	if((Country==null)||(Country==""))
+	if((Country==null)||(Country=="")){
 		resetPanelText();
-	else{
+	}else{
 		//Validates string. Replaces \s(space) to %20(space in http) for http get request
 		this.Country = Country.Replace(' ', '%20');
+		//Debug.Log("PanelScript - country: "+Country);
 	}
 }
 
@@ -81,9 +82,10 @@ private function setFact(country : String){
     var form = new WWWForm(); //here you create a new form connection
     //country = "Canada";
     var option = "fact";
-	if(country==null)
+	if(country==null){
+		Debug.Log("PanelScript - RETURN");
 		return;
-	else{
+	}else{
 		form.AddField( "country", country );
 	    form.AddField( "option", option ); 
 	   	

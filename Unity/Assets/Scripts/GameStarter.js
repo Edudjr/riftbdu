@@ -85,12 +85,6 @@ function Start () {
 	
 	setMusicAndSFXOptions();
 	//Get one country from the list
-	//CountrytoGuess = SortCountryOld();
-	CountrytoGuess = SortCountry();
-	//Sets country to be displayed
-	panelScript.setCountry(CountrytoGuess);
-	//Loads first tip
-	panelScript.loadTip();
 }
 
 function getCountriesFromFile(){
@@ -118,28 +112,36 @@ function getCountriesFromDatabase(){
     	//IF SERVER IS NOT WORKING
         Debug.Log("error: "+w.error); //if there is an error, tell us
     } else {
-        Debug.Log(w.data); //here we return the data our PHP told us
 		//If it happened any error in the server, it will return "err"
 		if(w.data=="err"){
 			Debug.Log("SERVER IS WORKING, BUT COULDNT CONNECT TO DATABASE");
 		}else{
+			//Debug.Log(w.data); //here we return the data our PHP told us
 			//Separates the string by "," and creates an array; The last position of the array is empty
 			countriesFromDB = w.data.Split(','[0]);
 		    w.Dispose(); 
-//		    for(var i=0; i< countriesFromDB.length - 1; i++){
-//		    	Debug.Log(i+"="+countriesFromDB[i]);
-//		    }
+
 			//If content is loaded successfuly, then we know that game is ready to run
 		    gameIsReady = true;	
+		    
+		    //Get one country from the list
+			//CountrytoGuess = SortCountryOld();
+			CountrytoGuess = SortCountry();
+			//Sets country to be displayed
+			panelScript.setCountry(CountrytoGuess);
+			//Loads first tip
+			panelScript.loadTip();
+		    
 		}
     }
+    
 }
 
 function Update () {
 	//If game is ready to run, load the level
-	if(gameIsReady)
+	if(gameIsReady){	
 		level();
-	else{
+	}else{
 		//Debug.Log("NOT READY YET");
 		//Debug.Log(playerVariables.getOption());
 	}
@@ -149,6 +151,7 @@ function level(){
 	//While there is still countries to be guessed
 		if ( !CheckEndGame() ){
 			//set panel information
+			//Debug.Log("SET COUNTRY - "+CountrytoGuess);
 			panelScript.setCountry(CountrytoGuess);
 			
 			//Change the flag displayed according to the country selected
@@ -182,6 +185,7 @@ function level(){
 					SetCountryText3D("");
 					CorrectAnswerSound.Play();
 					//scoreScript.sendScore();
+					GameObject.Find("EarthCountry").renderer.material = Resources.Load("CountriesMaterials/TransparentCountry");
 				}
 				//if not, he gets Wrong and loses points
 				else{
@@ -190,6 +194,7 @@ function level(){
 						SetCountryText3D(CountrytoGuess);
 						GameObject.Find("EarthCountry").renderer.material = Resources.Load("CountriesMaterials/"+CountrytoGuess);
 						GameObject.Find("EarthCountry").renderer.material.color = Color.yellow;
+						GameObject.Find("EarthCountry").renderer.material.color.a = 1;
 					}//END
 					setAnswer("Wrong!", Color.red);
 					//The quantity of points he will receive decreases if he misses the right country.
@@ -216,6 +221,7 @@ function level(){
 	}//End of if ( !IsGameOver() )
 	else {
 		//If the game is finished, we do not want the player to click on any country again
+		Debug.Log("CHECKENDGAME == TRUE");
 		setFlagAlpha(0);
 		resetFlag();
 	}
@@ -338,6 +344,7 @@ function SortCountry() : String {
  		//Debug.Log(countriesFromDB);
  		return Country;
  	}
+ 	return "err";
 }
 
 //Sets the text for the country
