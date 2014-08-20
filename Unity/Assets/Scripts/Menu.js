@@ -1,7 +1,7 @@
 ﻿#pragma strict
 
 private var option : int = 0;
-private var MaxPosition : int = 2;
+private var MaxPosition : int = 3;
 private var MinPosition : int = 1;
 private var fadeInOut : SceneFadeInOut;
 private var lockButton : boolean = false;
@@ -44,24 +44,27 @@ function Update () {
 			transform.Find("DiscoveryText").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 2:
-			transform.Find("SettingsText").GetComponent(TextMesh).color = Color.green;
+			transform.Find("TutorialText").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 3:
-			transform.Find("Sounds").GetComponent(TextMesh).color = Color.green;
+			transform.Find("SettingsText").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 4:
-			transform.Find("Music").GetComponent(TextMesh).color = Color.green;
+			transform.Find("Sounds").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 5:
-			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
+			transform.Find("Music").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 6:
-			GameObject.Find("OptionSouthAmerica").GetComponent(TextMesh).color = Color.green;
+			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 7:
-			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionSouthAmerica").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 8:
+			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
+			break;
+		case 9:
 			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
 	}
@@ -75,8 +78,8 @@ function Update () {
 		playerVariables.setOption(option);
 		switch(option){
 			case 1:
-				MaxPosition = 8;
-				MinPosition = 6;
+				MaxPosition = 9;
+				MinPosition = 7;
 				
 				GameObject.Find("OptionEurope").renderer.enabled = true;
 				GameObject.Find("OptionSouthAmerica").renderer.enabled = true;
@@ -84,8 +87,12 @@ function Update () {
 				//fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 2:
-				MaxPosition = 5;
-				MinPosition = 3;
+				fadeInOut.FadeOutLoad("Tutorial");
+				
+				break;
+			case 3:
+				MaxPosition = 6;
+				MinPosition = 4;
 				transform.Find("Sounds").renderer.enabled = true;
 				transform.Find("Sounds").GetChild(0).renderer.enabled = true;
 				transform.Find("Music").renderer.enabled = true;
@@ -94,7 +101,7 @@ function Update () {
 				transform.Find("SettingsMenu").renderer.enabled = true;
 				
 				break;
-			case 3:
+			case 4:
 				if(soundBool == 1 ){
 					transform.Find("Sounds").GetChild(0).GetComponent(TextMesh).text = "OFF";
 					transform.Find("Sounds").GetChild(0).GetComponent(TextMesh).color  = Color.red;
@@ -112,7 +119,7 @@ function Update () {
 					playerVariables.setSFX(1);
 				}
 				break;
-			case 4:
+			case 5:
 				if(musicBool == 1 ){
 					transform.Find("Music").GetChild(0).GetComponent(TextMesh).text = "OFF";
 					transform.Find("Music").GetChild(0).GetComponent(TextMesh).color  = Color.red;
@@ -128,8 +135,8 @@ function Update () {
 					musicBool = 1;
 				}
 				break;
-			case 5:
-				MaxPosition = 2;
+			case 6:
+				MaxPosition = 3;
 				MinPosition = 1;
 				transform.Find("Music").renderer.enabled = false;
 				transform.Find("Music").GetChild(0).renderer.enabled = false;
@@ -138,16 +145,16 @@ function Update () {
 				transform.Find("Back").renderer.enabled = false;
 				transform.Find("SettingsMenu").renderer.enabled = false;
 				break;
-			case 6:
+			case 7:
 				playerVariables.setContinent("SouthAmerica");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
-			case 7:
+			case 8:
 				playerVariables.setContinent("Europe");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
-			case 8:
-				MaxPosition = 2;
+			case 9:
+				MaxPosition = 3;
 				MinPosition = 1;
 				GameObject.Find("OptionEurope").renderer.enabled = false;
 				GameObject.Find("OptionSouthAmerica").renderer.enabled = false;

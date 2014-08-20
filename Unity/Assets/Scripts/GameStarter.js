@@ -24,23 +24,16 @@ private static var lastSelected : String = null;
 
 public var Flagboard : GameObject;
 
-//Unecessary variable
-//var CountriesSorted : int = 0;
+
 var CurrentScore: int = 4;
 //Get scripts.
 private var markers : Markers; 
 private var scoreScript : ScoreScript;
 private var playerVariables : PlayerVariables;
-
 //This Variable will get all the settings that the player chose on the menu
 var Settings : Menu;
 
-//Variables which will define the file to get the name of the countries
-var textFilePath : String;
-//Number of lines for text file
-var nLines : int;
-//Array that will receive the name from all countries from a txt file.
-var Countries : Array  = [];
+
 var countriesFromDB : Array = [];
 
 //Get PanelScript script
@@ -58,9 +51,6 @@ function Start () {
 	
 	
 	setAudioClips();
-	
-	//ApplySettings();
-	//Debug.Log(Settings.getMusicConfiguration);
 	
 	//Clear Country name
 	SetCountryText3D("");
@@ -87,17 +77,6 @@ function Start () {
 	//Get one country from the list
 }
 
-function getCountriesFromFile(){
-	//Set the path of the txt file
-	textFilePath = "Assets//Resources//Files//PresentationCountries.txt";
-	
-	//Get the number of lines on the txt and defines as limit to the array.
-	nLines = GetNumberOfLines(textFilePath);
-	for(var counter = 0; counter< nLines; counter++){
-		Countries.push( ReadLine(textFilePath, counter) );
-	}
-	yield;
-}
 
 function getCountriesFromDatabase(){
 	var continent = playerVariables.getContinent();
@@ -226,6 +205,9 @@ function level(){
 		resetFlag();
 	}
 	
+	if(Input.GetKeyDown(KeyCode.Escape)){
+		Application.Quit();
+	}
 	
 }
 
@@ -312,22 +294,7 @@ function GetNumberOfLines(filePath : String) : int{
 	return number;
 }
     
-//Randomly selects a country from the countries list  
-function SortCountryOld() : String {
-	//Whenever a new country is sorted, 
-	CurrentScore = 4;
-	//Increase the number of countries sorted.
-	//CountriesSorted ++;
-    if(Countries.length > 0){	
-    	var rand : int;
-		var Country : String;
-		rand = Random.Range(0, Countries.length);
- 		Country = Countries[rand];
- 		//SetCountryText3D(Country);
- 		Countries.RemoveAt(rand);
- 		return Country;
- 	}
-}
+
 
 //Randomly selects a country from the countries list  
 function SortCountry() : String {
@@ -435,18 +402,4 @@ function setMusicAndSFXOptions(){
 
 	}
 
-}
-
-
-function ApplySettings(){
-	if(Settings.getSoundConfiguration() == 0){
-		FlagMovementSound.mute = true;
-		CorrectAnswerSound.mute = true;
-		WrongAnswerSound.mute = true;		
-	}
-	
-	if(Settings.getMusicConfiguration() == 0){
-	
-	
-	}
 }

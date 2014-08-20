@@ -8,6 +8,9 @@ var ImageDisplayer3 : Transform;
 var Earth : Transform;
 var Panel : Transform;
 
+var fadeInOut : SceneFadeInOut;
+private var playerVariables : PlayerVariables;
+
 public var Flagboard : GameObject;
 
 
@@ -25,20 +28,20 @@ var Writer : String;
 var markers : Markers; 
 
 function Start () {
-	
+	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
 	Earth = GameObject.Find("Earth").transform;
 	
-		
+	
+	
+	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
 	markers = GameObject.FindObjectOfType(Markers);
 
 	TutorialPart = 0;
 	textFilePath = "Assets//Resources//Tutorial//Tutorial.txt";
 	nLines = GetNumberOfLines(textFilePath);
 	
-	soundtrack = gameObject.AddComponent("AudioSource");
-	var soundtrackAudioclip  : AudioClip = Resources.Load("Sounds/jlbrock44_-_Rise_Up_To_Heaven_(Instrumental)");
-	soundtrack.clip = soundtrackAudioclip;
-	
+	setAudio();
+	ApplySettings();
 
 	Panel = GameObject.Find("Panel").transform;
 	Panel.active = false;
@@ -59,7 +62,7 @@ function Start () {
 	TextDisplayer2.GetComponent(TextMesh).text = Writer;
 
 	soundtrack.Play();
-	
+	fadeInOut.FadeIn();
 	Earth.active = false;
 
 }
@@ -84,7 +87,7 @@ function Update () {
 	
 	}
 	else{
-		Application.LoadLevel("DiscoveryMode");
+		fadeInOut.FadeOutLoad("Menu");
 	}
 	
 
@@ -160,6 +163,33 @@ function ChangeFlagtoCurrentSelected(Countryname : String){
 
 function setFlagAlpha(alpha : float){
 	Flagboard.transform.renderer.material.color.a = alpha;
+}
+
+function ApplySettings(){
+	if(playerVariables.getSFX()){
+		
+	}else {
+
+	}
+	
+	
+	
+	if( playerVariables.getMusic()) {
+		soundtrack.mute = false;
+
+	
+	}else {
+		soundtrack.mute = true;
+
+	}
+
+}
+
+function setAudio(){
+	soundtrack = gameObject.AddComponent("AudioSource");
+	var soundtrackAudioclip  : AudioClip = Resources.Load("Sounds/jlbrock44_-_Rise_Up_To_Heaven_(Instrumental)");
+	soundtrack.clip = soundtrackAudioclip;
+
 }
 
 //Puts flag to initial position (center of the screen, small scale)
