@@ -59,12 +59,15 @@ function Update () {
 			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 7:
-			GameObject.Find("OptionSouthAmerica").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionNorthAmerica").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 8:
-			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionSouthAmerica").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 9:
+			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
+			break;
+		case 10:
 			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
 	}
@@ -78,9 +81,10 @@ function Update () {
 		playerVariables.setOption(option);
 		switch(option){
 			case 1:
-				MaxPosition = 9;
+				MaxPosition = 10;
 				MinPosition = 7;
 				
+				GameObject.Find("OptionNorthAmerica").renderer.enabled = true;
 				GameObject.Find("OptionEurope").renderer.enabled = true;
 				GameObject.Find("OptionSouthAmerica").renderer.enabled = true;
 				transform.Find("Back").renderer.enabled = true;
@@ -146,17 +150,21 @@ function Update () {
 				transform.Find("SettingsMenu").renderer.enabled = false;
 				break;
 			case 7:
+				playerVariables.setContinent("NorthAmerica");
+				fadeInOut.FadeOutLoad("DiscoveryMode");
+			case 8:
 				playerVariables.setContinent("SouthAmerica");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
-			case 8:
+			case 9:
 				playerVariables.setContinent("Europe");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
-			case 9:
+			case 10:
 				MaxPosition = 3;
 				MinPosition = 1;
 				GameObject.Find("OptionEurope").renderer.enabled = false;
+				GameObject.Find("OptionNorthAmerica").renderer.enabled = false;
 				GameObject.Find("OptionSouthAmerica").renderer.enabled = false;
 				transform.Find("Back").renderer.enabled = false;
 				break;
