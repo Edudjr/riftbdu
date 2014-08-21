@@ -20,7 +20,7 @@ private static var WrongAnswer : int = -1;
 private static var RightAnswer : int = 2;
 
 private static var lastSelected : String = null;
-
+public var MyMusic : AudioClip [];
 
 public var Flagboard : GameObject;
 
@@ -45,7 +45,7 @@ var CorrectAnswerSound : AudioSource;
 var WrongAnswerSound : AudioSource;
 var TipsSound : AudioSource;
 var Music : AudioSource;
-
+private var timer : float = 0;
 
 function Start () {
 	
@@ -127,8 +127,17 @@ function Update () {
 }
 
 function level(){
-	//While there is still countries to be guessed
+	//While there is still count
+	
 		if ( !CheckEndGame() ){
+		
+			timer += Time.deltaTime;
+		
+		
+			if( timer >= Music.clip.length ){
+				SetRandomMusic();
+				}
+				
 			//set panel information
 			//Debug.Log("SET COUNTRY - "+CountrytoGuess);
 			panelScript.setCountry(CountrytoGuess);
@@ -180,20 +189,9 @@ function level(){
 					if(CurrentScore >= 1){
 						CurrentScore -=1;
 					}
-					//If the player couldn't guess the country even with its name, we give him/her a new country to guess.
-//					if (CurrentScore == 0 ){
-//						//CountrytoGuess = SortCountryOld();
-//						CountrytoGuess = SortCountry();
-//						panelScript.resetTipNumber();
-//						panelScript.setCountry(CountrytoGuess);
-//						SetCountryText3D("");
-//					}
-				
-					//The line above is commented to stop requesting data from the cloudant
 					panelScript.loadTip();
 					WrongAnswerSound.Play();
 					SetScoreText3D(Score);
-					//WrongAnswerSound.Play();
 				}
 			}//End of Button Fire Press
 				
@@ -274,27 +272,6 @@ function setWin(str : String, Colour : Vector4){
 	}
 }
 
-//Returns one line from the given file in filePath.
-function ReadLine(filePath : String, nLine : int) : String{
-	var reader = new StreamReader(File.Open(filePath, FileMode.Open)) ;
-	var line : String = " ";
-	var n : int = 0;
-	while (n++ <= nLine)
-	    line = reader.ReadLine();
-	reader.Close();
-	return line;
-}
- 
-
-//Returns number of lines
-function GetNumberOfLines(filePath : String) : int{
-	var reader = new StreamReader(File.Open(filePath, FileMode.Open));
-	var number = reader.ReadToEnd().Split("\n"[0]).Length;
-	reader.Close();
-	return number;
-}
-    
-
 
 //Randomly selects a country from the countries list  
 function SortCountry() : String {
@@ -370,12 +347,20 @@ function setAudioClips(){
 	var TipsAudioclip : AudioClip = Resources.Load("Sounds/Tips/Tips2");
 	TipsSound.clip = TipsAudioclip;
 	
-	Music = gameObject.AddComponent("AudioSource");
-	var MusicAudioClip : AudioClip = Resources.Load("Sounds/Discovery Mode/ramblinglibrarian_-_All_Alone_(instrumental)_5");
-	Music.clip = MusicAudioClip;
 	
+	Music = gameObject.AddComponent("AudioSource");
+	Music.clip = MyMusic[Random.Range(0, MyMusic.length)];
+	timer = 0;
 	Music.Play();
 	
+}
+
+function SetRandomMusic(){
+	Music = gameObject.AddComponent("AudioSource");
+	Music.clip = MyMusic[Random.Range(0, MyMusic.length)];
+	Music.Play();
+	timer = 0;
+	Debug.Log("Entrei no set");
 }
 
 function setMusicAndSFXOptions(){

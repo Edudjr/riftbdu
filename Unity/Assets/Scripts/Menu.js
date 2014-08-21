@@ -13,6 +13,7 @@ public var Music : AudioSource;
 public var MoveSound : AudioSource;
 public var SelectSound : AudioSource;
 
+
 function Start () {
 
 	setAudioClips();
@@ -223,7 +224,7 @@ function setAudioClips(){
 	var MusicAudioclip : AudioClip = Resources.Load("Sounds/Menu/Music/MusicMenu");
 	Music.clip = MusicAudioclip;
 	//Play the music
-	//Music.Play();
+	Music.Play();
 	
 
 	MoveSound = gameObject.AddComponent("AudioSource");
