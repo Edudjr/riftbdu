@@ -82,75 +82,44 @@ function getCountriesFromDatabase(){
 	var continent = playerVariables.getContinent();
 	if(continent==null)
 		continent="NorthAmerica";
-	var url = "http://localhost:3000/getcountries?continent="+continent;
-	// Start a download of the given URL
-	var www : WWW = new WWW (url);
-	// Wait for download to complete
-	yield www;
+	Debug.Log(continent);
 	
-    if (www.error != null) {
-		//IF SERVER IS NOT WORKING
-		Debug.Log("error: "+www.error); //if there is an error, tell us
-    } else {
-		//If it happened any error in the server, it will return "err"
-		if(www.data=="err"){
-			Debug.Log("SERVER IS WORKING, BUT COULDNT CONNECT TO DATABASE");
-		}else{
-			//Debug.Log(w.data); //here we return the data our PHP told us
-			//Separates the string by "," and creates an array; The last position of the array is empty
-			countriesFromDB = www.data.Split(','[0]);
-		    www.Dispose(); 
+	var okay = false;
+	var url = "http://geovr.mybluemix.net/getcountries?continent="+continent;
+	
+	while(!okay){
+		// Start a download of the given URL
+		var www : WWW = new WWW (url);
+		// Wait for download to complete
+		yield www;
+		
+	    if (www.error != null) {
+			//IF SERVER IS NOT WORKING
+			Debug.Log("error: "+www.error); //if there is an error, tell us
+	    } else {
+			//If it happened any error in the server, it will return "err"
+			if(www.data=="err"){
+				Debug.Log("SERVER IS WORKING, BUT COULDNT CONNECT TO DATABASE");
+			}else{
+				//Debug.Log(w.data); //here we return the data our PHP told us
+				//Separates the string by "," and creates an array; The last position of the array is empty
+				countriesFromDB = www.data.Split(','[0]);
+			    www.Dispose(); 
 
-			//If content is loaded successfuly, then we know that game is ready to run
-		    gameIsReady = true;	
-		    
-		    //Get one country from the list
-			//CountrytoGuess = SortCountryOld();
-			CountrytoGuess = SortCountry();
-			//Sets country to be displayed
-			panelScript.setCountry(CountrytoGuess);
-			//Loads first tip
-			panelScript.loadTip();
-		    
-		}
-    }
-	
-	
-	
-	
-//	var form = new WWWForm(); //here you create a new form connection  	
-//   	var url = "http://localhost:3000/country_test";
-//   	if(continent==null)
-//   		continent="NorthAmerica";
-//   	form.AddField( "continent", continent );//we are not using this line of code, but we need it to work
-//    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
-//    yield w; //we wait for the form to check the PHP file, so our game dont just hang
-//    if (w.error != null) {
-//    	//IF SERVER IS NOT WORKING
-//        Debug.Log("error: "+w.error); //if there is an error, tell us
-//    } else {
-//		//If it happened any error in the server, it will return "err"
-//		if(w.data=="err"){
-//			Debug.Log("SERVER IS WORKING, BUT COULDNT CONNECT TO DATABASE");
-//		}else{
-//			//Debug.Log(w.data); //here we return the data our PHP told us
-//			//Separates the string by "," and creates an array; The last position of the array is empty
-//			countriesFromDB = w.data.Split(','[0]);
-//		    w.Dispose(); 
-//
-//			//If content is loaded successfuly, then we know that game is ready to run
-//		    gameIsReady = true;	
-//		    
-//		    //Get one country from the list
-//			//CountrytoGuess = SortCountryOld();
-//			CountrytoGuess = SortCountry();
-//			//Sets country to be displayed
-//			panelScript.setCountry(CountrytoGuess);
-//			//Loads first tip
-//			panelScript.loadTip();
-//		    
-//		}
-//    }
+				//If content is loaded successfuly, then we know that game is ready to run
+			    gameIsReady = true;	
+			    okay = true;
+			    //Get one country from the list
+				//CountrytoGuess = SortCountryOld();
+				CountrytoGuess = SortCountry();
+				//Sets country to be displayed
+				panelScript.setCountry(CountrytoGuess);
+				//Loads first tip
+				panelScript.loadTip();
+			    
+			}
+	    }
+	}
     
 }
 
@@ -236,7 +205,8 @@ function level(){
 	}//End of if ( !IsGameOver() )
 	else {
 		//If the game is finished, we do not want the player to click on any country again
-		Debug.Log("CHECKENDGAME == TRUE");
+		//Debug.Log("CHECKENDGAME == TRUE");
+		waitAndLeave();
 		setFlagAlpha(0);
 		resetFlag();
 	}
@@ -245,6 +215,11 @@ function level(){
 		Application.Quit();
 	}
 	
+}
+
+function waitAndLeave(){
+	yield WaitForSeconds(2);
+	fadeInOut.FadeOutLoad("Menu");
 }
 
 //Puts flag to initial position (center of the screen, small scale)

@@ -11,7 +11,7 @@ Whenever you pass over a country, \nyou will see its flag.
 You can zoom IN and zoom OUT \nthe camera using the \nRight Analog Stick.
 
 When the game begins,\n you will receive a tip.\n You need to use the tips to \nfind a country.
-Whenever you miss the country,\n you receive a new tip, however,\n you will win less points.
+Whenever you miss the country,\n you receive a new tip, however,\n you will earn fewer points.
 Look to your left now,\n you will see the Panel Tip.
 
 If you miss the country,\n a message will be displayed\n like this

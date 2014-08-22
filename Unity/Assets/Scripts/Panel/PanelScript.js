@@ -84,7 +84,7 @@ private function setFact(country : String){
 		return;
 	}else{
 		var option = "fact";
-		var url = "http://localhost:3000/getfact?country="+country+"&option="+option;
+		var url = "http://geovr.mybluemix.net/getfact?country="+country+"&option="+option;
 		// Start a download of the given URL
 		var www : WWW = new WWW (url);
 		// Wait for download to complete
@@ -106,7 +106,7 @@ private function setLanguage(country : String){
 		return;
 	}else{
 		var option = "language";
-		var url = "http://localhost:3000/getfact?country="+country+"&option="+option;
+		var url = "http://geovr.mybluemix.net/getfact?country="+country+"&option="+option;
 		// Start a download of the given URL
 		var www : WWW = new WWW (url);
 		// Wait for download to complete
@@ -123,24 +123,28 @@ private function setLanguage(country : String){
 }
 
 private function setCuriosity(country : String){
-if(country==null){
-		Debug.Log("Country==null");
-		return;
-	}else{
-		var option = "curiosity";
-		var url = "http://localhost:3000/getfact?country="+country+"&option="+option;
-		// Start a download of the given URL
-		var www : WWW = new WWW (url);
-		// Wait for download to complete
-		yield www;
-	    
-	    if (www.error != null) {
-       		Debug.Log(www.error); //if there is an error, tell us
-	    } else {
-	        //Change first 3Dtext
-			transform.GetChild(1).GetComponent(TextMesh).text = www.data;
-			www.Dispose(); //clear our form in game
-	    }
+	var okay = false;
+	while(!okay){
+		if(country==null){
+			Debug.Log("Country==null");
+			return;
+		}else{
+			var option = "curiosity";
+			var url = "http://geovr.mybluemix.net0/getfact?country="+country+"&option="+option;
+			// Start a download of the given URL
+			var www : WWW = new WWW (url);
+			// Wait for download to complete
+			yield www;
+		    
+		    if (www.error != null) {
+	       		Debug.Log(www.error); //if there is an error, tell us
+		    } else {
+		        //Change first 3Dtext
+		        okay = true;
+				transform.GetChild(1).GetComponent(TextMesh).text = www.data;
+				www.Dispose(); //clear our form in game
+		    }
+		}
 	}
 }
 

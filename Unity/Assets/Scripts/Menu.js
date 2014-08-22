@@ -84,7 +84,6 @@ function Update () {
 			case 1:
 				MaxPosition = 10;
 				MinPosition = 7;
-				
 				GameObject.Find("OptionNorthAmerica").renderer.enabled = true;
 				GameObject.Find("OptionEurope").renderer.enabled = true;
 				GameObject.Find("OptionSouthAmerica").renderer.enabled = true;
@@ -153,6 +152,7 @@ function Update () {
 			case 7:
 				playerVariables.setContinent("NorthAmerica");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
+				break;
 			case 8:
 				playerVariables.setContinent("SouthAmerica");
 				fadeInOut.FadeOutLoad("DiscoveryMode");

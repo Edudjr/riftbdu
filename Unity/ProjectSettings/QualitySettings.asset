@@ -58,6 +58,7 @@ QualitySettings:
     - Windows Store Apps
     - WP8
     - Web
+    - Standalone
   - serializedVersion: 2
     name: Simple
     pixelLightCount: 1
@@ -110,6 +111,7 @@ QualitySettings:
     - BlackBerry
     - Android
     - iPhone
+    - Standalone
   - serializedVersion: 2
     name: Beautiful
     pixelLightCount: 3
