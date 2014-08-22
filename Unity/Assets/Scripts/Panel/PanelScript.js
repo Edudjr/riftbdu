@@ -78,72 +78,70 @@ public function loadTip(){
 
 //Each of the functions below will change the content of the text Tips
 
-private function setFact(country : String){
-    var form = new WWWForm(); //here you create a new form connection
-    //country = "Canada";
-    var option = "fact";
+private function setFact(country : String){	
 	if(country==null){
-		Debug.Log("PanelScript - RETURN");
+		Debug.Log("Country==null");
 		return;
 	}else{
-		form.AddField( "country", country );
-	    form.AddField( "option", option ); 
-	   	
-	   	var url = "http://bluemixrift2.mybluemix.net/countryfact_to_game";
-	    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
-	    yield w; //we wait for the form to check the PHP file, so our game dont just hang
-	    if (w.error != null) {
-	        Debug.Log(w.error); //if there is an error, tell us
+		var option = "fact";
+		var url = "http://localhost:3000/getfact?country="+country+"&option="+option;
+		// Start a download of the given URL
+		var www : WWW = new WWW (url);
+		// Wait for download to complete
+		yield www;
+	    
+	    if (www.error != null) {
+       		Debug.Log(www.error); //if there is an error, tell us
 	    } else {
-	        //Debug.Log("Test ok");
-	        //Debug.Log(w.data); //here we return the data our PHP told us
 	        //Change first 3Dtext
-			transform.GetChild(0).GetComponent(TextMesh).text = w.data;
-			w.Dispose(); //clear our form in game
+			transform.GetChild(0).GetComponent(TextMesh).text = www.data;
+			www.Dispose(); //clear our form in game
 	    }
-    }
+	}
 }
 
 private function setLanguage(country : String){
-    var form = new WWWForm(); //here you create a new form connection
-    //country = "Canada";
-    var option = "language";
-    form.AddField( "country", country );
-    form.AddField( "option", option ); 
-   	
-   	var url = "http://bluemixrift2.mybluemix.net/countryfact_to_game";
-    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
-    yield w; //we wait for the form to check the PHP file, so our game dont just hang
-    if (w.error != null) {
-        Debug.Log(w.error); //if there is an error, tell us
-    } else {
-//        Debug.Log("Test ok");
-        //Debug.Log(w.data); //here we return the data our PHP told us
-        //Change first 3Dtext
-		transform.GetChild(2).GetComponent(TextMesh).text = w.data + " is their language";
-		w.Dispose(); //clear our form in game
-    }
+  if(country==null){
+		Debug.Log("Country==null");
+		return;
+	}else{
+		var option = "language";
+		var url = "http://localhost:3000/getfact?country="+country+"&option="+option;
+		// Start a download of the given URL
+		var www : WWW = new WWW (url);
+		// Wait for download to complete
+		yield www;
+	    
+	    if (www.error != null) {
+       		Debug.Log(www.error); //if there is an error, tell us
+	    } else {
+	        //Change first 3Dtext
+			transform.GetChild(2).GetComponent(TextMesh).text = www.data+" is their language";
+			www.Dispose(); //clear our form in game
+	    }
+	}
 }
 
 private function setCuriosity(country : String){
-    var form = new WWWForm(); //here you create a new form connection
-    //country = "Canada";
-    var option = "curiosity";
-    form.AddField( "country", country );
-    form.AddField( "option", option ); 
-   	
-   	var url = "http://bluemixrift2.mybluemix.net/countryfact_to_game";
-    var w = WWW(url, form); //here we create a var called 'w' and we sync with our URL and the form
-    yield w; //we wait for the form to check the PHP file, so our game dont just hang
-    if (w.error != null) {
-        Debug.Log(w.error); //if there is an error, tell us
-    } else {
-//        Debug.Log("Test ok");
-        //Debug.Log(w.data); //here we return the data our PHP told us
-        //Change first 3Dtext
-		transform.GetChild(1).GetComponent(TextMesh).text = w.data;
-		w.Dispose(); //clear our form in game
-    }
+if(country==null){
+		Debug.Log("Country==null");
+		return;
+	}else{
+		var option = "curiosity";
+		var url = "http://localhost:3000/getfact?country="+country+"&option="+option;
+		// Start a download of the given URL
+		var www : WWW = new WWW (url);
+		// Wait for download to complete
+		yield www;
+	    
+	    if (www.error != null) {
+       		Debug.Log(www.error); //if there is an error, tell us
+	    } else {
+	        //Change first 3Dtext
+			transform.GetChild(1).GetComponent(TextMesh).text = www.data;
+			www.Dispose(); //clear our form in game
+	    }
+	}
 }
 
 //TEST FUNCTION

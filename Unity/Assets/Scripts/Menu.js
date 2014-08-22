@@ -180,12 +180,12 @@ function Update () {
 function getChange(){
 	
 	if(!lockButton){
-		if((  Input.GetAxisRaw("LeftAnalog_Vertical")>0.5 ) || (Input.GetKeyDown(KeyCode.W))){
+		if((  Input.GetAxisRaw("LeftAnalog_Vertical")>0.5 ) || (Input.GetKeyDown(KeyCode.UpArrow))){
 			lockButton = true;
 			option--;
 			MoveSound.Play();
 			yield WaitForSeconds(0.3);
-		}else if(( Input.GetAxisRaw("LeftAnalog_Vertical")<-0.5) || (Input.GetKeyDown(KeyCode.S))){	
+		}else if(( Input.GetAxisRaw("LeftAnalog_Vertical")<-0.5) || (Input.GetKeyDown(KeyCode.DownArrow))){	
 			lockButton = true;
 			option++;
 			MoveSound.Play();
