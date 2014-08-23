@@ -65,7 +65,9 @@ function Start () {
 	scoreScript = GameObject.FindObjectOfType(ScoreScript);
 	panelScript = GameObject.FindObjectOfType(PanelScript);
 	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
-
+	
+	
+	setMusicAndSFXOptions();
 	//getCountriesFromFile();
     getCountriesFromDatabase();
     yield;
@@ -73,7 +75,6 @@ function Start () {
 	//Fades screen
 	fadeInOut.FadeIn();
 	
-	setMusicAndSFXOptions();
 	//Get one country from the list
 }
 

@@ -90,7 +90,10 @@ function Update () {
 		fadeInOut.FadeOutLoad("Menu");
 	}
 	
-
+	if(Input.GetKeyDown(KeyCode.Escape)){
+		Application.Quit();
+	}
+	
 }
 
 
@@ -439,10 +442,12 @@ function setAnswer(str : String, Colour : Vector4){
 	var theText = GameObject.Find("AnswerText").transform;
 	theText.GetComponent(TextMesh).text = str;
 	theText.GetComponent(TextMesh).color = Colour;
+
 	while(theText.transform.position.z > -5){
 		theText.Translate(0, 0, -5 * Time.deltaTime);
 		yield;
 	}
+
 
 	
 	theText.position = Vector3(0,0,-5);
