@@ -130,7 +130,7 @@ private function setCuriosity(country : String){
 			return;
 		}else{
 			var option = "curiosity";
-			var url = "http://geovr.mybluemix.net0/getfact?country="+country+"&option="+option;
+			var url = "http://geovr.mybluemix.net/getfact?country="+country+"&option="+option;
 			// Start a download of the given URL
 			var www : WWW = new WWW (url);
 			// Wait for download to complete
