@@ -222,8 +222,10 @@ function level(){
 }
 
 function waitAndLeave(){
-	yield WaitForSeconds(2);
-	fadeInOut.FadeOutLoad("Menu");
+	SetCountryText3D("Press 'A' to go \nback to menu");
+	if( Input.GetButtonDown("Jump") ) {
+		fadeInOut.FadeOutLoad("Menu");
+		}
 }
 
 //Puts flag to initial position (center of the screen, small scale)
