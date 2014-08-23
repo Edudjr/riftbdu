@@ -177,7 +177,7 @@ function level(){
 					panelScript.resetTipNumber();
 					panelScript.setCountry(CountrytoGuess);
 					panelScript.loadTip();
-					TipsSound.Play();
+					
 					SetCountryText3D("");
 					CorrectAnswerSound.Play();
 					//scoreScript.sendScore();
@@ -192,6 +192,9 @@ function level(){
 						GameObject.Find("EarthCountry").renderer.material.color = Color.yellow;
 						GameObject.Find("EarthCountry").renderer.material.color.a = 1;
 					}//END
+					else{
+						//TipsSound.Play();
+					}
 					setAnswer("Wrong!", Color.red);
 					//The quantity of points he will receive decreases if he misses the right country.
 					if(CurrentScore >= 1){
@@ -358,7 +361,7 @@ function setAudioClips(){
 	WrongAnswerSound.clip = WrongAnswerAudioclip;
 	
 	TipsSound = gameObject.AddComponent("AudioSource");
-	var TipsAudioclip : AudioClip = Resources.Load("Sounds/Tips/Tips2");
+	var TipsAudioclip : AudioClip = Resources.Load("Sounds/Tips/Tip");
 	TipsSound.clip = TipsAudioclip;
 	
 	

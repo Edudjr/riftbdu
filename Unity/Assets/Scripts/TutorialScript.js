@@ -190,7 +190,7 @@ function ApplySettings(){
 
 function setAudio(){
 	soundtrack = gameObject.AddComponent("AudioSource");
-	var soundtrackAudioclip  : AudioClip = Resources.Load("Sounds/jlbrock44_-_Rise_Up_To_Heaven_(Instrumental)");
+	var soundtrackAudioclip  : AudioClip = Resources.Load("Sounds/Tutorial/Tutorial");
 	soundtrack.clip = soundtrackAudioclip;
 
 }

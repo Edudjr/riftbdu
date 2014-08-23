@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-private var option : int = 0;
+private var option : int = 1;
 private var MaxPosition : int = 3;
 private var MinPosition : int = 1;
 private var fadeInOut : SceneFadeInOut;
@@ -24,7 +24,7 @@ function Start () {
 	playerVariables.setMusic(1);
 	//When start, fade the screen from black to transparent
 	fadeInOut.FadeIn();
-	option = 0;
+	option = 1;
 	
 	
 	//Set all children's color to white
@@ -88,7 +88,6 @@ function Update () {
 				GameObject.Find("OptionEurope").renderer.enabled = true;
 				GameObject.Find("OptionSouthAmerica").renderer.enabled = true;
 				transform.Find("Back").renderer.enabled = true;
-				//fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 2:
 				fadeInOut.FadeOutLoad("Tutorial");
