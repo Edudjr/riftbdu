@@ -23,6 +23,7 @@ private static var lastSelected : String = null;
 public var MyMusic : AudioClip [];
 
 public var Flagboard : GameObject;
+public var ClothFlag : GameObject;
 
 
 var CurrentScore: int = 4;
@@ -36,9 +37,10 @@ var Settings : Menu;
 
 var countriesFromDB : Array = [];
 
-//Get PanelScript script
-var panelScript : PanelScript;
-var fadeInOut : SceneFadeInOut;
+//Get scripts
+private var panelScript : PanelScript;
+private var fadeInOut : SceneFadeInOut;
+private var clothScript : ClothScript;
 
 var FlagMovementSound : AudioSource;
 var CorrectAnswerSound : AudioSource;
@@ -59,12 +61,13 @@ function Start () {
     //getCountriesFromDatabase();
     //yield;
 	 
-	//Get a random marker script
+	//Instantiate scripts
 	markers = GameObject.FindObjectOfType(Markers);
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
 	scoreScript = GameObject.FindObjectOfType(ScoreScript);
 	panelScript = GameObject.FindObjectOfType(PanelScript);
 	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
+	clothScript = GameObject.FindObjectOfType(ClothScript);
 	
 	
 	setMusicAndSFXOptions();
@@ -144,7 +147,7 @@ function level(){
 		
 			if( timer >= Music.clip.length ){
 				SetRandomMusic();
-				}
+			}
 				
 			//set panel information
 			//Debug.Log("SET COUNTRY - "+CountrytoGuess);
@@ -152,7 +155,6 @@ function level(){
 			
 			//Change the flag displayed according to the country selected
 			ChangeFlagtoCurrentSelected( markers.getActivated() );
-			ChangeClothFlagtoCurrentSelected( markers.getActivated() );
 			
 			//the Var Activated will always receive the marker that is selected at the moment
 			var activated = markers.getActivated();
@@ -162,6 +164,7 @@ function level(){
 				Resources.UnloadUnusedAssets();
 				lastSelected = activated;
 				moveFlag();
+				//moveClothFlag();
 			}//End of the checking if the country changed
 			
 		
@@ -261,8 +264,8 @@ function moveFlag(){
 		Flagboard.transform.eulerAngles.y += 2;
 		yield;
 	}
-
-	
+	setFlagAlpha(0);
+	clothScript.moveClothFlag();	
 }
 
 //Set the text of the answer text. It gets a String and a Colour.
@@ -324,9 +327,6 @@ function SetScoreText3D(points){
 //Changes the flag to current selected country
 function ChangeFlagtoCurrentSelected(Countryname : String){
 	Flagboard.renderer.material.mainTexture = Resources.Load("Flags/All Flags/" + Countryname +"-flag");
-}
-function ChangeClothFlagtoCurrentSelected(Countryname : String){
-	GameObject.Find("InteractiveCloth").renderer.material.mainTexture = Resources.Load("Flags/All Flags/" + Countryname +"-flag");
 }
 
 //Returns the country which the player should guess
