@@ -1,5 +1,6 @@
 ﻿#pragma strict
 
+
 var TextDisplayer1 : Transform ;
 var TextDisplayer2 : Transform ;
 var ImageDisplayer1 : Transform;
@@ -13,14 +14,12 @@ private var playerVariables : PlayerVariables;
 
 public var Flagboard : GameObject;
 
-
 private static var lastSelected : String = null;
 
 var soundtrack : AudioSource; 
 var TutorialPart : int;
-
-var textFilePath : String;
-var nLines : int;
+var TutorialText : TextAsset;
+private var TutorialArray  : String[] ;
 var receiver : String;
 var Writer : String;
 
@@ -37,9 +36,7 @@ function Start () {
 	markers = GameObject.FindObjectOfType(Markers);
 
 	TutorialPart = 0;
-	textFilePath = "Assets//Resources//Tutorial//Tutorial.txt";
-	nLines = GetNumberOfLines(textFilePath);
-	
+	TutorialArray = TutorialText.text.Split("\n"[0]);
 	setAudio();
 	ApplySettings();
 
@@ -52,37 +49,26 @@ function Start () {
 	ImageDisplayer2 =  GameObject.Find("ImageDisplayer2").transform;
 	ImageDisplayer3 =  GameObject.Find("ImageDisplayer3").transform;
 	
-		
-	receiver = ReadLine(textFilePath, TutorialPart);
-	Writer = getLineBreaker(receiver);
-	TextDisplayer1.GetComponent(TextMesh).text = Writer;
-		
-	receiver = ReadLine(textFilePath, TutorialPart+1);
-	Writer = getLineBreaker(receiver);
-	TextDisplayer2.GetComponent(TextMesh).text = Writer;
-
+	Earth.active = false;
+	TextChanger();
 	soundtrack.Play();
 	fadeInOut.FadeIn();
-	Earth.active = false;
+
 
 }
+
 function Update () {
 
 
-	if(TutorialPart < nLines-1){
+	if(TutorialPart < 24){
 		TextChanger();
 		ImageChanger();
 		if (Input.GetButtonDown("Jump")) {
 			TutorialPart= TutorialPart + 2;
-				
-			
-			
 		}
 	
 		if (Input.GetButtonDown("Fire1") ) {
 			TutorialPart = TutorialPart - 2;
-		
-	
 		}
 	
 	}
@@ -97,20 +83,10 @@ function Update () {
 }
 
 
-function ReadLine(filePath : String, nLine : int) : String{
-	var reader = new StreamReader(File.Open(filePath, FileMode.Open)) ;
-	var line : String = " ";
-	var n : int = 0;
-	while (n++ <= nLine)
-	    line = reader.ReadLine();
-	reader.Close();
-	return line;
-}
-
 function getLineBreaker(CurrentString : String) : String{
 	var Test : String = "";
 	for (var i : int = 0; i<CurrentString.Length; i++){
-			if ( (CurrentString[i] == "\\") && (CurrentString[i+1] == "n") ){
+			if ( (CurrentString[i] == "\\") && (CurrentString[i+1] == "%") ){
 				Test = Test + "\n" + CurrentString[i+2];
 				i+=2;
 			}
@@ -121,19 +97,14 @@ function getLineBreaker(CurrentString : String) : String{
 		return Test;
 }
 
-function GetNumberOfLines(filePath : String) : int{
-	var reader = new StreamReader(File.Open(filePath, FileMode.Open));
-	var number = reader.ReadToEnd().Split("\n"[0]).Length;
-	reader.Close();
-	return number;
-}
+
 
 function TextChanger(){
-		receiver = ReadLine(textFilePath, TutorialPart);
+		receiver = TutorialArray[ TutorialPart];
 		Writer = getLineBreaker(receiver);
 		TextDisplayer1.GetComponent(TextMesh).text = Writer;
 		
-		receiver = ReadLine(textFilePath, TutorialPart+1);
+		receiver = TutorialArray[ TutorialPart+1];
 		Writer = getLineBreaker(receiver);
 		TextDisplayer2.GetComponent(TextMesh).text = Writer;
 	

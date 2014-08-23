@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-private var option : int = 1;
+private var option : int = 0;
 private var MaxPosition : int = 3;
 private var MinPosition : int = 1;
 private var fadeInOut : SceneFadeInOut;
@@ -24,7 +24,7 @@ function Start () {
 	playerVariables.setMusic(1);
 	//When start, fade the screen from black to transparent
 	fadeInOut.FadeIn();
-	option = 1;
+	option = 0;
 	
 	
 	//Set all children's color to white
