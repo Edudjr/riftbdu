@@ -382,6 +382,7 @@ function SetRandomMusic(){
 	Music = gameObject.AddComponent("AudioSource");
 	Music.clip = MyMusic[Random.Range(0, MyMusic.length)];
 	Music.Play();
+	setMusicAndSFXOptions();
 	timer = 0;
 	//Debug.Log("Entrei no set");
 }
