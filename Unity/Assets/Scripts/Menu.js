@@ -60,24 +60,27 @@ function Update () {
 			transform.Find("Back Settings").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 7:
-			GameObject.Find("OptionAsia").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionAll").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 8:
-			GameObject.Find("OptionAfrica").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionAsia").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 9:
-			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionAfrica").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 10:
-			GameObject.Find("OptionNorthAmerica").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionEurope").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 11:
-			GameObject.Find("OptionOceania").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionNorthAmerica").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 12:
-			GameObject.Find("OptionSouthAmerica").GetComponent(TextMesh).color = Color.green;
+			GameObject.Find("OptionOceania").GetComponent(TextMesh).color = Color.green;
 			break;
 		case 13:
+			GameObject.Find("OptionSouthAmerica").GetComponent(TextMesh).color = Color.green;
+			break;
+		case 14:
 			transform.Find("Back").GetComponent(TextMesh).color = Color.green;
 			break;
 	}
@@ -91,9 +94,10 @@ function Update () {
 		playerVariables.setOption(option);
 		switch(option){
 			case 1:
-				MaxPosition = 13;
+				MaxPosition = 14;
 				MinPosition = 7;
 				GameObject.Find("OptionNorthAmerica").renderer.enabled = true;
+				GameObject.Find("OptionAll").renderer.enabled = true;
 				GameObject.Find("OptionAsia").renderer.enabled = true;
 				GameObject.Find("OptionAfrica").renderer.enabled = true;
 				GameObject.Find("OptionOceania").renderer.enabled = true;
@@ -161,35 +165,40 @@ function Update () {
 				transform.Find("SettingsMenu").renderer.enabled = false;
 				break;
 			case 7:
-				playerVariables.setContinent("Asia");
+				playerVariables.setContinent("All");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 8:
-				playerVariables.setContinent("Africa");
+				playerVariables.setContinent("Asia");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 9:
-				playerVariables.setContinent("Europe");
+				playerVariables.setContinent("Africa");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 10:
-				playerVariables.setContinent("NorthAmerica");
+				playerVariables.setContinent("Europe");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 11:
-				playerVariables.setContinent("Oceania");
+				playerVariables.setContinent("NorthAmerica");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 12:
-				playerVariables.setContinent("SouthAmerica");
+				playerVariables.setContinent("Oceania");
 				fadeInOut.FadeOutLoad("DiscoveryMode");
 				break;
 			case 13:
+				playerVariables.setContinent("SouthAmerica");
+				fadeInOut.FadeOutLoad("DiscoveryMode");
+				break;
+			case 14:
 				MaxPosition = 3;
 				MinPosition = 1;
 				GameObject.Find("OptionEurope").renderer.enabled = false;
 				GameObject.Find("OptionNorthAmerica").renderer.enabled = false;
 				GameObject.Find("OptionSouthAmerica").renderer.enabled = false;
+				GameObject.Find("OptionAll").renderer.enabled = false;
 				GameObject.Find("OptionAsia").renderer.enabled = false;
 				GameObject.Find("OptionAfrica").renderer.enabled = false;
 				GameObject.Find("OptionOceania").renderer.enabled = false;
