@@ -56,6 +56,10 @@ private function resetPanelText(){
 //Load one tip by time. Every time this function is called, it loads another tip in the panel, until it reaches 3 tips.
 public function loadTip(){
 	//Debug.Log("LOAD: "+Country);
+	for (var child : Transform in transform) {
+    	// do whatever you want with child transform here
+    	child.GetComponent(TextMesh).color = Color.red;
+	}
 	//Select panels 
 	switch(tipNumber){
 		case 0:
@@ -95,6 +99,7 @@ private function setFact(country : String){
 	    } else {
 	        //Change first 3Dtext
 			transform.GetChild(0).GetComponent(TextMesh).text = www.data;
+			transform.GetChild(0).GetComponent(TextMesh).color = Color.yellow;
 			www.Dispose(); //clear our form in game
 	    }
 	}
@@ -117,6 +122,7 @@ private function setLanguage(country : String){
 	    } else {
 	        //Change first 3Dtext
 			transform.GetChild(2).GetComponent(TextMesh).text = www.data+" is their language";
+			transform.GetChild(2).GetComponent(TextMesh).color = Color.yellow;
 			www.Dispose(); //clear our form in game
 	    }
 	}
@@ -142,6 +148,7 @@ private function setCuriosity(country : String){
 		        //Change first 3Dtext
 		        okay = true;
 				transform.GetChild(1).GetComponent(TextMesh).text = www.data;
+				transform.GetChild(1).GetComponent(TextMesh).color = Color.yellow;
 				www.Dispose(); //clear our form in game
 		    }
 		}

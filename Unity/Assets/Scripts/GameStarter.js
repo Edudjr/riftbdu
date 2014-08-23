@@ -253,7 +253,7 @@ function moveFlag(){
 	resetFlag();
 	setFlagAlpha(1);
 	//Flagboard.transform.renderer.material.color.a = 1;
-	while(Flagboard.transform.localPosition.z > -7){
+	while(Flagboard.transform.localPosition.z > -6){
 		//Flagboard.transform.localPosition = Vector3(0,0,);
 		Flagboard.transform.Translate(-6 * Time.deltaTime, 5 * Time.deltaTime, 0);
 		Flagboard.transform.localScale.x += 0.3 * Time.deltaTime;
