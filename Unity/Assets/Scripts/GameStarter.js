@@ -27,10 +27,13 @@ public var ClothFlag : GameObject;
 
 
 var CurrentScore: int = 4;
+
 //Get scripts.
 private var markers : Markers; 
 private var scoreScript : ScoreScript;
 private var playerVariables : PlayerVariables;
+private var leap : LeapMovement;
+
 //This Variable will get all the settings that the player chose on the menu
 var Settings : Menu;
 
@@ -68,6 +71,7 @@ function Start () {
 	panelScript = GameObject.FindObjectOfType(PanelScript);
 	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
 	clothScript = GameObject.FindObjectOfType(ClothScript);
+	leap = GameObject.FindObjectOfType(LeapMovement);
 	
 	
 	setMusicAndSFXOptions();
@@ -99,7 +103,7 @@ function getCountriesFromDatabase(){
 		
 	    if (www.error != null) {
 			//IF SERVER IS NOT WORKING
-			Debug.Log("error: "+www.error); //if there is an error, tell us
+			Debug.Log("getCountriesFromDatabase error: "+www.error); //if there is an error, tell us
 	    } else {
 			//If it happened any error in the server, it will return "err"
 			if(www.data=="err"){
@@ -167,9 +171,9 @@ function level(){
 				//moveClothFlag();
 			}//End of the checking if the country changed
 			
-		
+			
 			//The button "D" or "A" on the Joystick is pressed
-			if( Input.GetButtonDown("Jump") ) {
+			if( Input.GetButtonDown("Jump") || leap.getHandClosed()) {
 				//If the name of the country asked is equal the name of the country selected at the moment that the player pressed "Fire", he scores!
 				if ( CountrytoGuess == markers.getActivated() ) {
 					setAnswer(CountrytoGuess, Color.green);
@@ -255,7 +259,7 @@ function moveFlag(){
 	//Flagboard.transform.renderer.material.color.a = 1;
 	while(Flagboard.transform.localPosition.z > -6){
 		//Flagboard.transform.localPosition = Vector3(0,0,);
-		Flagboard.transform.Translate(-6 * Time.deltaTime, 5 * Time.deltaTime, 0);
+		Flagboard.transform.Translate(-8 * Time.deltaTime, 5 * Time.deltaTime, 0);
 		Flagboard.transform.localScale.x += 0.3 * Time.deltaTime;
 		Flagboard.transform.localScale.y += 0.2 * Time.deltaTime;
 		Flagboard.transform.localScale.z += 0.2 * Time.deltaTime;

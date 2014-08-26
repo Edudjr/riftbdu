@@ -95,7 +95,7 @@ private function setFact(country : String){
 		yield www;
 	    
 	    if (www.error != null) {
-       		Debug.Log(www.error); //if there is an error, tell us
+       		Debug.Log(country+" setFact error: "+www.error); //if there is an error, tell us
 	    } else {
 	        //Change first 3Dtext
 			transform.GetChild(0).GetComponent(TextMesh).text = www.data;
@@ -118,7 +118,7 @@ private function setLanguage(country : String){
 		yield www;
 	    
 	    if (www.error != null) {
-       		Debug.Log(www.error); //if there is an error, tell us
+       		Debug.Log(country+" setLanguage error: "+www.error); //if there is an error, tell us
 	    } else {
 	        //Change first 3Dtext
 			transform.GetChild(2).GetComponent(TextMesh).text = www.data+" is their language";
@@ -143,7 +143,7 @@ private function setCuriosity(country : String){
 			yield www;
 		    
 		    if (www.error != null) {
-	       		Debug.Log(www.error); //if there is an error, tell us
+	       		Debug.Log(country+" setCuriosity error: "+www.error); //if there is an error, tell us
 		    } else {
 		        //Change first 3Dtext
 		        okay = true;
