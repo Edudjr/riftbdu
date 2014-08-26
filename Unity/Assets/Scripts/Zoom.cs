@@ -4,17 +4,19 @@ using System.Collections;
 public class Zoom : MonoBehaviour {
 	
 	public float speed = 5;
-	public float forwardDistance = 5;
-	public float backwardDistance = 5;
+	public float forwardDistance = 2;
+	public float backwardDistance = 2;
+	private Vector3 initialPosition;
 
 	void Start () {
-		
+		initialPosition = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		if(transform.position.z >= -backwardDistance && transform.position.z <= -forwardDistance){
+		if(transform.position.z >= initialPosition.z-backwardDistance 
+		   && transform.position.z <= initialPosition.z+forwardDistance){
 			
 			if(Input.GetKey(KeyCode.S)){
 				transform.position -= new Vector3(0,0,speed * Time.deltaTime);
@@ -36,12 +38,13 @@ public class Zoom : MonoBehaviour {
 
 		}
 		
-		if (transform.position.z > -forwardDistance) {
-			transform.position = new Vector3(0, 0, -forwardDistance);
+		if (transform.position.z > initialPosition.z + forwardDistance) {
+			transform.position = new Vector3(0, 0, initialPosition.z + forwardDistance);
 		}
 		
-		if (transform.position.z < -backwardDistance) {
-			transform.position = new Vector3(0, 0, -backwardDistance);
+		if (transform.position.z < initialPosition.z - backwardDistance) {
+			transform.position = new Vector3(0, 0, initialPosition.z - backwardDistance);
+			//Debug.Log("veio");
 		}
 	}
 }

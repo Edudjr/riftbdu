@@ -23,22 +23,27 @@ private static var lastSelected : String = null;
 public var MyMusic : AudioClip [];
 
 public var Flagboard : GameObject;
+public var ClothFlag : GameObject;
 
 
 var CurrentScore: int = 4;
+
 //Get scripts.
 private var markers : Markers; 
 private var scoreScript : ScoreScript;
 private var playerVariables : PlayerVariables;
+private var leap : LeapMovement;
+
 //This Variable will get all the settings that the player chose on the menu
 var Settings : Menu;
 
 
 var countriesFromDB : Array = [];
 
-//Get PanelScript script
-var panelScript : PanelScript;
-var fadeInOut : SceneFadeInOut;
+//Get scripts
+private var panelScript : PanelScript;
+private var fadeInOut : SceneFadeInOut;
+private var clothScript : ClothScript;
 
 var FlagMovementSound : AudioSource;
 var CorrectAnswerSound : AudioSource;
@@ -59,13 +64,17 @@ function Start () {
     //getCountriesFromDatabase();
     //yield;
 	 
-	//Get a random marker script
+	//Instantiate scripts
 	markers = GameObject.FindObjectOfType(Markers);
 	fadeInOut = GameObject.FindObjectOfType(SceneFadeInOut);
 	scoreScript = GameObject.FindObjectOfType(ScoreScript);
 	panelScript = GameObject.FindObjectOfType(PanelScript);
 	playerVariables = GameObject.FindObjectOfType(PlayerVariables);
-
+	clothScript = GameObject.FindObjectOfType(ClothScript);
+	leap = GameObject.FindObjectOfType(LeapMovement);
+	
+	
+	setMusicAndSFXOptions();
 	//getCountriesFromFile();
     getCountriesFromDatabase();
     yield;
@@ -73,7 +82,6 @@ function Start () {
 	//Fades screen
 	fadeInOut.FadeIn();
 	
-	setMusicAndSFXOptions();
 	//Get one country from the list
 }
 
@@ -95,7 +103,7 @@ function getCountriesFromDatabase(){
 		
 	    if (www.error != null) {
 			//IF SERVER IS NOT WORKING
-			Debug.Log("error: "+www.error); //if there is an error, tell us
+			Debug.Log("getCountriesFromDatabase error: "+www.error); //if there is an error, tell us
 	    } else {
 			//If it happened any error in the server, it will return "err"
 			if(www.data=="err"){
@@ -143,7 +151,7 @@ function level(){
 		
 			if( timer >= Music.clip.length ){
 				SetRandomMusic();
-				}
+			}
 				
 			//set panel information
 			//Debug.Log("SET COUNTRY - "+CountrytoGuess);
@@ -160,11 +168,12 @@ function level(){
 				Resources.UnloadUnusedAssets();
 				lastSelected = activated;
 				moveFlag();
+				//moveClothFlag();
 			}//End of the checking if the country changed
 			
-		
+			
 			//The button "D" or "A" on the Joystick is pressed
-			if( Input.GetButtonDown("Jump") ) {
+			if( Input.GetButtonDown("Jump") || leap.getHandClosed()) {
 				//If the name of the country asked is equal the name of the country selected at the moment that the player pressed "Fire", he scores!
 				if ( CountrytoGuess == markers.getActivated() ) {
 					setAnswer(CountrytoGuess, Color.green);
@@ -176,7 +185,7 @@ function level(){
 					panelScript.resetTipNumber();
 					panelScript.setCountry(CountrytoGuess);
 					panelScript.loadTip();
-					TipsSound.Play();
+					
 					SetCountryText3D("");
 					CorrectAnswerSound.Play();
 					//scoreScript.sendScore();
@@ -191,6 +200,9 @@ function level(){
 						GameObject.Find("EarthCountry").renderer.material.color = Color.yellow;
 						GameObject.Find("EarthCountry").renderer.material.color.a = 1;
 					}//END
+					else{
+						//TipsSound.Play();
+					}
 					setAnswer("Wrong!", Color.red);
 					//The quantity of points he will receive decreases if he misses the right country.
 					if(CurrentScore >= 1){
@@ -218,8 +230,10 @@ function level(){
 }
 
 function waitAndLeave(){
-	yield WaitForSeconds(2);
-	fadeInOut.FadeOutLoad("Menu");
+	SetCountryText3D("Press 'A' to go \nback to menu");
+	if( Input.GetButtonDown("Jump") ) {
+		fadeInOut.FadeOutLoad("Menu");
+		}
 }
 
 //Puts flag to initial position (center of the screen, small scale)
@@ -243,9 +257,9 @@ function moveFlag(){
 	resetFlag();
 	setFlagAlpha(1);
 	//Flagboard.transform.renderer.material.color.a = 1;
-	while(Flagboard.transform.localPosition.z > -7){
+	while(Flagboard.transform.localPosition.z > -6){
 		//Flagboard.transform.localPosition = Vector3(0,0,);
-		Flagboard.transform.Translate(-6 * Time.deltaTime, 5 * Time.deltaTime, 0);
+		Flagboard.transform.Translate(-8 * Time.deltaTime, 5 * Time.deltaTime, 0);
 		Flagboard.transform.localScale.x += 0.3 * Time.deltaTime;
 		Flagboard.transform.localScale.y += 0.2 * Time.deltaTime;
 		Flagboard.transform.localScale.z += 0.2 * Time.deltaTime;
@@ -254,8 +268,8 @@ function moveFlag(){
 		Flagboard.transform.eulerAngles.y += 2;
 		yield;
 	}
-
-	
+	setFlagAlpha(0);
+	clothScript.moveClothFlag();	
 }
 
 //Set the text of the answer text. It gets a String and a Colour.
@@ -357,7 +371,7 @@ function setAudioClips(){
 	WrongAnswerSound.clip = WrongAnswerAudioclip;
 	
 	TipsSound = gameObject.AddComponent("AudioSource");
-	var TipsAudioclip : AudioClip = Resources.Load("Sounds/Tips/Tips2");
+	var TipsAudioclip : AudioClip = Resources.Load("Sounds/Tips/Tip");
 	TipsSound.clip = TipsAudioclip;
 	
 	
@@ -372,6 +386,7 @@ function SetRandomMusic(){
 	Music = gameObject.AddComponent("AudioSource");
 	Music.clip = MyMusic[Random.Range(0, MyMusic.length)];
 	Music.Play();
+	setMusicAndSFXOptions();
 	timer = 0;
 	//Debug.Log("Entrei no set");
 }
